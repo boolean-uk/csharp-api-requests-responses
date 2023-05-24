@@ -2,11 +2,12 @@
 {
     public class Language
     {
-        private String name {get; set;}
+          public string Name { get; set; }
+    //    private String name {get; set;}
 
-        public Language(String name)
-        {
-            this.name = name;
-        }
+    //    public Language(String name)
+    //    {
+    //        this.name = name;
+    //    }
     }
 }
