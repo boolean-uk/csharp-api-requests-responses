@@ -97,11 +97,28 @@ namespace request_response.Controllers
             {
                 return Results.Problem(ex.Message);
             }
-            
-
-            //Update a student's details using the firstName provided.
-            //Just update the first student found in the list with the provided first name.
-
+        }
+        [HttpDelete]
+        [Route("{firstname}")]
+        public async Task<IResult> DeleteStudent(string firstname)
+        {
+            try
+            {
+                if (_students.Any(x => x.FirstName == firstname))
+                {
+                    var s = _students.SingleOrDefault(x => x.FirstName == firstname); // this pulls out the student you want to change
+                    _students.Remove(s);
+                    return Results.Ok(s);
+                }
+                else
+                {
+                    return Results.NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
         }
     }
 }
