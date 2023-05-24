@@ -8,7 +8,7 @@ namespace request_response.Controllers
     [Route("[controller]")]
     public class LanguageController : ControllerBase
     {
-        public static List<Language> Languages = new List<Language>();
+        private static List<Language> _languages = new List<Language>();
         public LanguageController()
         {
         }
