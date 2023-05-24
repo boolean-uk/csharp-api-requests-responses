@@ -31,6 +31,7 @@ namespace request_response.Controllers
         }
 
         [HttpGet]
+        [Route("/students")]
         public async Task<IResult> GetAllStudents()
         {
             try

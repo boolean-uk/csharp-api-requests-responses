@@ -9,7 +9,7 @@ namespace request_response.Controllers
     [Route("[controller]")]
     public class LanguageController : ControllerBase
     {
-        public List<Language> languages = new List<Language>();
+        private static List<Language> languages = new List<Language>();
         public LanguageController()
         {
         }
@@ -22,7 +22,7 @@ namespace request_response.Controllers
             {
                 Language language = new Language() { Name = name };
                 languages.Add(language);
-                return Results.Created("Valid", language);
+                return Results.Created($"https://localhost:7241/languages/{language.Name}", language);
             }
             catch (Exception ex) 
             {
@@ -31,6 +31,7 @@ namespace request_response.Controllers
         }
 
         [HttpGet]
+        [Route("/languages")]
         public async Task<IResult> GetAllLanguages()
         {
             try
@@ -79,7 +80,7 @@ namespace request_response.Controllers
                     if (i.Name == name)
                     {
                         i.Name = newName;
-                        return Results.Ok(i);
+                        return Results.Created($"https://localhost:7241/languages/{i.Name}",i);
                     }
                 }
                 return Results.NotFound();
