@@ -6,7 +6,7 @@ using System;
 namespace request_response.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Students")]
     public class StudentController : ControllerBase
     {
         private static List<Student> _students = new List<Student>();
@@ -26,13 +26,15 @@ namespace request_response.Controllers
 
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
         public async Task<IResult> AddStudent(Student student)
         {
             try
             {
                 if (student == null) return Results.Problem();
                 _students.Add(student);
-                return Results.Ok(student);
+                return Results.Created("https://localhost:7241/Student",student);
             }
             catch (Exception ex)
             {
