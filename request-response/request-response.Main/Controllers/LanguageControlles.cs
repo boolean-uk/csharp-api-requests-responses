@@ -6,10 +6,10 @@ namespace request_response.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class LanguageController : ControllerBase
+    public class LanguagesController : ControllerBase
     {
         public static List<Language> _languages = new List<Language>();
-        public LanguageController()
+        public LanguagesController()
         {
             if (_languages.Count == 0)
             {
@@ -58,7 +58,6 @@ namespace request_response.Controllers
         }
 
         [HttpGet("{name}")]
-
         public IActionResult Get(string name)
         {
             try
@@ -74,7 +73,6 @@ namespace request_response.Controllers
 
 
         [HttpPut("{name}")]
-
         public IActionResult Put(Language language)
         {
             try
@@ -99,7 +97,6 @@ namespace request_response.Controllers
         }
 
         [HttpDelete("{name}")]
-
         public IActionResult Delete(string name)
         {
             try

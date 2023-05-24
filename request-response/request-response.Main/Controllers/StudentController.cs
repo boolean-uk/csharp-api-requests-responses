@@ -64,7 +64,6 @@ namespace request_response.Controllers
         }
 
         [HttpGet("{firstName}")]
-
         public IActionResult Get(string firstName)
         {
             try
@@ -79,7 +78,6 @@ namespace request_response.Controllers
         }
 
         [HttpPut("{firstName}")]
-
         public IActionResult Put(Student student)
         {
             try
@@ -104,7 +102,6 @@ namespace request_response.Controllers
         }
 
         [HttpDelete("{firstName}")]
-
         public IActionResult Delete(string firstName)
         {
             try

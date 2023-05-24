@@ -4,11 +4,11 @@ namespace request_response.Models
 {
     public class Student
     {
-        [Required (ErrorMessage ="First name is requaried")] 
+        [Required (ErrorMessage ="First name is requared")] 
         public string FirstName { get; set; }
 
 
-        [Required(ErrorMessage ="Last name is requaried")] 
+        [Required(ErrorMessage ="Last name is requared")] 
         public string LastName { get; set; }
 
 
