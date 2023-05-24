@@ -32,28 +32,12 @@ namespace request_response.Controllers
             }
         }
 
-        //[HttpPost]
-        //public IActionResult CreateStudentBase(Student students)
-        //{
-        //    try
-        //    {
-        //        if (student == null)
-        //        {
-        //            return BadRequest("Student info is not provided");
-        //        }
-        //        _students.Add(student);
-        //        return Ok(student);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+       
 
         [HttpGet]
-        public IActionResult GetAll() 
+        public IActionResult GetAll()
         {
-        try
+            try
             {
                 return Ok(_students);
 
@@ -66,7 +50,7 @@ namespace request_response.Controllers
 
         [HttpGet]
         [Route("/{firstName}")]
-        public IActionResult Get(string firstName)    
+        public IActionResult Get(string firstName)
         {
             try
             {
@@ -79,7 +63,50 @@ namespace request_response.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("/{firstName}")]
+        public IActionResult Put(Student student)
+        {
+            try
+            {
+                if (_students.Any(x => x.FirstName == student.FirstName))
+                {
+                    var s = _students.SingleOrDefault(x => x.FirstName == student.FirstName);
+                    if (s != null)
+                    {
+                        s.FirstName = student.FirstName;
+                        return Ok(s);
+                    }
+                    return BadRequest();
+                }
+                else return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-        
+        }
+
+        [HttpDelete]
+        [Route("/{firstName}")]
+        public IActionResult Delete(string firstName)
+        {
+            try
+            {
+                if (_students.Any(x => x.FirstName == firstName))
+                {
+                    _students.RemoveAll(x => x.FirstName == firstName);
+                    return Ok();
+                }
+                else return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
+
