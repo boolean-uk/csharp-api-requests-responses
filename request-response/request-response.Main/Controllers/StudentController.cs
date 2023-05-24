@@ -2,6 +2,7 @@ using api_counter.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using request_response.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace request_response.Controllers
 {
@@ -82,10 +83,14 @@ namespace request_response.Controllers
         }
 
         [HttpPost]
-        public async Task<IResult> CreateStudent(Student student)
+        public async Task<IResult> CreateStudent([Required]string firstname, [Required]string lastname)
         {
             try
             {
+                Student student = new Student();
+                student.firstName = firstname;
+                student.lastName = lastname;
+                
                 students.Add(student);
                 return Results.Ok(student);
 
@@ -93,6 +98,72 @@ namespace request_response.Controllers
             {
                 return Results.Problem(ex.Message);
             }
+        }
+        [HttpDelete]
+        public async Task<IResult> DeleteStudent([Required]string firstname)
+        {
+            try
+            {
+                if(students.Any(x=>x.firstName.ToLower() == firstname.ToLower()))
+                {
+                    var student = students.Where(x=>x.firstName.ToLower().Equals(firstname.ToLower())).FirstOrDefault();
+
+                students.Remove(student);
+                return Results.Ok(students);
+                }
+                else
+                {
+                    return Results.NotFound(firstname);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+        [HttpPut]
+        [Route("{firstname}")]
+
+        public async Task<IResult> UpdateStudent([Required]string firstname, string newFirstName, string newLastName)
+        {
+            try
+            {
+
+                if (students.Any(x => x.firstName.ToLower() == firstname.ToLower()))
+                {
+                    var student = students.Where(x=> x.firstName.ToLower() == firstname.ToLower()).FirstOrDefault();
+                    student.lastName = newLastName;
+                    student.firstName = newFirstName;
+
+                    return Results.Ok(student);
+
+
+
+
+
+
+
+
+                }
+                else
+                {
+                    return Results.NotFound($"{firstname} not found");
+
+                }
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+
         }
         
     }
