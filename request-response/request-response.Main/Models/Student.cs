@@ -1,24 +1,34 @@
-﻿namespace request_response.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace request_response.Models
 {
     public class Student
     {
-        private String firstName;
-        private String lastName;
+        [Required (ErrorMessage ="First name is requaried")] 
+        public string FirstName { get; set; }
 
-        public Student(String firstName, String lastName)
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
 
-        public String getFirstName()
-        {
-            return firstName;
-        }
+        [Required(ErrorMessage ="Last name is requaried")] 
+        public string LastName { get; set; }
 
-        public String getLastName()
-        {
-            return lastName;
-        }
+
+        //private String firstName;
+        //private String lastName;
+
+        //public Student(String firstName, String lastName)
+        //{
+        //    this.firstName = firstName;
+        //    this.lastName = lastName;
+        //}
+
+        //public String getFirstName()
+        //{
+        //    return firstName;
+        //}
+
+        //public String getLastName()
+        //{
+        //    return lastName;
+        //}
     }
 }
