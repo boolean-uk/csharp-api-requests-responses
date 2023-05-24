@@ -1,12 +1,11 @@
-﻿namespace request_response.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace request_response.Models
 {
     public class Language
     {
-        private String name {get; set;}
+        [Required(ErrorMessage = "Name is required")]
+        public string Name {get; set;}
 
-        public Language(String name)
-        {
-            this.name = name;
-        }
     }
 }
