@@ -1,24 +1,18 @@
-﻿namespace request_response.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace request_response.Models
 {
     public class Student
     {
-        private String firstName;
-        private String lastName;
+        [Required(ErrorMessage = "First name is required.")]
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Last name is required.")]
+        public string LastName { get; set; }
 
-        public Student(String firstName, String lastName)
+        public Student()
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
+
         }
 
-        public String getFirstName()
-        {
-            return firstName;
-        }
-
-        public String getLastName()
-        {
-            return lastName;
-        }
     }
 }

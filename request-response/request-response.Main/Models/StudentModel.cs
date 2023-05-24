@@ -5,8 +5,8 @@ namespace api_counter.Models
     public class StudentModel
     {
         private List<Student> students = new List<Student>(){
-            new Student("Nathan", "King"),
-            new Student("Dave", "Ames"),
+            //new Student("Nathan", "King"),
+            //new Student("Dave", "Ames"),
         };
 
         public Student create(Student student)
