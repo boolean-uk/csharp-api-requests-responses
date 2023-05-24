@@ -11,6 +11,21 @@ namespace request_response.Controllers
         public static List<Student> _students = new List<Student>();
         public StudentsController()
         {
+            if (_students.Count == 0)
+            {
+                Student student1 = new Student();
+                student1.FirstName = "Tom";
+                student1.LastName = "Sawyer";
+
+
+                Student student2 = new Student();
+                student2.FirstName = "Huckleberry";
+                student2.LastName = "Finn";
+
+                _students.Add(student1);
+                _students.Add(student2);
+
+            }
 
         }
 
@@ -32,7 +47,7 @@ namespace request_response.Controllers
             }
         }
 
-       
+
 
         [HttpGet]
         public IActionResult GetAll()
@@ -48,8 +63,8 @@ namespace request_response.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("/{firstName}")]
+        [HttpGet("{firstName}")]
+
         public IActionResult Get(string firstName)
         {
             try
@@ -63,8 +78,8 @@ namespace request_response.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("/{firstName}")]
+        [HttpPut("{firstName}")]
+
         public IActionResult Put(Student student)
         {
             try
@@ -88,8 +103,8 @@ namespace request_response.Controllers
 
         }
 
-        [HttpDelete]
-        [Route("/{firstName}")]
+        [HttpDelete("{firstName}")]
+
         public IActionResult Delete(string firstName)
         {
             try
