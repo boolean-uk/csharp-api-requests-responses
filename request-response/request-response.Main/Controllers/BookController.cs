@@ -1,29 +1,30 @@
+using api_counter.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using request_response.Models;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace request_response.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StudentController : ControllerBase
+    public class BookController : ControllerBase
     {
-        private static List<Student> students = new List<Student>();
-        public StudentController()
+        private static List<Book> books = new List<Book>();
+        private static int id = 1;
+        public BookController()
         {
         }
-
         [HttpPost]
-        [Route("/students")]
-        public async Task<IResult> createStudent([Required] string firstName, [Required] string lastName)
+        [Route("/books")]
+        public async Task<IResult> createBook([Required] string title, [Required] string author, [Required] string genre, [Required] int numPages)
         {
             try
             {
-                Student student = new Student(firstName, lastName);
-                students.Add(student);
-                return Results.Created("ok", student);
+                Book book = new Book(id,title, author, genre, numPages);
+                id++;
+                books.Add(book);
+                return Results.Created("ok", book);
             }
             catch (Exception ex)
             {
@@ -32,16 +33,16 @@ namespace request_response.Controllers
         }
 
         [HttpGet]
-        [Route("/students/{firstName}")]
-        public async Task<IResult> getAStudent([Required] string firstName)
+        [Route("/books/{id}")]
+        public async Task<IResult> getABook([Required] int id)
         {
             try
             {
-                foreach (Student student in students)
+                foreach (Book book in books)
                 {
-                    if (student.firstName.Equals(firstName))
+                    if (book.id.Equals(id))
                     {
-                        return Results.Ok(student);
+                        return Results.Ok(book);
                     }
                 }
                 return Results.NotFound();
@@ -54,14 +55,14 @@ namespace request_response.Controllers
         }
 
         [HttpGet]
-        [Route("/students")]
-        public async Task<IResult> getAllStudents()
+        [Route("/books")]
+        public async Task<IResult> getAllBooks()
         {
             try
             {
-                if (students.Count() != 0)
+                if (books.Count() != 0)
                 {
-                    return Results.Ok(students);
+                    return Results.Ok(books);
                 }
 
                 return Results.NotFound();
@@ -75,17 +76,17 @@ namespace request_response.Controllers
         }
 
         [HttpPut]
-        [Route("/students/{firstName}")]
-        public async Task<IResult> updateAStudent([Required] string firstName)
+        [Route("/books/{id}")]
+        public async Task<IResult> updateABook([Required] int id)
         {
             try
             {
-                foreach (Student student in students)
+                foreach (Book book in books)
                 {
-                    if (student.firstName.Equals(firstName))
+                    if (book.id.Equals(id))
                     {
-                        student.lastName = "updated";
-                        return Results.Ok(student);
+                        book.title = "updated";
+                        return Results.Ok(book);
                     }
                 }
                 return Results.NotFound();
@@ -98,16 +99,16 @@ namespace request_response.Controllers
         }
 
         [HttpDelete]
-        [Route("/students/{firstName}")]
-        public async Task<IResult> DeleteAStudent([Required] string firstName)
+        [Route("/books/{id}")]
+        public async Task<IResult> DeleteABook([Required] int id)
         {
             try
             {
-                foreach (Student student in students)
+                foreach (Book book in books)
                 {
-                    if (student.firstName.Equals(firstName))
+                    if (book.id.Equals(id))
                     {
-                        students.Remove(student);
+                        books.Remove(book);
                         return Results.Ok();
                     }
                 }
@@ -119,6 +120,5 @@ namespace request_response.Controllers
                 return Results.Problem(ex.Message);
             }
         }
-
     }
 }
