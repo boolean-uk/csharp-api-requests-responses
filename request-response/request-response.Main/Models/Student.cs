@@ -1,24 +1,16 @@
-﻿namespace request_response.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace request_response.Models
 {
     public class Student
     {
-        private String firstName;
-        private String lastName;
+        [Required(ErrorMessage = "FirstName is a required field", AllowEmptyStrings = false)]
+        [Description("This is the firstname of the person")]
+        public string FirstName { get; set; }
 
-        public Student(String firstName, String lastName)
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        public String getFirstName()
-        {
-            return firstName;
-        }
-
-        public String getLastName()
-        {
-            return lastName;
-        }
+        [Required(ErrorMessage = "LastName is a required field!", AllowEmptyStrings = false)]
+        [Description("This is the lastname of the person")]
+        public string LastName { get; set; }
     }
 }
