@@ -13,7 +13,7 @@ namespace request_response.Controllers
     {
         private static List<Language> _languages = new List<Language>();
 
-        static LanguageController() // used the top 30 most spoken languages in the world for this
+        static LanguageController() // used the top 30 most used languages
         {
             if (_languages.Count == 0)
             {
