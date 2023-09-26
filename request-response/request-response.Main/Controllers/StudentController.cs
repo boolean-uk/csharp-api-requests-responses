@@ -20,11 +20,20 @@ namespace request_response.Controllers
             }
         }
 
-        // TODO: create a student
+        // create a student
+        [HttpPost]
+        [Route("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IResult> CreateAStudent(Student student)
+        {
+            _students.Add(student);
+            return Results.Created($"http://localhost:5186/Student/{student.FirstName}", student);
+        }
 
 
         // get all students
         [HttpGet]
+        [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IResult> GetStudents()
         {
