@@ -50,5 +50,23 @@ namespace request_response.Controllers
             var student = _students.FirstOrDefault(s => s.FirstName == firstName);
             return student != null ? Results.Ok(student) : Results.NotFound();
         }
+
+        // update a student
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{firstName}")]
+        public async Task<IResult> UpdateAStudent(string firstName, Student newStudent)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstName);
+            if (student == null) return Results.NotFound();
+
+            if (!string.IsNullOrEmpty(newStudent.FirstName))
+                student.FirstName = newStudent.FirstName;
+            if (!string.IsNullOrEmpty(newStudent.LastName))
+                student.LastName = newStudent.LastName;
+
+            return Results.Created($"http://localhost:5186/Student/{student.FirstName}", student);
+        }
     }
 }
