@@ -36,6 +36,7 @@ namespace request_response.Controllers
         {
             return Results.Ok(_students);
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -47,14 +48,26 @@ namespace request_response.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [Route("updateStudent")]
         public async Task<IResult> UpdateStudent(string firstName, Student student)
         {
             var item = _students.Where(x => x.firstName == firstName).FirstOrDefault();
-            item.firstName = student.firstName != string.Empty ? student.firstName : item.firstName;
-            item.lastName = student.lastName;
-            return Results.Ok(item);
+            item.firstName = student.firstName;
+            item.lastName = student.lastName != string.Empty ? student.lastName : item.lastName;
+            return Results.Created($"https://localhost:7241/Student/updateStudent",item);
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("deleteStudent/{firstName}")]
+        public async Task<IResult> DeleteStudent(string firstName)
+        {
+            var student = _students.Where(s => s.firstName == firstName).FirstOrDefault();
+            var result = _students.RemoveAll(s => s.firstName == firstName);
+
+            return result >= 0 && student != null ? Results.Ok(_students) : Results.NotFound();
         }
 
     }

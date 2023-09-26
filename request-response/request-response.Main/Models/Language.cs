@@ -2,11 +2,11 @@
 {
     public class Language
     {
-        private string name {get; set;}
+        public string name {get; set;}
 
-        public Language(string name)
+       /* public Language(string name)
         {
             this.name = name;
-        }
+        }*/
     }
 }
