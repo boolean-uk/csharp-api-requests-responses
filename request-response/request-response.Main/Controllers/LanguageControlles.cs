@@ -29,5 +29,13 @@ namespace request_response.Controllers
             return Results.Created($"http://localhost:5186/Language/{language.Name}", language);
         }
 
+        // get all languages
+        [HttpGet]
+        [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IResult> GetLanguages()
+        {
+            return Results.Ok(_languages);
+        }
     }
 }
