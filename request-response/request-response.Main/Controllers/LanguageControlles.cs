@@ -21,7 +21,7 @@ namespace request_response.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [Route("addLanguage")]
-        public async Task<IResult> AddStudent(Language language)
+        public async Task<IResult> AddLanguage(Language language)
         {
             _languages.Add(language);
             return Results.Created($"https://localhost:7241/Language/addStudent", language);
