@@ -68,5 +68,19 @@ namespace request_response.Controllers
 
             return Results.Created($"http://localhost:5186/Student/{student.FirstName}", student);
         }
+
+        // delete a student
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{firstName}")]
+        public async Task<IResult> DeleteAStudent(string firstName)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstName);
+            bool result = _students.Remove(student);
+
+            if (!result || student == null) return Results.NotFound();
+            return Results.Ok(student);
+        }
     }
 }
