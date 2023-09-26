@@ -30,5 +30,16 @@ namespace request_response.Controllers
         {
             return Results.Ok(_students);
         }
+
+        // get a student
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{firstName}")]
+        public async Task<IResult> GetAStudent(string firstName)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstName);
+            return student != null ? Results.Ok(student) : Results.NotFound();
+        }
     }
 }
