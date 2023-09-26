@@ -42,7 +42,7 @@ namespace request_response.Controllers
         public async Task<IResult> GetALanguage(string name)
         {
             var languages = _languages.Where(l => l.name == name).FirstOrDefault();
-            return languages != null ? Results.Ok(_languages) : Results.NotFound();
+            return languages != null ? Results.Ok(languages) : Results.NotFound();
         }
 
         [HttpPut]
@@ -64,7 +64,7 @@ namespace request_response.Controllers
             var languages = _languages.Where(s => s.name == name).FirstOrDefault();
             var result = _languages.RemoveAll(s => s.name == name);
 
-            return result >= 0 && languages != null ? Results.Ok(_languages) : Results.NotFound();
+            return result >= 0 && languages != null ? Results.Ok(languages) : Results.NotFound();
         }
     }
 }

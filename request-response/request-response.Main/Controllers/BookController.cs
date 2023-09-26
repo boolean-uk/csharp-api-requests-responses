@@ -71,5 +71,30 @@ namespace api_counter.Controllers
             return books != null ? Results.Ok(books) : Results.NotFound();
         }
 
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [Route("updateBook")]
+        public async Task<IResult> UpdateBook(int id, Book books)
+        {
+            var book = _books.Where(x => x.Id == id).FirstOrDefault();
+            
+            book.title = books.title != string.Empty ? books.title : book.title;
+            book.numPages = books.numPages;
+            book.author = books.author;
+            book.genre = books.genre;            
+            return Results.Created($"https://localhost:7241/Book/updateBook", book);
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("deleteBook/{id}")]
+        public async Task<IResult> DeleteStudent(int id)
+        {
+            var book = _books.Where(s => s.Id == id).FirstOrDefault();
+            var result = _books.RemoveAll(s => s.Id == id);
+
+            return result >= 0 && book != null ? Results.Ok(book) : Results.NotFound();
+        }
     }
 }

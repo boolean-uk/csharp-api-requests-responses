@@ -44,7 +44,7 @@ namespace request_response.Controllers
         public async Task<IResult> GetAStudent(string firstName)
         {
             var student = _students.Where(s => s.firstName == firstName).FirstOrDefault();
-            return student != null ? Results.Ok(_students) : Results.NotFound();
+            return student != null ? Results.Ok(student) : Results.NotFound();
         }
 
         [HttpPut]
@@ -67,7 +67,7 @@ namespace request_response.Controllers
             var student = _students.Where(s => s.firstName == firstName).FirstOrDefault();
             var result = _students.RemoveAll(s => s.firstName == firstName);
 
-            return result >= 0 && student != null ? Results.Ok(_students) : Results.NotFound();
+            return result >= 0 && student != null ? Results.Ok(student) : Results.NotFound();
         }
 
     }
