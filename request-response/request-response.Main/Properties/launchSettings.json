@@ -24,7 +24,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7241;http://localhost:5186",
+      "applicationUrl": "https://localhost:4000;", // changed to port 4000
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
