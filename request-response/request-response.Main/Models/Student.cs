@@ -2,8 +2,8 @@
 {
     public class Student
     {
-        private String firstName;
-        private String lastName;
+        public String firstName {  get; set; }
+        public String lastName { get; set; }
 
         public Student(String firstName, String lastName)
         {
