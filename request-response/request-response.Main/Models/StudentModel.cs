@@ -1,26 +1,23 @@
-﻿using request_response.Models;
-
-namespace api_counter.Models
+﻿namespace request_response.Models
 {
-    public class StudentModel
-    {
-        private List<Student> students = new List<Student>(){
-            new Student("Nathan", "King"),
-            new Student("Dave", "Ames"),
-        };
+    //public class StudentModel
+    //{
+    //    private List<Student> _students = new List<Student>()
+    //    {
+    //        new Student("Nathan", "King"),
+    //        new Student("Dave", "Ames"),
+    //    };
 
-        public Student create(Student student)
-        {
-            this.students.Add(student);
+    //    public Student create(Student student)
+    //    {
+    //        this._students.Add(student);
 
-            return student;
-        }
+    //        return student;
+    //    }
 
-        public List<Student> getAll()
-        {
-            return this.students.ToList();
-        }
-    };
-
-    
+    //    public List<Student> getAll()
+    //    {
+    //        return this._students.ToList();
+    //    }
+    //};
 }
