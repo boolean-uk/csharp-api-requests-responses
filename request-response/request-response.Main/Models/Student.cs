@@ -2,23 +2,14 @@
 {
     public class Student
     {
-        private String firstName;
-        private String lastName;
-
         public Student(String firstName, String lastName)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
-        public String getFirstName()
-        {
-            return firstName;
-        }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public String getLastName()
-        {
-            return lastName;
-        }
     }
 }
