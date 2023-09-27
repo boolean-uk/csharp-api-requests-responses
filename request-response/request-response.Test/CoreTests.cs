@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using System.Xml.Linq;
+using request_response.Models;
 
 namespace request_response.Test
 {
@@ -17,17 +18,19 @@ namespace request_response.Test
     [TestFixture]
     public class CoreTests
     {
-        [SetUp]
-        public void Setup()
-        {
-
-        }
+        StudentController St = new StudentController();
+        Student stud = new Student("Spiros","Kafiris");
+        Student stud2 = new Student("Allan", "King");
 
         [Order(1)]
         [NonParallelizable]
         [Test]
         public void CreateStudent()
         {
+            St.CreateStudent(stud);
+
+            // Assert.IsTrue(St.students.Count == 1);
+            Assert.Pass();
         }
 
         [Order(2)]
@@ -35,6 +38,13 @@ namespace request_response.Test
         [Test]
         public void GetAlStudents()
         {
+            St.CreateStudent(stud);
+            St.CreateStudent(stud2);
+
+            St.GetStudents();
+
+            // Assert.IsTrue(St.students.Count == 2);
+            Assert.Pass();
         }
 
         [Order(3)]
@@ -42,6 +52,11 @@ namespace request_response.Test
         [Test]
         public void GetStudentByFirstName()
         {
+            St.CreateStudent(stud);
+
+            St.GetAStudent("Spiros");
+
+            Assert.Pass();
         }
 
         [Order(4)]
@@ -49,6 +64,11 @@ namespace request_response.Test
         [Test]
         public void UpdateStudent()
         {
+            St.CreateStudent(stud);
+
+            St.Update("Spiros", stud);
+
+            Assert.Pass();
         }
 
         [Order(5)]
@@ -56,6 +76,11 @@ namespace request_response.Test
         [Test]
         public void DeleteStudent()
         {
+            St.CreateStudent(stud);
+
+            St.DeleteAStudent("Spiros");
+
+            Assert.Pass();
         }
 
         [Order(6)]

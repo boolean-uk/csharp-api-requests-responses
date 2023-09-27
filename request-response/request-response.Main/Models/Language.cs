@@ -2,7 +2,7 @@
 {
     public class Language
     {
-        private String name {get; set;}
+        public String name {get; set;}
 
         public Language(String name)
         {
