@@ -4,7 +4,7 @@ using request_response.Models;
 namespace request_response.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("languages")]
     public class LanguageController : ControllerBase
     {
         private static List<Language> _languages = new List<Language>();
@@ -29,7 +29,7 @@ namespace request_response.Controllers
         public async Task<IResult> AddLanguage(Language language)
         {
             _languages.Add(language);
-            return Results.Created($"http://www.boolean.com/language/{language.name}", language);
+            return Results.Created($"http://www.boolean.com/languages/{language.name}", language);
         }
 
         [HttpGet]
@@ -65,7 +65,7 @@ namespace request_response.Controllers
 
             item.name = string.IsNullOrEmpty(language.name) ? item.name : language.name;
 
-            return Results.Created($"http://www.boolean.com/language/{language.name}", language);
+            return Results.Created($"http://www.boolean.com/languages/{language.name}", language);
         }
     }
 }

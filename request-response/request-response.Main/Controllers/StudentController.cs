@@ -4,7 +4,7 @@ using request_response.Models;
 namespace request_response.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("students")]
     public class StudentController : ControllerBase
     {
         private static List<Student> _students = new List<Student>();
@@ -30,7 +30,7 @@ namespace request_response.Controllers
         public async Task<IResult> AddStudent(Student student)
         {
             _students.Add(student);
-            return Results.Created($"http://www.boolean.com/student/{student.firstName}", student);
+            return Results.Created($"http://www.boolean.com/students/{student.firstName}", student);
         }
 
         [HttpGet]
@@ -67,7 +67,7 @@ namespace request_response.Controllers
             item.firstName = string.IsNullOrEmpty(student.firstName) ? item.firstName : student.firstName;
             item.lastName = string.IsNullOrEmpty(student.lastName) ? item.lastName : student.lastName;
 
-            return Results.Created($"http://www.boolean.com/student/{student.firstName}", student);
+            return Results.Created($"http://www.boolean.com/students/{student.firstName}", student);
         }
     }
 }
