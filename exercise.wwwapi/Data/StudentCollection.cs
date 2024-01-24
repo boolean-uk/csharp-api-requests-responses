@@ -4,24 +4,33 @@ namespace exercise.wwwapi.Data
 {
     public class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
-        {
-            new Student() { FirstName="Nathan",LastName="King" },
-            new Student() { FirstName="Dave", LastName="Ames" }
-        };
+        public List<Student> Students { get; set; }
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
+        public StudentCollection()
+        {
+            Students = new List<Student>();
+            Add("Nathan", "King");
+            Add("Dave", "Ames");
+            Add("John", "Doe");
+        }
+
+        public Student Add(string firstName, string lastName)
+        {
+            var student = new Student(firstName, lastName);
+            Students.Add(student);
 
             return student;
         }
 
         public List<Student> getAll()
         {
-            return _students.ToList();
+            return Students.ToList();
+        }
+
+        public Student GetStudentName(string firstname)
+        {
+            return Students.FirstOrDefault(s => s.FirstName == firstname);
         }
     };
-
 
 }
