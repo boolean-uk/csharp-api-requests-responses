@@ -2,7 +2,7 @@
 
 namespace exercise.wwwapi.Data
 {
-    public class StudentCollection
+    public class StudentCollection : IDatabase<Student>
     {
         private List<Student> _students = new List<Student>()
         {
@@ -10,18 +10,6 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
-
-            return student;
-        }
-
-        public List<Student> getAll()
-        {
-            return _students.ToList();
-        }
+        public IEnumerable<Student> Data { get { return _students; } set { _students = (List<Student>)value; } }
     };
-
-
 }
