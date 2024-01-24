@@ -29,8 +29,11 @@ namespace exercise.wwwapi.Data
 
         public Student Change(string firstName, Student student)
         {
-            Remove(firstName);
-            Add(student);
+            Student existingStudent = _students.FirstOrDefault(s => s.FirstName == firstName);
+
+            existingStudent.FirstName = student.FirstName;
+            existingStudent.LastName = student.LastName;
+
             return student;
         }
 

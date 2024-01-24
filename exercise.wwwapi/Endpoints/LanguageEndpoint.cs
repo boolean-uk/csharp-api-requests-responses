@@ -1,7 +1,6 @@
 ﻿using exercise.wwwapi.Models;
 using exercise.wwwapi.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.CompilerServices;
 
 namespace exercise.wwwapi.Endpoints
 {

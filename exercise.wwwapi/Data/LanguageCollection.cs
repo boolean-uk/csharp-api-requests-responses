@@ -29,9 +29,8 @@ namespace exercise.wwwapi.Data
 
         public Language Update(string name, Language language) 
         {
-            Language oldLanguage = _languages.FirstOrDefault(l => l.Name == name);
-            _languages.Remove(oldLanguage);
-            _languages.Add(language);
+            Language existingLanguage = _languages.FirstOrDefault(l => l.Name == name);
+            existingLanguage.Name = language.Name;
             return language;
         }
 
