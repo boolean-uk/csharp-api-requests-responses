@@ -23,5 +23,15 @@ namespace exercise.wwwapi.Repository
         Language UpdateLanguage(string oldName, string newName);
 
         Language DeleteLanguage(string name);
+
+        Book AddBook(BookPost book);
+
+        IEnumerable<Book> GetBooks();
+
+        Book GetBook(int id);
+
+        Book UpdateBook(int id, BookPost book);
+
+        Book DeleteBook(int id);
     }
 }

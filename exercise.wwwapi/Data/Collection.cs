@@ -16,6 +16,12 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
+        private static List<Book> _books = new List<Book>()
+        {
+            new Book() { Id=0, Title="Harry Potter", NumPages=354, Author="J.K. Rowling", Genre="Fantasy"},
+            new Book() { Id=1, Title="A Song of Ice and Fire", NumPages=652, Author="George R. R. Martin", Genre="Fantasy" }
+        };
+
         public IEnumerable<Student> GetStudents()
         {
             return _students.ToList();
@@ -101,6 +107,54 @@ namespace exercise.wwwapi.Data
 
             _languages.Remove(language);
             return language;
+        }
+
+        public Book AddBook(BookPost book)
+        {
+            int id = _books.Max(book => book.Id) + 1;
+            Book newBook = new Book() { Id=id, Title = book.Title, NumPages=book.NumPages, Author=book.Author, Genre=book.Genre };
+            _books.Add(newBook);
+            return newBook;
+        }
+
+        public IEnumerable<Book> GetBooks()
+        {
+            return _books.ToList();
+        }
+
+        public Book GetBook(int id)
+        {
+            return _books.FirstOrDefault(book => book.Id == id);
+        }
+
+        public Book UpdateBook(int id, BookPost book)
+        {
+            var updateBook = _books.FirstOrDefault(b => b.Id == id);
+
+            if (updateBook == null)
+            {
+                return null;
+            }
+
+            updateBook.Title = book.Title;
+            updateBook.NumPages = book.NumPages;
+            updateBook.Author = book.Author;
+            updateBook.Genre = book.Genre;
+
+            return updateBook;
+        }
+
+        public Book DeleteBook(int id)
+        {
+            var book = _books.FirstOrDefault(book => id == book.Id);
+
+            if (book == null) 
+            {
+                return null;
+            }
+
+            _books.Remove(book);
+            return book;
         }
     }
 }

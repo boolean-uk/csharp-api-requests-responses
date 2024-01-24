@@ -18,7 +18,7 @@ namespace exercise.wwwapi.Endpoints
 
             studentGroup.MapPut("/{Name}", UpdateStudentName);
 
-            studentGroup.MapDelete("/", DeleteStudent);
+            studentGroup.MapDelete("/{Name}", DeleteStudent);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
