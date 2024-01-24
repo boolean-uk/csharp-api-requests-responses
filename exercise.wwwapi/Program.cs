@@ -8,6 +8,7 @@ using exercise.wwwapi.Repository.StudentRepositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using exercise.wwwapi.EndPoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,7 @@ var studentGroup = app.MapGroup("/studens");
 var languageGroup = app.MapGroup("/language");
 var bookGroup = app.MapGroup("/books");
 
+app.ConfigureBookEndpoints();
 
 studentGroup.MapGet("/", (IStudentRepositiry student) => {
     return TypedResults.Ok(student.GetAllStudents());
@@ -100,6 +102,8 @@ languageGroup.MapDelete("/{name}", (string name, ILanguageRepository language) =
 });
 
 
+/*
+//! BOOKS
 bookGroup.MapGet("/", (IBookRepository book) =>
 {
     return TypedResults.Ok(book.getAllBooks());
@@ -111,7 +115,23 @@ bookGroup.MapGet("/{_id}", (int _id, IBookRepository book) =>
     return TypedResults.Ok(foundBook);
 });
 
+bookGroup.MapPost("/", (IBookRepository book, BookPostPayload payload) =>
+{
+    Book createdBook = book.AddBook(payload);
+    return TypedResults.Created($"/books: ",createdBook);
+});
 
+bookGroup.MapPut("/{_id}", (int _id, IBookRepository book, BookPutPayload payload) =>
+{
+    Book updatedBook = book.UpdateBook(_id, payload);
+    return TypedResults.Created($"/books/{_id} ", updatedBook);
+});
+
+bookGroup.MapDelete("/{_id}", (int _id, IBookRepository book) =>
+{
+    book.DeleteBook(_id);
+    return TypedResults.Ok();
+});*/
 
 app.Run();
 
