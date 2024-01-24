@@ -5,6 +5,6 @@ using System.Threading.Tasks;
 
 namespace exercise.wwwapi.Models
 {
-    public record StudentPostPayload(string? firstname, string? lastname);
+    public record StudentPostPayload(string firstname, string lastname);
     
 }

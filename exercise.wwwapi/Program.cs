@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<StudentCollection>();
 builder.Services.AddScoped<IStudentRepositiry, StudentRepository>();
+builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 
 var app = builder.Build();
 
@@ -26,7 +28,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 var studentGroup = app.MapGroup("/studens");
-
+var languageGroup = app.MapGroup("/language");
 
 
 studentGroup.MapGet("/", (IStudentRepositiry student) => {
@@ -50,6 +52,11 @@ studentGroup.MapDelete("/{firstname}", (string firstname, IStudentRepositiry stu
     return TypedResults.NoContent();
     
     
+});
+
+languageGroup.MapGet("/", (ILanguageRepository language) =>
+{
+    return TypedResults.Ok(language.getAllLanguages());
 });
 
 
