@@ -1,6 +1,8 @@
 using exercise.wwwapi.Data;
-using exercise.wwwapi.Models;
-using exercise.wwwapi.Repository;
+using exercise.wwwapi.Models.Language;
+using exercise.wwwapi.Models.Student;
+using exercise.wwwapi.Repository.LanguageRepositories;
+using exercise.wwwapi.Repository.StudentRepositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Cryptography;

@@ -1,13 +1,14 @@
 ﻿using exercise.wwwapi.Data;
-using exercise.wwwapi.Models;
+using exercise.wwwapi.Models.Language;
 
-namespace exercise.wwwapi.Repository
+namespace exercise.wwwapi.Repository.LanguageRepositories
 {
     public class LanguageRepository : ILanguageRepository
     {
 
         private LanguageCollection _languages;
-        public LanguageRepository(LanguageCollection language) { 
+        public LanguageRepository(LanguageCollection language)
+        {
             _languages = language;
         }
         public Language AddLanguage(LanguagePostPayload payload)
@@ -41,7 +42,8 @@ namespace exercise.wwwapi.Repository
 
             bool isUpdated = false;
 
-            if (payload.name != null && payload.name.Length > 0) {
+            if (payload.name != null && payload.name.Length > 0)
+            {
                 tmpLanguage.Name = payload.name;
                 isUpdated = true;
             }

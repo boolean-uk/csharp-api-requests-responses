@@ -1,7 +1,7 @@
 ﻿using exercise.wwwapi.Data;
-using exercise.wwwapi.Models;
+using exercise.wwwapi.Models.Student;
 
-namespace exercise.wwwapi.Repository
+namespace exercise.wwwapi.Repository.StudentRepositories
 {
     public class StudentRepository : IStudentRepositiry
     {
@@ -27,7 +27,7 @@ namespace exercise.wwwapi.Repository
             return _students.getAll();
         }
 
-        public Student? GetStudent(string firstname)
+        public Student GetStudent(string firstname)
         {
             return _students.getStudentByName(firstname);
         }
@@ -42,12 +42,14 @@ namespace exercise.wwwapi.Repository
 
             bool isUpdated = false;
 
-            if (payload.firstname != null && payload.firstname.Length > 0) { 
+            if (payload.firstname != null && payload.firstname.Length > 0)
+            {
                 tmpStudent.FirstName = payload.firstname;
                 isUpdated = true;
             }
 
-            if (payload.lastname != null && payload.lastname.Length > 0) {
+            if (payload.lastname != null && payload.lastname.Length > 0)
+            {
                 tmpStudent.LastName = payload.lastname;
                 isUpdated = true;
             }
