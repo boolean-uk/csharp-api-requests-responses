@@ -11,15 +11,9 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
+        public Student Create(Student student)
         {            
             _students.Add(student);
-
-            return student;
-        }
-        public Student Remove(Student student)
-        {
-            _students.Remove(student);
 
             return student;
         }
@@ -40,6 +34,9 @@ namespace exercise.wwwapi.Data
         public Student Update(string studentName, string newFirstName)
         {
             Student student = Get(studentName);
+            if (student == null || student == default(Student))
+                return student;
+
             student.FirstName = newFirstName;
             return student;
         }
@@ -47,11 +44,7 @@ namespace exercise.wwwapi.Data
         public bool Delete(string studentName)
         {
             Student student = Get(studentName);
-            if (student == null || student == default(Student))
-                return false;
-
-            _students.Remove(student);
-            return true;
+            return _students.Remove(student);
         }
 
     };

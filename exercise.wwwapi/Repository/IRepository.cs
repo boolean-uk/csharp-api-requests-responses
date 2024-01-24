@@ -12,11 +12,16 @@ namespace exercise.wwwapi.Repository
     public interface IRepository
     {
         IEnumerable<Student> GetStudents();
-
         Student GetStudent(string name);
         Student CreateStudent(Student student);
-        IEnumerable<Language> GetLanguages();
         Student UpdateStudent(string studentName, string firstName);
         bool DeleteStudent(string studentName);
+
+
+        IEnumerable<Language> GetLanguages();
+        Language GetLanguage(string language);
+        Language CreateLanguage(Language language);
+        Language Updatelanguage(string language, string newLanguage);
+        bool DeleteLanguage(string language);
     }
 }

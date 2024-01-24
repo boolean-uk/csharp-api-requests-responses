@@ -18,7 +18,6 @@ namespace exercise.wwwapi.Endpoints
             studentGroup.MapDelete("/{firstName}", DeleteStudent);
         }
 
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> GetStudents(IRepository repository)
         {
