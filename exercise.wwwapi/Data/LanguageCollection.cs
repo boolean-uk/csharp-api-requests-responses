@@ -10,6 +10,6 @@ namespace exercise.wwwapi.Data
             new Language("C#")
         };
 
-        public IEnumerable<Language> Data { get { return languages; } set { languages = (List<Language>)value; } }
+        public List<Language> Data { get { return languages; } set { languages = value; } }
     }
 }

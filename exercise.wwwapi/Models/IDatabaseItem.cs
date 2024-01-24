@@ -1,7 +1,7 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public interface IDatabaseItem
+    public abstract class DatabaseItem
     {
-        public string Id { get; }
+        public string Id { get; } = Guid.NewGuid().ToString();
     }
 }

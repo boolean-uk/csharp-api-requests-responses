@@ -1,14 +1,7 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class Language : IDatabaseItem
+    public class Language(string name) : DatabaseItem
     {
-        private String name {get; set;}
-
-        public string Id => new Guid().ToString();
-
-        public Language(String name)
-        {
-            this.name = name;
-        }
+        public string Name { get; set; } = name;
     }
 }

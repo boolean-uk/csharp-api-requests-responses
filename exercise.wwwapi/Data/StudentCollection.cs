@@ -10,6 +10,6 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public IEnumerable<Student> Data { get { return _students; } set { _students = (List<Student>)value; } }
+        public List<Student> Data { get { return _students; } set { _students = value; } }
     };
 }

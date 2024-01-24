@@ -4,7 +4,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : IDatabaseItem
+    public class Repository<T> : IRepository<T> where T : DatabaseItem
     {
         private readonly IDatabase<T> _database;
 
@@ -15,7 +15,7 @@ namespace exercise.wwwapi.Repositories
 
         public T Add(T entity)
         {
-            _database.Data.Append(entity);
+            _database.Data.Add(entity);
             return entity;
         }
 

@@ -2,8 +2,8 @@
 
 namespace exercise.wwwapi.Data
 {
-    public interface IDatabase<T>
+    public interface IDatabase<T> where T : DatabaseItem
     {
-        public IEnumerable<T> Data { get; set; }
+        public List<T> Data { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace exercise.wwwapi.Repositories
 {
-    public interface IRepository<T> where T : IDatabaseItem 
+    public interface IRepository<T> where T : DatabaseItem 
     {
         T Add(T entity);
         IEnumerable<T> GetAll();
