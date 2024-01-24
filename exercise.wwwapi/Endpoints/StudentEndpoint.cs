@@ -10,11 +10,11 @@ namespace exercise.wwwapi.Endpoints
         {
             var studentGroup = app.MapGroup("students");
 
+            studentGroup.MapPost("/", AddStudent);
+
             studentGroup.MapGet("/", GetStudents);
 
             studentGroup.MapGet("/{Name}", GetStudent);
-
-            studentGroup.MapPost("/", AddStudent);
 
             studentGroup.MapPut("/{Name}", UpdateStudentName);
 

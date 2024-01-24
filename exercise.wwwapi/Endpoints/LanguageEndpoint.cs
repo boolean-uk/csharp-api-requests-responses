@@ -10,11 +10,11 @@ namespace exercise.wwwapi.Endpoints
         {
             var studentGroup = app.MapGroup("languages");
 
+            studentGroup.MapPost("/", AddLanguage);
+
             studentGroup.MapGet("/", GetLanguages);
 
             studentGroup.MapGet("/{Name}", GetLanguage);
-
-            studentGroup.MapPost("/", AddLanguage);
 
             studentGroup.MapPut("/{Name}", UpdateLanguage);
 
