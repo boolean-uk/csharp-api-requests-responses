@@ -11,10 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add Repositories
 builder.Services.AddScoped<IRepository<Student>, Repository<Student>>();
 builder.Services.AddScoped<IRepository<Language>, Repository<Language>>();
 builder.Services.AddScoped<IRepository<Book>, Repository<Book>>();
 
+// Add In-Memory Databases
 builder.Services.AddSingleton<IDatabase<Student>, StudentCollection>();
 builder.Services.AddSingleton<IDatabase<Language>, LanguageCollection>();
 builder.Services.AddSingleton<IDatabase<Book>, BookCollection>();
