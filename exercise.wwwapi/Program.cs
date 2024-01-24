@@ -29,8 +29,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.StudentLogics();
-//app.LanguageLogics();
+app.StudentLogics();
+app.LanguageLogics();
 app.BookLogics();
 
 app.Run();
