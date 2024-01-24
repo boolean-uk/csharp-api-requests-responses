@@ -10,16 +10,25 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
-
-            return student;
+        public Student Add(string firstName, string lastName)
+        {
+            _students.Add(new Student() { FirstName = firstName, LastName = lastName });
+            return _students.Last();
         }
 
-        public List<Student> getAll()
+        public List<Student> GetAll()
         {
             return _students.ToList();
+        }
+
+        public Student? Get(int id)
+        {
+            return _students[id];
+        }
+
+        public void Delete(int id)
+        {
+            _students.RemoveAt(id);
         }
     };
 
