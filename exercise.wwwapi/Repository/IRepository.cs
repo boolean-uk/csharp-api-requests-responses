@@ -3,7 +3,7 @@
     public interface IRepository<T>
     {
         List<T> GetAll();
-        T Add(T student);
-        bool Delete(T student);
+        T Add(T val);
+        bool Delete(T val);
     }
 }

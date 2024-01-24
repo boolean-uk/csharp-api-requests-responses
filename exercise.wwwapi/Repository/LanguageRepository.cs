@@ -2,12 +2,6 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Data
 {
-    public interface ILanguageRepository
-    {
-        List<Language> GetAll();
-        Language Add(Language lang);
-        bool Delete(Language lang);
-    }
 
 
     public class LanguageRepository : IRepository<Language>

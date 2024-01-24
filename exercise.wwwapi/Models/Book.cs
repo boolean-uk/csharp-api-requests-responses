@@ -18,6 +18,49 @@ namespace exercise.wwwapi.Models
             Author = author;
             Genre = genre;
         }
+
+        public Book(BookPayload payload)
+        {
+            Id = _nextId++;
+            Title = payload.title;
+            NumPages = payload.numPages;
+            Author = payload.author;
+            Genre = payload.genre;
+        }
+
+
+        public bool UpdateInfo(BookUpdatePayload payload)
+        {
+
+                bool isUpdated = false;
+
+                if (payload.Title != null && Title != payload.Title)
+                {
+                    Title = payload.Title;
+                    isUpdated = true;
+                }
+
+                if (payload.NumPages != null && NumPages != payload.NumPages.Value)
+                {
+                    NumPages = payload.NumPages.Value;
+                    isUpdated = true;
+                }
+
+                if (payload.Author != null && Author != payload.Author)
+                {
+                    Author = payload.Author;
+                    isUpdated = true;
+                }
+
+                if (payload.Genre != null && Genre != payload.Genre)
+                {
+                    Genre = payload.Genre;
+                    isUpdated = true;
+                }
+
+                return isUpdated;
+            }
+
+        }
     }
 
-}
