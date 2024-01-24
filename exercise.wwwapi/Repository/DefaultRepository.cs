@@ -7,11 +7,13 @@ namespace exercise.wwwapi.Repository
     {
         private StudentCollection _studentCollection;
         private LanguageCollection _languageCollection;
+        private BookCollection _bookCollection;
 
-        public DefaultRepository(LanguageCollection langCollection, StudentCollection studCollection) 
+        public DefaultRepository(LanguageCollection langCollection, StudentCollection studCollection, BookCollection bookCollection) 
         {
             _languageCollection = langCollection;
             _studentCollection = studCollection;
+            _bookCollection = bookCollection;
         }
 
         public IEnumerable<Student> GetStudents() 
@@ -96,6 +98,52 @@ namespace exercise.wwwapi.Repository
                 _languageCollection.RemoveLanguage(lang);
             }
             return lang;
+        }
+
+        public IEnumerable<Book> GetAllBooks()
+        {
+            return _bookCollection.GetAllBooks();
+        }
+
+        public Book GetSpecificBook(int id)
+        {
+            return _bookCollection.GetAllBooks().Where(b => b.Id == id).FirstOrDefault();
+        }
+
+        public Book AddNewBook(BookDraft newBook)
+        {
+            return _bookCollection.AddBook(newBook);
+        }
+
+        public Book UpdateBook(int id, BookDraft updatedBook)
+        {
+            Book? book = _bookCollection.GetAllBooks().Where(b => b.Id == id).FirstOrDefault();
+            if (book == null || !_bookCollection.validateBook(updatedBook))
+            {
+                return null;
+            }
+            else
+            {
+                book.Title = updatedBook.Title;
+                book.numPages = updatedBook.NumPages;
+                book.author = updatedBook.Author;
+                book.genre = updatedBook.Genre;
+
+                return book;
+            }
+        }
+
+        public Book RemoveBook(int id)
+        {
+            Book? book = _bookCollection.GetAllBooks().Where(b => b.Id == id).FirstOrDefault();
+            if (book != null)
+            {
+                return _bookCollection.RemoveBook(book);
+            }
+            else 
+            {
+                return book;
+            }
         }
     }
 }
