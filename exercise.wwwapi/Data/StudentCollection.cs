@@ -11,9 +11,21 @@ namespace exercise.wwwapi.Data
         };
 
         public Student Add(Student student)
-        {            
+        {
             _students.Add(student);
 
+            return student;
+        }
+
+        public Student Create(string firstName, string lastName)
+        {
+            Student student = new Student() {FirstName = firstName, LastName=lastName };
+            _students.Add(student);
+            return student;
+        }
+        public Student Remove(Student student)
+        {
+            _students.Remove(student);
             return student;
         }
 
