@@ -5,9 +5,9 @@ namespace exercise.wwwapi.Data
 
     public class LanguageCollection
     {
-        private List<Language> languages = new List<Language>(){
-            new Language("Java"),
-            new Language("C#")
+        private List<Languages> languages = new List<Languages>(){
+            new Languages() {name = "Java"},
+            new Languages() {name = "C#"}
         };
     }
 }
