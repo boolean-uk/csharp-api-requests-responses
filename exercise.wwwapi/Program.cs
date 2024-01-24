@@ -1,5 +1,6 @@
 using exercise.wwwapi.Data;
 using exercise.wwwapi.Endpoints;
+using exercise.wwwapi.Models;
 using exercise.wwwapi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Add DI
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
-builder.Services.AddSingleton<StudentCollection>();
-builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddScoped<IRepository<Student>, Repository<Student>>();
+builder.Services.AddScoped<IRepository<Language>, Repository<Language>>();
+builder.Services.AddSingleton<IData<Language>, LanguageCollection>();
+builder.Services.AddSingleton<IData<Student>, StudentCollection>();
 
 var app = builder.Build();
 

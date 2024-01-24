@@ -3,24 +3,24 @@
 namespace exercise.wwwapi.Data
 {
 
-    public class LanguageCollection
+    public class LanguageCollection : IData<Language>
     {
         private List<Language> _languages = new List<Language>(){
             new Language("Java"),
             new Language("C#")
         };
 
-        internal List<Language> getAll()
+        public List<Language> GetAll()
         {
             return _languages;
         }
 
-        internal Language getLanguageByName(string name)
+        public Language GetByName(string name)
         {
             return _languages.Where(x => x.Name == name).FirstOrDefault();
         }
 
-        internal Language Update(string name, Language newInfo)
+        public Language Update(string name, Language newInfo)
         {
             Language dbLanguage = _languages.Where(x => x.Name == name).FirstOrDefault();
             if (dbLanguage == null) { return null; }
