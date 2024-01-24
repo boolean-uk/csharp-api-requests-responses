@@ -1,8 +1,9 @@
-﻿using exercise.wwwapi.Models;
+﻿using exercise.wwwapi.Interfaces;
+using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Data
 {
-    public class StudentCollection
+    public class StudentCollection : IStudentRepository
     {
         private List<Student> _students = new List<Student>()
         {
@@ -11,17 +12,40 @@ namespace exercise.wwwapi.Data
         };
 
         public Student Add(Student student)
-        {            
+        {
             _students.Add(student);
-
             return student;
         }
 
-        public List<Student> getAll()
+        public List<Student> GetAll()
         {
             return _students.ToList();
         }
+
+        public Student Get(string firstName)
+        {
+            return _students.FirstOrDefault(s => s.FirstName == firstName);
+        }
+
+        public Student Update(string firstName , Student updatedStudent)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstName);
+            if(student != null)
+            {
+                student.FirstName = updatedStudent.FirstName;
+                student.LastName = updatedStudent.LastName;
+            }
+            return student;
+        }
+
+        public Student Delete(string firstName)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstName);
+            if(student != null)
+            {
+                _students.Remove(student);
+            }
+            return student;
+        }
     };
-
-
 }
