@@ -14,14 +14,24 @@ namespace exercise.wwwapi.Repository
         
         public Student DeleteAStudent(string firstname);
 
-        public Language AddLanguage(Language language);
+        public Languages AddLanguage(Languages language);
 
-        public IEnumerable<Language> GetLanguage();
+        public IEnumerable<Languages> GetLanguage();
 
-        public Language GetALanguage(string name);
+        public Languages GetALanguage(string name);
 
-        public Language UpdateALanguage(string name, Language language);
+        public Languages UpdateALanguage(string name, Languages language);
 
-        public Language DeleteALanguage(string name);
+        public Languages DeleteALanguage(string name);
+
+        public Book AddBook(InPuBook book);
+
+        public IEnumerable<Book> GetBook();
+
+        public Book GetABook(int id);
+
+        public Book UpdateABook(int id, InPuBook book);
+
+        public Book DeleteABook(int id);
     }
 }

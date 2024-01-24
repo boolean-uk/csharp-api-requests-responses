@@ -10,24 +10,24 @@ namespace exercise.wwwapi.EndPoints
         {
             var languageGroup = app.MapGroup("language");
 
-            languageGroup.MapPost("/Create a language/", CreateLanguage);
-            languageGroup.MapGet("/Get a language {language}/", GetALanguage);
-            languageGroup.MapGet("/Get all language/", GetAllLanguages);
-            languageGroup.MapPut("/Update a language {language}/", UpdateLanguage);
-            languageGroup.MapDelete("/Delete a language {language}/", DeleteLanguage);
+            languageGroup.MapGet("/", GetAllLanguages);
+            languageGroup.MapGet("/{name}", GetALanguage);
+            languageGroup.MapPost("/", CreateLanguage);
+            languageGroup.MapPut("/{name}", UpdateLanguage);
+            languageGroup.MapDelete("/{name}/", DeleteLanguage);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> CreateLanguage(IRepository repository, Language language)
+        public static async Task<IResult> CreateLanguage(IRepository repository, Languages language)
         {
-            Language newLanguage = repository.AddLanguage(language);
+            Languages newLanguage = repository.AddLanguage(language);
             return TypedResults.Created($"https://localhost:7206/students/{newLanguage.name}", newLanguage);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> GetALanguage(IRepository repository, string name)
         {
-            Language test = repository.GetALanguage(name);
+            Languages test = repository.GetALanguage(name);
             if (test == null)
             {
                 return Results.NotFound($"Id: {name} not found!");
@@ -42,9 +42,9 @@ namespace exercise.wwwapi.EndPoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> UpdateLanguage(IRepository repository, string name, Language language)
+        public static async Task<IResult> UpdateLanguage(IRepository repository, string name, Languages language)
         {
-            Language test = repository.UpdateALanguage(name, language);
+            Languages test = repository.UpdateALanguage(name, language);
             if (test == null)
             {
                 return Results.NotFound($"Id: {name} not found!");
@@ -55,7 +55,7 @@ namespace exercise.wwwapi.EndPoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> DeleteLanguage(IRepository repository, string name)
         {
-            Language test = repository.GetALanguage(name);
+            Languages test = repository.GetALanguage(name);
             return test == null ? Results.NotFound($"Id: {name} not found!") : TypedResults.Ok(repository.DeleteALanguage(name));
         }
     }

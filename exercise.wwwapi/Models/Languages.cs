@@ -1,6 +1,6 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class Language
+    public class Languages
     {
         public string name {get; set;}
     }

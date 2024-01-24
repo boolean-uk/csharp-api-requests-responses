@@ -11,11 +11,11 @@ namespace exercise.wwwapi.EndPoints
         {
             var studentGroup = app.MapGroup("student");
 
-            studentGroup.MapPost("/Create a student/", CreateStudent);
-            studentGroup.MapGet("/Get a student {firstname}/", GetAStudent);
-            studentGroup.MapGet("/Get all students/", GetAllStudents);
-            studentGroup.MapPut("/Update a student {firstname}/", UpdateStudent);
-            studentGroup.MapDelete("/Delete a student {firstname}/", DeleteStudent);
+            studentGroup.MapGet("/", GetAllStudents);
+            studentGroup.MapGet("/{firstname}", GetAStudent);
+            studentGroup.MapPost("/", CreateStudent);
+            studentGroup.MapPut("/{firstname}", UpdateStudent);
+            studentGroup.MapDelete("/{firstname}", DeleteStudent);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

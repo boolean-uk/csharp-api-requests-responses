@@ -36,29 +36,54 @@ namespace exercise.wwwapi.Repository
             return _Database.DeleteStudent(firstname);
         }
 
-        public Language AddLanguage(Language language)
+        public Languages AddLanguage(Languages language)
         {
             return _Database.AddLanguage(language);
         }
 
-        public IEnumerable<Language> GetLanguage()
+        public IEnumerable<Languages> GetLanguage()
         {
             return _Database.getAllLanguages();
         }
 
-        public Language GetALanguage(string name)
+        public Languages GetALanguage(string name)
         {
             return _Database.GetLanguage(name);
         }
 
-        public Language UpdateALanguage(string name, Language language)
+        public Languages UpdateALanguage(string name, Languages language)
         {
             return (_Database.UpdateLanguage(name, language));
         }
 
-        public Language DeleteALanguage(string name)
+        public Languages DeleteALanguage(string name)
         {
             return _Database.DeleteLanguage(name);
+        }
+
+        public Book AddBook(InPuBook book)
+        {
+            return _Database.AddBook(book);
+        }
+
+        public IEnumerable<Book> GetBook()
+        {
+            return _Database.getAllBooks();
+        }
+
+        public Book GetABook(int id)
+        {
+            return _Database.GetBook(id);
+        }
+
+        public Book UpdateABook(int id, InPuBook book)
+        {
+            return (_Database.UpdateBook(id, book));
+        }
+
+        public Book DeleteABook(int id)
+        {
+            return _Database.DeleteBook(id);
         }
     }
 }
