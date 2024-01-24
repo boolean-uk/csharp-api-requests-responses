@@ -7,8 +7,6 @@ namespace exercise.wwwapi.Repository
     {
         IEnumerable<Student> getStudentCollections();
 
-        IEnumerable<Language> getLanguageCollections();
-
         IEnumerable<Student> getStudent(string firstName);
 
         Student addStudent(string firstName, string lastName);
@@ -16,6 +14,18 @@ namespace exercise.wwwapi.Repository
         Student updateStudent(string firstName, string newFirstName, string newLastName);
 
         Student deleteStudent(string firstName);
+
+        Language createLanguage(string name);
+
+        IEnumerable<Language> getLanguageCollections();
+
+        Language getLanguage(string name);
+
+        Language updateLanguage(string name, string newName);
+
+        Language deleteLanguage(string name);
+
+
 
     }
 }

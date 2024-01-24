@@ -33,7 +33,7 @@ namespace exercise.wwwapi.Data
             return _students.ToList();
         }
 
-        private static  List<Language> languages = new(){
+        private static List<Language> languages = new(){
             new Language("Java"),
             new Language("C#")
         };
@@ -42,5 +42,27 @@ namespace exercise.wwwapi.Data
         {
             return languages.ToList();
         }
+
+        public Language CreateLanguage(string name)
+        {
+            Language language = new Language(name);
+            languages.Add(language);
+            return language;
+        }
+
+        public Language DeleteLanguage(string name)
+        {
+            Language lang = getLanguages().Find(x => x.name == name);
+            languages.Remove(lang);
+            return lang;
+        }
+
+
+        public List<Book> _books = new List<Book>()
+        {
+            new Book("Lord Of The Rings", 1000, "J.R.R Tolkien", "Fantasy"),
+            new Book("Harry Potter", 459, "Bad Person", "Fantasy")
+        };
+
     }
 }

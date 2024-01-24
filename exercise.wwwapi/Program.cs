@@ -24,6 +24,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.ConfigureDataEndpoint();
+app.ConfigureLanguageEndpoint();
 
 app.Run();
 

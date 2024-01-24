@@ -17,9 +17,40 @@ namespace exercise.wwwapi.Repository
             return _dataCollection.getAllStudents();
         }
 
+        public Language createLanguage(string name)
+        {
+            return _dataCollection.CreateLanguage(name);
+        }
+
         public IEnumerable<Language> getLanguageCollections()
         {
             return _dataCollection.getLanguages();
+        }
+
+        public Language getLanguage(string name)
+        {
+            Language lang = _dataCollection.getLanguages().Find(x => x.name == name);
+            if(lang != null)
+            {
+                return lang;
+            }
+            return null;
+        }
+
+        public Language updateLanguage(string name, string newName)
+        {
+            Language lang = _dataCollection.getLanguages().Find(x => x.name == name);
+            if (lang != null)
+            {
+                lang.name = newName;
+                return lang;
+            }
+            return null;
+        }
+
+        public Language deleteLanguage(string name)
+        {
+            return _dataCollection.DeleteLanguage(name);
         }
 
         public IEnumerable<Student> getStudent(string firstName)
