@@ -10,7 +10,7 @@ namespace exercise.wwwapi.EndPoints
             var taskGroup = app.MapGroup("books");
             taskGroup.MapPost("/", AddBook);
             taskGroup.MapGet("/", GetAllBooks);
-            taskGroup.MapGet("/{id}", GetBooksWithId);
+            taskGroup.MapGet("/{id}", GetBookWithId);
             taskGroup.MapDelete("/{id}", DeleteBooksWithId);
             taskGroup.MapPut("/{id}", UpdateBookWithId);
 
@@ -32,7 +32,7 @@ namespace exercise.wwwapi.EndPoints
             return Results.Ok(bookRepository.GetAll());
         }
 
-        public static IResult GetBooksWithId(int Id, IBookRepository bookRepository)
+        public static IResult GetBookWithId(int Id, IBookRepository bookRepository)
         {
             List<Book> filt = bookRepository.GetAll().Where(book => book.Id == Id).ToList();
             if(filt.Count < 1) { return Results.NotFound(); }
@@ -46,7 +46,7 @@ namespace exercise.wwwapi.EndPoints
             bool result = bookRepository.Delete(book);
 
             if (result) { return Results.Ok(book); }
-            return Results.BadRequest();
+            return Results.NotFound();
         }
 
         public static IResult UpdateBookWithId(int Id, BookUpdatePayload updateBookData, IBookRepository bookRepository)
