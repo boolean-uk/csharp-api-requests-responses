@@ -2,11 +2,17 @@
 {
     public class Language
     {
-        private String name {get; set;}
+        private string name;
 
-        public Language(String name)
+        public Language(string name)
         {
             this.name = name;
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
     }
 }
