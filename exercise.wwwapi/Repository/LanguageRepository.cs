@@ -19,9 +19,9 @@ namespace exercise.wwwapi.Repository
             return Language;
         }
 
-        public Language DeleteALanguage(string firstName)
+        public Language DeleteALanguage(string name)
         {
-            Language Language = GetALanguage(firstName);
+            Language Language = GetALanguage(name);
 
             _languages.RemoveLanguage(Language);
 
