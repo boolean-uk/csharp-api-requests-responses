@@ -15,6 +15,9 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddSingleton<LanguageCollection>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 
+builder.Services.AddSingleton<BookCollection>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +30,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //app.StudentLogics();
-app.LanguageLogics();
+//app.LanguageLogics();
+app.BookLogics();
 
 app.Run();
