@@ -20,40 +20,42 @@ namespace exercise.wwwapi.EndPoints
             //taskGroup.MapPut("/{id}", UpdateTask);
         }
 
-        public static IResult AddStudent(Student student, StudentCollection studentCollection
+        public static IResult AddStudent(Student student, IStudentRepository studentRepository
             )
         {
-            
-            studentCollection.Add(student);
+
+            studentRepository.Add(student);
             string url = "";
             return Results.Created(url, student);
         }
 
-        public static IResult GetAllStudents(StudentCollection studentCollection
+        public static IResult GetAllStudents(IStudentRepository studentRepository
             )
         {
 
-            return Results.Ok(studentCollection.getAll());
+            return Results.Ok(studentRepository.GetAll());
         }
-        public static IResult GetStudentsWithFirstName(string FirstName, StudentCollection studentCollection
+        public static IResult GetStudentsWithFirstName(string FirstName, IStudentRepository studentRepository
             )
         {
-            List<Student> filt = studentCollection.getAll().Where(student => student.FirstName == FirstName).ToList();
+            List<Student> filt = studentRepository.GetAll().Where(student => student.FirstName == FirstName).ToList();
             return Results.Ok(filt);
         }
-        public static IResult DeleteStudentsWithFirstName(string FirstName, StudentCollection studentCollection )
-        {
-            Student? student = studentCollection.getAll().Where(student => student.FirstName == FirstName).ToList().FirstOrDefault();
-           
-            bool result = studentCollection.Delete(student);
 
-            if (result) {  return Results.Ok(student); }
+        public static IResult DeleteStudentsWithFirstName(string FirstName, IStudentRepository studentRepository)
+        {
+
+            Student? student = studentRepository.GetAll().FirstOrDefault(student => student.FirstName == FirstName);
+
+            bool result = studentRepository.Delete(student);
+
+            if (result) { return Results.Ok(student); }
             return Results.BadRequest();
         }
 
-        public static IResult UpdateStudentWithFirstName(string FirstName, Student updatedStudent, StudentCollection studentCollection)
+        public static IResult UpdateStudentWithFirstName(string FirstName, Student updatedStudent, IStudentRepository studentRepository)
         {
-            Student? studentToUpdate = studentCollection.getAll().FirstOrDefault(s => s.FirstName == FirstName);
+            Student? studentToUpdate = studentRepository.GetAll().FirstOrDefault(s => s.FirstName == FirstName);
 
             if (studentToUpdate == null)
             {
@@ -62,7 +64,7 @@ namespace exercise.wwwapi.EndPoints
 
             studentToUpdate.FirstName = updatedStudent.FirstName;
             studentToUpdate.LastName = updatedStudent.LastName;
-            
+
 
             return Results.Ok(studentToUpdate);
         }

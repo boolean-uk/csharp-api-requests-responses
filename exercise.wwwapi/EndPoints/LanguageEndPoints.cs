@@ -15,27 +15,27 @@ namespace exercise.wwwapi.EndPoints
             languageGroup.MapDelete("/{name}", DeleteLanguageByName);
         }
 
-        public static IResult AddLanguage(Language language, LanguageCollection languageCollection)
+        public static IResult AddLanguage(Language language, ILanguageRepository languageRepository)
         {
-            languageCollection.Add(language);
+            languageRepository.Add(language);
             string url = $"/languages/{language.Name}";
             return Results.Created(url, language);
         }
 
-        public static IResult GetAllLanguages(LanguageCollection languageCollection)
+        public static IResult GetAllLanguages(ILanguageRepository languageRepository)
         {
-            return Results.Ok(languageCollection.getAll());
+            return Results.Ok(languageRepository.GetAll());
         }
 
-        public static IResult GetLanguageByName(string name, LanguageCollection languageCollection)
+        public static IResult GetLanguageByName(string name, ILanguageRepository languageRepository)
         {
-            Language lang = languageCollection.getAll().FirstOrDefault(l => l.Name == name);
+            Language lang = languageRepository.GetAll().FirstOrDefault(l => l.Name == name);
             return lang != null ? Results.Ok(lang) : Results.NotFound();
         }
 
-        public static IResult UpdateLanguage(string name, Language updatedLanguage, LanguageCollection languageCollection)
+        public static IResult UpdateLanguage(string name, Language updatedLanguage, ILanguageRepository languageRepository)
         {
-            Language lang = languageCollection.getAll().FirstOrDefault(l => l.Name == name);
+            Language lang = languageRepository.GetAll().FirstOrDefault(l => l.Name == name);
             if (lang == null)
             {
                 return Results.NotFound();
@@ -45,14 +45,14 @@ namespace exercise.wwwapi.EndPoints
             return Results.Created(url, lang);
         }
 
-        public static IResult DeleteLanguageByName(string name, LanguageCollection languageCollection)
+        public static IResult DeleteLanguageByName(string name, ILanguageRepository languageRepository)
         {
-            Language lang = languageCollection.getAll().FirstOrDefault(l => l.Name == name);
+            Language lang = languageRepository.GetAll().FirstOrDefault(l => l.Name == name);
             if (lang == null)
             {
                 return Results.NotFound();
             }
-            languageCollection.Delete(lang);
+            languageRepository.Delete(lang);
             return Results.Ok(lang);
         }
 
