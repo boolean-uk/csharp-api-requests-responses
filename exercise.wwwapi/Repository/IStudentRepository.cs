@@ -9,5 +9,6 @@ namespace exercise.wwwapi.Repository
         Student AddStudent(Student student);
 
         Student UpdateStudent(string firstName, StudentPut student);
+        bool DeleteStudent(string firstName);
     }
 }

@@ -40,5 +40,10 @@ namespace exercise.wwwapi.Repository
             foundStudent.LastName = student.LastName;
             return foundStudent;
         }
+
+        public bool DeleteStudent(string firstName)
+        {
+            return _studentData.DeleteStudent(firstName);
+        }
     }
 }

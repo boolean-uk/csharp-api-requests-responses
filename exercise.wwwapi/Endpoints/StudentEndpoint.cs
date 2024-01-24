@@ -15,6 +15,7 @@ namespace exercise.wwwapi.Endpoints
             studentGroup.MapGet("/{firstName}", GetStudent);
             studentGroup.MapPost("/", AddStudent);
             studentGroup.MapPut("/{firstName}", UpdateStudent);
+            studentGroup.MapDelete("/{firstName}", DeleteStudent);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -56,6 +57,20 @@ namespace exercise.wwwapi.Endpoints
         public static async Task<IResult> UpdateStudent(IStudentRepository repository, string firstName, StudentPut model)
         {
             return TypedResults.Ok(repository.UpdateStudent(firstName, model));
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        private static async Task<IResult> DeleteStudent(IStudentRepository repository, string firstName)
+        {
+            bool success = repository.DeleteStudent(firstName);
+            if (success)
+            {
+                return TypedResults.Ok();
+            }
+            else
+            {
+                return TypedResults.NotFound($"Student with that first name does not exist.");
+            }
         }
     }
 }
