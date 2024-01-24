@@ -2,14 +2,8 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Data
 {
-    public interface IStudentRepository
-    {
-        List<Student> GetAll();
-        Student Add(Student student);
-        bool Delete(Student student);
-    }
 
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : IRepository<Student>
     {
         private readonly StudentCollection _studentCollection;
 

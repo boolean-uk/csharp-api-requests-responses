@@ -15,25 +15,25 @@ namespace exercise.wwwapi.EndPoints
             languageGroup.MapDelete("/{name}", DeleteLanguageByName);
         }
 
-        public static IResult AddLanguage(Language language, ILanguageRepository languageRepository)
+        public static IResult AddLanguage(Language language, IRepository<Language> languageRepository)
         {
             languageRepository.Add(language);
             string url = $"/languages/{language.Name}";
             return Results.Created(url, language);
         }
 
-        public static IResult GetAllLanguages(ILanguageRepository languageRepository)
+        public static IResult GetAllLanguages(IRepository<Language> languageRepository)
         {
             return Results.Ok(languageRepository.GetAll());
         }
 
-        public static IResult GetLanguageByName(string name, ILanguageRepository languageRepository)
+        public static IResult GetLanguageByName(string name, IRepository<Language> languageRepository)
         {
             Language lang = languageRepository.GetAll().FirstOrDefault(l => l.Name == name);
             return lang != null ? Results.Ok(lang) : Results.NotFound();
         }
 
-        public static IResult UpdateLanguage(string name, Language updatedLanguage, ILanguageRepository languageRepository)
+        public static IResult UpdateLanguage(string name, Language updatedLanguage, IRepository<Language> languageRepository)
         {
             Language lang = languageRepository.GetAll().FirstOrDefault(l => l.Name == name);
             if (lang == null)
@@ -45,7 +45,7 @@ namespace exercise.wwwapi.EndPoints
             return Results.Created(url, lang);
         }
 
-        public static IResult DeleteLanguageByName(string name, ILanguageRepository languageRepository)
+        public static IResult DeleteLanguageByName(string name, IRepository<Language> languageRepository)
         {
             Language lang = languageRepository.GetAll().FirstOrDefault(l => l.Name == name);
             if (lang == null)

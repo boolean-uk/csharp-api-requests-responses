@@ -10,7 +10,7 @@ namespace exercise.wwwapi.Data
     }
 
 
-    public class LanguageRepository : ILanguageRepository
+    public class LanguageRepository : IRepository<Language>
     {
         private readonly LanguageCollection _languageCollection;
 
