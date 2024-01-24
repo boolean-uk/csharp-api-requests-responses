@@ -21,6 +21,22 @@ namespace exercise.wwwapi.Data
         {
             return _students.ToList();
         }
+
+        //New method to replace the name of student
+        public Student replaceStudent(string firstname, string newFirstname, string newLastName) 
+        {
+            foreach (var student in _students) 
+            {
+                if (student.FirstName == firstname)
+                {
+                    student.FirstName = newFirstname;
+                    student.LastName = newLastName;
+                    return student;
+                }
+
+            }
+            return null;
+        }
     };
 
 
