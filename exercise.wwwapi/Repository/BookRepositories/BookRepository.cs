@@ -20,22 +20,22 @@ namespace exercise.wwwapi.Repository.BookRepositories
 
         public void DeleteBook(int _id)
         {
-            throw new NotImplementedException();
+            _books.DeleteBookById(_id);
         }
 
         public List<Book> getAllBooks()
         {
-            throw new NotImplementedException();
+            return _books.getAllBooks();
         }
 
         public Book getBookById(int _id)
         {
-            throw new NotImplementedException();
+            return _books.getBookById(_id);
         }
 
-        public Book UpdateBook(BookPostPayload payload)
+        public Book UpdateBook(int _id, BookPutPayload payload)
         {
-            throw new NotImplementedException();
+            return _books.UpdateBookById(_id, payload);
         }
     }
 }

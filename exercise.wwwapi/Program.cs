@@ -1,6 +1,8 @@
 using exercise.wwwapi.Data;
 using exercise.wwwapi.Models.Language;
 using exercise.wwwapi.Models.Student;
+using exercise.wwwapi.Models.Book;
+using exercise.wwwapi.Repository.BookRepositories;
 using exercise.wwwapi.Repository.LanguageRepositories;
 using exercise.wwwapi.Repository.StudentRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +15,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// student
 builder.Services.AddSingleton<StudentCollection>();
 builder.Services.AddScoped<IStudentRepositiry, StudentRepository>();
+// language
 builder.Services.AddSingleton<LanguageCollection>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+// book extension
+builder.Services.AddSingleton<BookCollection>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
@@ -31,6 +38,7 @@ app.UseHttpsRedirection();
 
 var studentGroup = app.MapGroup("/studens");
 var languageGroup = app.MapGroup("/language");
+var bookGroup = app.MapGroup("/books");
 
 
 studentGroup.MapGet("/", (IStudentRepositiry student) => {
@@ -90,6 +98,19 @@ languageGroup.MapDelete("/{name}", (string name, ILanguageRepository language) =
     language.deleteLanguage(name);
     return TypedResults.NoContent();
 });
+
+
+bookGroup.MapGet("/", (IBookRepository book) =>
+{
+    return TypedResults.Ok(book.getAllBooks());
+});
+
+bookGroup.MapGet("/{_id}", (int _id, IBookRepository book) =>
+{
+    Book foundBook = book.getBookById(_id); 
+    return TypedResults.Ok(foundBook);
+});
+
 
 
 app.Run();

@@ -7,7 +7,7 @@ namespace exercise.wwwapi.Repository.BookRepositories
         public List<Book> getAllBooks();
         public Book getBookById(int _id);
         public Book AddBook(BookPostPayload payload);
-        public Book UpdateBook(BookPostPayload payload);
+        public Book UpdateBook(int _id, BookPutPayload payload);
         public void DeleteBook(int _id);
     }
 }
