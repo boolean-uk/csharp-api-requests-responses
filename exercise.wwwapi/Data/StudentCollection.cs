@@ -1,5 +1,6 @@
 ﻿using exercise.wwwapi.Models;
 
+
 namespace exercise.wwwapi.Data
 {
     public class StudentCollection
@@ -10,17 +11,39 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
+        public Student Add(StudentPostPayload payload)
+        {
+            var newStudent = new Student() { FirstName = payload.firstname, LastName = payload.lastname};
+            _students.Add(newStudent);
 
-            return student;
+            return newStudent;
         }
 
         public List<Student> getAll()
         {
-            return _students.ToList();
+            return _students;
         }
+
+        public Student getStudentByName(string firstname)
+        {
+            return _students.Find(x => x.FirstName == firstname);
+        }
+
+        public bool deleteStudentByName(string firstname)
+        {
+            var deleteStudent = getStudentByName(firstname);
+            if (deleteStudent != null)
+            {
+                _students.Remove(deleteStudent);
+                return true;
+            } else
+            {
+                throw new Exception("No such Student");
+            }
+            
+        }
+
+        
     };
 
 
