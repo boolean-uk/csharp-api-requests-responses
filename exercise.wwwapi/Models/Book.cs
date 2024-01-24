@@ -12,6 +12,11 @@
             Genre = genre;
         }
 
+        public int GetId()
+        {
+            return Id;
+        }
+
         public static int Id { get; set; } = 1;
         public string Name { get; set; }
         public int NumPages { get; set; }

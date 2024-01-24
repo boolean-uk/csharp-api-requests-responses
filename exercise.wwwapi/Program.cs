@@ -25,6 +25,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureDataEndpoint();
 app.ConfigureLanguageEndpoint();
+app.ConfigureBookEndpoint();
 
 app.Run();
 

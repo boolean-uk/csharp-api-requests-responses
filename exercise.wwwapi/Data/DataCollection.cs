@@ -64,5 +64,16 @@ namespace exercise.wwwapi.Data
             new Book("Harry Potter", 459, "Bad Person", "Fantasy")
         };
 
+        public Book CreateBook(Book book)
+        {
+            _books.Add(book);
+            return book;
+        }
+
+        public List<Book> getAllBooks()
+        {
+            return _books.ToList();
+        }
+
     }
 }
