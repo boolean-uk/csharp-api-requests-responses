@@ -1,9 +1,21 @@
+using exercise.wwwapi.Repository;
+using exercise.wwwapi.EndPoints;
+using exercise.wwwapi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<StudentCollection>();
+builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddSingleton<BookCollection>();
+
+builder.Services.AddSingleton<IStudentRepository, StudentRepository>();
+builder.Services.AddSingleton<ILanguageRepository, LanguageRepository>();
+builder.Services.AddSingleton<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
@@ -16,7 +28,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.ConfigureStudentEndPoint();
 
+app.ConfigureLanguageEndPoint();
+
+app.ConfigureBookEndPoint();
 
 app.Run();
 
