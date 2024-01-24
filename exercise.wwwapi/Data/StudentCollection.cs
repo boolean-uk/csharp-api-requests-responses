@@ -21,6 +21,18 @@ namespace exercise.wwwapi.Data
         {
             return _students.ToList();
         }
+
+        public void Remove(Student student)
+        {
+            _students.Remove(student);
+        }
+
+        public Student GetStudent(string firstName) 
+        { 
+            Student student = _students.Find(x => x.FirstName == firstName);
+
+            return student;
+        }
     };
 
 
