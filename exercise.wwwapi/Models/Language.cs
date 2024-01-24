@@ -8,5 +8,11 @@
         {
             this.name = name;
         }
+        public string Name {get { return name; } }
+
+        public void SetName(string name)
+        {
+            this.name=name;
+        }
     }
 }
