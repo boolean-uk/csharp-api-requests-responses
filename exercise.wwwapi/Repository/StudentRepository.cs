@@ -24,5 +24,21 @@ namespace exercise.wwwapi.Repository
             return student;
         }
 
+        public Student AddStudent(Student student)
+        {
+            return _studentData.AddStudent(student);
+        }
+
+        public Student UpdateStudent(string firstName, StudentPut student)
+        {
+            var foundStudent = _studentData.GetStudent(firstName);
+            if(foundStudent == null)
+            {
+                return null;
+            }
+            foundStudent.FirstName = student.FirstName;
+            foundStudent.LastName = student.LastName;
+            return foundStudent;
+        }
     }
 }

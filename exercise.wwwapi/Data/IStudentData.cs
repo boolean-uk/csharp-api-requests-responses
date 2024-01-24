@@ -6,5 +6,8 @@ namespace exercise.wwwapi.Data
     {
         Student GetStudent(string firstName);
         List<Student> GetStudents();
+        Student AddStudent(Student student);
+        Student UpdateStudent(string firstname, StudentPut student);
+
     }
 }

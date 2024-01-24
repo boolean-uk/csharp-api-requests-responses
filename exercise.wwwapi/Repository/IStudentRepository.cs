@@ -6,5 +6,8 @@ namespace exercise.wwwapi.Repository
     {
         List<Student> GetStudents();
         Student GetStudent(string firstName);
+        Student AddStudent(Student student);
+
+        Student UpdateStudent(string firstName, StudentPut student);
     }
 }

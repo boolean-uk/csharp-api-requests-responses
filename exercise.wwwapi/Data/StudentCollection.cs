@@ -21,6 +21,20 @@ namespace exercise.wwwapi.Data
 
             return student;
         }
+
+        public Student AddStudent(Student student)
+        {
+            _students.Add(student);
+            return student;
+        }
+
+        public Student UpdateStudent(string firstName, StudentPut student)
+        {
+            var target = _students.FirstOrDefault(student=>student.FirstName == firstName);
+            target.FirstName = student.FirstName;
+            target.LastName = student.LastName;
+            return target;
+        }
     };
 
 
