@@ -10,6 +10,16 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
+        public List<Student> Get()
+        {
+            return _students;
+        }
+
+        public Student Get(string firstName)
+        {
+            return _students.FirstOrDefault(s => s.FirstName == firstName);
+        }
+
         public Student Add(Student student)
         {            
             _students.Add(student);
@@ -17,11 +27,20 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        public List<Student> getAll()
+        public Student Change(string firstName, Student student)
         {
-            return _students.ToList();
+            Remove(firstName);
+            Add(student);
+            return student;
+        }
+
+        public Student Remove(string firstName)
+        {
+            Student student = _students.FirstOrDefault(s => s.FirstName == firstName);
+
+            _students.Remove(student);
+
+            return student;
         }
     };
-
-
 }
