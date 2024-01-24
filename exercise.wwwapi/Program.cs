@@ -41,6 +41,12 @@ studentGroup.MapPost("/", (IStudentRepositiry student, StudentPostPayload payloa
     return TypedResults.Created($"/student: ", newStudent);
 });
 
+studentGroup.MapGet("/{firstname}", (string firstname, IStudentRepositiry student) =>
+{
+    Student foundStudent = student.GetStudent(firstname);
+    return TypedResults.Ok(foundStudent);
+});
+
 studentGroup.MapPut("/{firstname}", (string firstname, IStudentRepositiry student, StudentPutPayload payload) => {
     Student updateStudent = student.UpdateStudent(firstname, payload);
     return TypedResults.Created($"/student/{firstname}", updateStudent);
@@ -57,6 +63,30 @@ studentGroup.MapDelete("/{firstname}", (string firstname, IStudentRepositiry stu
 languageGroup.MapGet("/", (ILanguageRepository language) =>
 {
     return TypedResults.Ok(language.getAllLanguages());
+});
+
+languageGroup.MapPost("/", (ILanguageRepository language, LanguagePostPayload payload) =>
+{
+    Language newLanguage = language.AddLanguage(payload);
+    return TypedResults.Created($"/language: ", newLanguage);
+});
+
+languageGroup.MapGet("/{name}", (string name, ILanguageRepository language) =>
+{
+    Language foundLanguage = language.GetLanguageByName(name);
+    return TypedResults.Ok(foundLanguage);
+});
+
+languageGroup.MapPut("/{name}", (string name, ILanguageRepository language, LanguagePutPayload payload) =>
+{
+    Language updateLanguage = language.UpdateLanguage(name, payload);
+    return TypedResults.Created($"/languages({name}: ", updateLanguage);
+});
+
+languageGroup.MapDelete("/{name}", (string name, ILanguageRepository language) =>
+{
+    language.deleteLanguage(name);
+    return TypedResults.NoContent();
 });
 
 

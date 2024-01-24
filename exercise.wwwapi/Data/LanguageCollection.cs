@@ -6,26 +6,26 @@ namespace exercise.wwwapi.Data
     public class LanguageCollection
     {
         private List<Language> languages = new List<Language>(){
-            new Language("Java"),
-            new Language("C#")
+            new Language() {Name = "Java"},
+            new Language() {Name = "c#"}
         };
 
 
 
         public List<Language> getAllLanguages()
         {
-            return languages.ToList();
+            return languages;
         }
 
         public Language AddLanguage(LanguagePostPayload payload)
         {
-            var language = new Language(payload.name);
+            var language = new Language() { Name = payload.name };
             languages.Add(language);
             return language;
         }
 
         public Language getLanguageByName(string name) { 
-            return languages.Find(l => l.getName().Equals(name));
+            return languages.Find(l => l.Name.Equals(name));
         }
 
         public void deteleLanguageByName(string name)

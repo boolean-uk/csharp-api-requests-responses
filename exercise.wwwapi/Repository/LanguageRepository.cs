@@ -17,7 +17,7 @@ namespace exercise.wwwapi.Repository
 
         public void deleteLanguage(string name)
         {
-            throw new NotImplementedException();
+            _languages.deteleLanguageByName(name);
         }
 
         public List<Language> getAllLanguages()
@@ -27,12 +27,31 @@ namespace exercise.wwwapi.Repository
 
         public Language GetLanguageByName(string name)
         {
-            throw new NotImplementedException();
+            return _languages.getLanguageByName(name);
         }
 
         public Language UpdateLanguage(string name, LanguagePutPayload payload)
         {
-            throw new NotImplementedException();
+            Language tmpLanguage = _languages.getLanguageByName(name);
+            if (tmpLanguage == null)
+            {
+                return null;
+            }
+
+
+            bool isUpdated = false;
+
+            if (payload.name != null && payload.name.Length > 0) {
+                tmpLanguage.Name = payload.name;
+                isUpdated = true;
+            }
+
+            if (!isUpdated)
+            {
+                throw new Exception("No changes was entered");
+            }
+
+            return tmpLanguage;
         }
     }
 }
