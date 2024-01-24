@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<StudentCollection, StudentCollection>();
 builder.Services.AddSingleton<LanguageCollection, LanguageCollection>();
+builder.Services.AddSingleton<Library, Library>();
 
 var app = builder.Build();
 
@@ -25,6 +26,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoint();
 app.ConfigureLanguageEndpoint();
+app.ConfigureLibraryEndpoints();
 
 app.Run();
 
