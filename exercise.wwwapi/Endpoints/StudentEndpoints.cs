@@ -1,4 +1,4 @@
-﻿using exercise.wwwapi.Models;
+﻿using exercise.wwwapi.Models.Student;
 using exercise.wwwapi.Repository;
 
 namespace exercise.wwwapi.Endpoints
@@ -17,37 +17,38 @@ namespace exercise.wwwapi.Endpoints
 
         }
 
-        public static IResult CreateStudent(IStudentRepository students, StudentPostPayload studentPostPayload)
+        public static IResult CreateStudent(IStudentRepo students, StudentPayload payLoad)
         {
+            if (payLoad == null) { return Results.BadRequest("Empty payload"); }
             Student student = new Student();
-            student.FirstName = studentPostPayload.FirstName;
-            student.LastName = studentPostPayload.LastName;
-            students.AddStudent(student);
+            student.FirstName = payLoad.FirstName;
+            student.LastName = payLoad.LastName;
+            students.Add(student);
             return TypedResults.Created($"/students/{student.FirstName}", student);
         }
 
-        public static IResult GetAllStudents(IStudentRepository students)
+        public static IResult GetAllStudents(IRepository<Student> students)
         {
-            return TypedResults.Ok(students.GetAllStudents());
+            return TypedResults.Ok(students.GetAll());
         }
 
-        public static IResult GetAStudent(IStudentRepository students, string firstName)
+        public static IResult GetAStudent(IRepository<Student> students, string firstName)
         {
-            var student = students.GetAStudent(firstName);
+            var student = students.Get(firstName);
             if (student == null) { return Results.NotFound($"No student with name {firstName} was found"); }
             return TypedResults.Ok(student);
         }
 
-        public static IResult UpdateStudent(IStudentRepository students, string firstName, StudentUpdatePayload updatePayload)
+        public static IResult UpdateStudent(IStudentRepo students, string firstName, StudentPayload updatePayload)
         {
-            var student = students.UpdateStudent(firstName, updatePayload);
+            var student = students.Update(firstName, updatePayload);
             if (student == null) { return Results.NotFound("Student not found"); }
-            return TypedResults.Created($"/students/{firstName}", student);
+            return TypedResults.Created($"/students/{student.FirstName}", student);
         }
 
-        public static IResult DeleteStudent(IStudentRepository students, string firstName)
+        public static IResult DeleteStudent(IRepository<Student> students, string firstName)
         {
-            var student = students.DeleteStudent(firstName);
+            var student = students.Remove(firstName);
             if (student == null)
             {
                 return Results.NotFound("Student not found");

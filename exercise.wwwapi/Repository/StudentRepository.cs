@@ -1,9 +1,9 @@
 ﻿using exercise.wwwapi.Data;
-using exercise.wwwapi.Models;
+using exercise.wwwapi.Models.Student;
 
 namespace exercise.wwwapi.Repository
 {
-    class StudentRepository : IStudentRepository
+    class StudentRepository : IStudentRepo
     {
         private StudentCollection _students;
 
@@ -12,27 +12,27 @@ namespace exercise.wwwapi.Repository
             _students = students;
         }
 
-        public Student AddStudent(Student student)
+        public Student Add(Student student)
         {
             return _students.Add(student);
         }
 
-        public Student DeleteStudent(string firstName)
+        public Student Remove(string firstName)
         {
             return _students.DeleteStudent(firstName);
         }
 
-        public List<Student> GetAllStudents()
+        public List<Student> GetAll()
         {
             return _students.getAll();
         }
 
-        public Student GetAStudent(string firstName)
+        public Student Get(string firstName)
         {
             return _students.GetAStudent(firstName);
         }
 
-        public Student UpdateStudent(string firstName, StudentUpdatePayload updatePayload)
+        public Student Update(string firstName, StudentPayload updatePayload)
         {
             return _students.UpdateStudent(firstName, updatePayload);
         }

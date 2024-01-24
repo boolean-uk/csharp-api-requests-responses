@@ -1,4 +1,4 @@
-﻿using exercise.wwwapi.Models;
+﻿using exercise.wwwapi.Models.Student;
 
 namespace exercise.wwwapi.Data
 {
@@ -33,7 +33,7 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        public Student UpdateStudent(string firstName, StudentUpdatePayload updatePayload)
+        public Student UpdateStudent(string firstName, StudentPayload updatePayload)
         {
             var student = GetAStudent(firstName);
             if (student == null) return null;

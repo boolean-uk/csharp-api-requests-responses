@@ -1,4 +1,4 @@
-﻿namespace exercise.wwwapi.Models
+﻿namespace exercise.wwwapi.Models.Student
 {
     public class Student
     {
