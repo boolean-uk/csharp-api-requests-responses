@@ -9,5 +9,24 @@ namespace exercise.wwwapi.Data
             new Language("Java"),
             new Language("C#")
         };
+
+        public List<Language> GetAll() {
+            return languages;
+        }
+
+        public Language Add(Language language) {
+            languages.Add(language);
+            return language;
+        }
+
+        public Language Remove(string languageName) {
+            Language language = Get(languageName);
+            languages.Remove(language);
+            return language;
+        }
+
+        public Language? Get(string name) {
+            return languages.FirstOrDefault(t => t.Name == name);
+        }
     }
 }

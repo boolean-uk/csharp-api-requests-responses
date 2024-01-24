@@ -4,11 +4,14 @@ namespace exercise.wwwapi.Data
 {
     public class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
-        {
-            new Student() { FirstName="Nathan",LastName="King" },
-            new Student() { FirstName="Dave", LastName="Ames" }
-        };
+        private List<Student> _students;
+        public StudentCollection() {
+            _students = new List<Student>();
+            _students.Add(new Student("Nathan", "King"));
+            _students.Add(new Student("Dave", "Ames"));
+        }
+
+        public List<Student> Students {get {return _students;}}
 
         public Student Add(Student student)
         {            
@@ -17,9 +20,15 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        public List<Student> getAll()
-        {
-            return _students.ToList();
+        public Student? get(string FirstName) {
+            return _students.FirstOrDefault(t => t.FirstName == FirstName);
+        }
+
+        public Student? Remove(Student student) {
+            if(student == null)
+                return null;
+            _students.Remove(student);
+            return student;
         }
     };
 
