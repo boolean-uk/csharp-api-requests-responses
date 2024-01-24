@@ -21,7 +21,14 @@ namespace exercise.wwwapi.Repository
         IEnumerable<Language> GetLanguages();
         Language GetLanguage(string language);
         Language CreateLanguage(Language language);
-        Language Updatelanguage(string language, string newLanguage);
+        Language UpdateLanguage(string language, string newLanguage);
         bool DeleteLanguage(string language);
+
+
+        IEnumerable<Book> GetBooks();
+        Book GetBook(int id);
+        Book CreateBook(Book book);
+        Book UpdateBook(int id, Book newBook);
+        bool DeleteBook(int id);
     }
 }

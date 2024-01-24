@@ -38,7 +38,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> UpdateLanguage(IRepository repository, string language, string newLanguage)
         {
-            return TypedResults.Ok(repository.Updatelanguage(language, newLanguage));
+            return TypedResults.Ok(repository.UpdateLanguage(language, newLanguage));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

@@ -7,11 +7,13 @@ namespace exercise.wwwapi.Repository
     {
         private StudentCollection _studentCollection;
         private LanguageCollection _languageCollection;
+        private BookCollection _bookCollection;
 
-        public Repository(StudentCollection studentCollection, LanguageCollection languageCollection)
+        public Repository(StudentCollection studentCollection, LanguageCollection languageCollection, BookCollection bookCollection)
         {
             _studentCollection = studentCollection;
             _languageCollection = languageCollection;
+            _bookCollection = bookCollection;
         }
 
 
@@ -54,7 +56,7 @@ namespace exercise.wwwapi.Repository
             return _languageCollection.Create(language);
         }
 
-        public Language Updatelanguage(string language, string newLanguage)
+        public Language UpdateLanguage(string language, string newLanguage)
         {
             return _languageCollection.Update(language, newLanguage);
         }
@@ -62,6 +64,33 @@ namespace exercise.wwwapi.Repository
         public bool DeleteLanguage(string language)
         {
             return _languageCollection.Delete(language);
+        }
+
+
+        // --BOOKS--
+        public IEnumerable<Book> GetBooks()
+        {
+            return _bookCollection.GetAll();
+        }
+
+        public Book GetBook(int id)
+        {
+            return _bookCollection.Get(id);
+        }
+
+        public Book CreateBook(Book book)
+        {
+            return _bookCollection.Create(book);
+        }
+
+        public Book UpdateBook(int id, Book newBook)
+        {
+            return _bookCollection.Update(id, newBook);
+        }
+
+        public bool DeleteBook(int id)
+        {
+            return _bookCollection.Delete(id);
         }
     }
 }
