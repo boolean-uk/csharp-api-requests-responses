@@ -1,6 +1,5 @@
 ﻿using exercise.wwwapi.Models;
 using exercise.wwwapi.Repository;
-using System.Threading.Tasks;
 
 namespace exercise.wwwapi.Endpoints
 {
@@ -13,7 +12,7 @@ namespace exercise.wwwapi.Endpoints
             studentGroup.MapGet("/GetStudent", GetStudent);
             studentGroup.MapPost("/CreateStudent", CreateStudent);
             studentGroup.MapPut("/UpdateStudent{firstName}", UpdateStudent);
-            studentGroup.MapPut("/RemoveStudent{firstName}", RemoveStudent);
+            studentGroup.MapDelete("/RemoveStudent{firstName}", RemoveStudent);
         }
         public static IResult GetAllStudents(IStudentRepository students)
         {
@@ -35,13 +34,13 @@ namespace exercise.wwwapi.Endpoints
                 Student? student = students.UpdateStudent(firstName, updateData);
                 if (student == null)
                 {
-                    return Results.NotFound($"Student with first name {firstName} not found.");
+                    return TypedResults.NotFound($"Student with first name {firstName} not found.");
                 }
-                return Results.Created($"/students{student.FirstName}", student);
+                return TypedResults.Created($"/students{student.FirstName}", student);
             }
             catch (Exception e)
             {
-                return Results.BadRequest(e.Message);
+                return TypedResults.BadRequest(e.Message);
             }
         }
         public static IResult RemoveStudent(IStudentRepository students, string firstName)

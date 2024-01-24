@@ -11,13 +11,6 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Nathan",LastName="King" },
             new Student() { FirstName="Dave", LastName="Ames" }
         };
-
-        //public Student Add(Student student)
-        //{            
-        //    _students.Add(student);
-        //
-        //    return student;
-        //}
         public Student AddStudent(string firstName, string lastName)
         {
             var student = new Student() { FirstName = firstName, LastName = lastName };
@@ -39,6 +32,4 @@ namespace exercise.wwwapi.Data
             return _students.ToList();
         }
     };
-
-
 }
