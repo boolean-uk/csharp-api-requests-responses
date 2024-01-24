@@ -4,12 +4,12 @@
     {
         List<T> GetAll();
 
-        T GetByName(string name);
+        T GetSpecific(string identifier);
 
-        public T Update(string name, T newInfo);
+        public T Update(string identifier, T newInfo);
 
-        public T Add(T language);
+        public T Add(T element);
 
-        public T Delete(string name);
+        public T Delete(string identifier);
     }
 }

@@ -22,7 +22,7 @@ namespace exercise.wwwapi.Data
             return _students.ToList();
         }
 
-        public Student GetByName(string firstName)
+        public Student GetSpecific(string firstName)
         {
             return _students.Where(x => x.FirstName == firstName).FirstOrDefault();
         }

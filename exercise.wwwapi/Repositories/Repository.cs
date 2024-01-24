@@ -35,7 +35,7 @@ namespace exercise.wwwapi.Repositories
 
         public T GetByName(string name)
         {
-            return _data.GetByName(name);
+            return _data.GetSpecific(name);
         }
 
         public T Update(string firstName, T newInfo)

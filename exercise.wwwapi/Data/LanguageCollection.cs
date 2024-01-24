@@ -15,7 +15,7 @@ namespace exercise.wwwapi.Data
             return _languages;
         }
 
-        public Language GetByName(string name)
+        public Language GetSpecific(string name)
         {
             return _languages.Where(x => x.Name == name).FirstOrDefault();
         }
