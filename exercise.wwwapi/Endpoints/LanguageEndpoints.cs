@@ -40,7 +40,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> DeleteLanguage(IRepository repository, string name)
         {
-            return TypedResults.Ok(repository.GetOneLanguage(name));
+            return TypedResults.Ok(repository.DeleteLanguage(name));
         }
     }
 }

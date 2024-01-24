@@ -23,6 +23,7 @@ if (app.Environment.IsDevelopment())
 
 app.ConfigurestudentsEndpoint();
 app.ConfigureLanguagesEndpoint();
+app.ConfigureBookEndpoint();
 
 app.UseHttpsRedirection();
 

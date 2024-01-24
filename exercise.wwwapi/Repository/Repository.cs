@@ -57,5 +57,30 @@ namespace exercise.wwwapi.Repository
         {
             return _dataCollection.DeleteLanguage(name);
         }
+
+        public IEnumerable<Book> GetBooks()
+        {
+            return _dataCollection.GetAllBooks();
+        }
+
+        public Book GetOneBook(int id)
+        {
+            return _dataCollection.GetOneBook(id);
+        }
+
+        public Book AddBook(InputBook input)
+        {
+            return _dataCollection.AddBook(input);
+        }
+
+        public Book UpdateBook(int id, InputBook inputBook)
+        {
+            return _dataCollection.UpdateBook(id, inputBook);
+        }
+
+        public Book DeleteBook(int id)
+        {
+            return _dataCollection.DeleteBook(id);
+        }
     }
 }
