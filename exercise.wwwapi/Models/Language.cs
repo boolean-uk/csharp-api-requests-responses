@@ -1,12 +1,20 @@
-﻿namespace exercise.wwwapi.Models
+﻿using System.Xml.Linq;
+
+namespace exercise.wwwapi.Models
 {
     public class Language
     {
-        private String name {get; set;}
+        public String Name {get; set;}
 
         public Language(String name)
         {
-            this.name = name;
+            Name = name;
+        }
+        public String getName() { return Name; }
+
+        public void Update(string name)
+        {
+            Name = name;
         }
     }
 }
