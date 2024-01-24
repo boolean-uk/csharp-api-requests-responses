@@ -6,12 +6,12 @@ namespace exercise.wwwapi.Data
     {
         private List<Student> _students = new List<Student>()
         {
-            new Student() { FirstName="Nathan",LastName="King" },
-            new Student() { FirstName="Dave", LastName="Ames" }
+            new Student("Nathan", "King"),
+            new Student("Dave", "Ames")
         };
 
         public Student Add(Student student)
-        {            
+        {
             _students.Add(student);
 
             return student;
@@ -20,6 +20,39 @@ namespace exercise.wwwapi.Data
         public List<Student> getAll()
         {
             return _students.ToList();
+        }
+
+        public Student getAStudent(string firstName)
+        {
+            Student student = _students.Where(Student => Student.FirstName == firstName).FirstOrDefault();
+            if (student == null)
+            {
+                return null;
+            }
+            return student;
+        }
+
+        public Student updateStudent(string firstName, string newfirstname, string LastName)
+        {
+            Student student = _students.Where(Student => Student.FirstName == firstName).FirstOrDefault();
+            if (student == null)
+            {
+                return null;
+            }
+            student.FirstName = newfirstname;
+            student.LastName = LastName;
+            return student;
+        }
+
+        public Student deleteAStudent(string firstName)
+        {
+            Student student = _students.Where(Student => Student.FirstName == firstName).FirstOrDefault();
+            if (student == null)
+            {
+                return null;
+            }
+            _students.Remove(student);
+            return student;
         }
     };
 
