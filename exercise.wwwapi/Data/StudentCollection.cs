@@ -2,7 +2,7 @@
 
 namespace exercise.wwwapi.Data
 {
-    public class StudentCollection
+    public class StudentCollection 
     {
         private List<Student> _students = new List<Student>()
         {
@@ -11,7 +11,7 @@ namespace exercise.wwwapi.Data
         };
 
         public Student Add(Student student)
-        {            
+        {
             _students.Add(student);
 
             return student;
@@ -20,6 +20,11 @@ namespace exercise.wwwapi.Data
         public List<Student> getAll()
         {
             return _students.ToList();
+        }
+
+        public Student Remove(Student student) {
+            _students.Remove(student);
+            return student;
         }
     };
 
