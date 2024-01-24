@@ -1,4 +1,3 @@
-using exercise.wwwapi.Models;
 using exercise.wwwapi.Repository;
 using exercise.wwwapi.EndPoints;
 using exercise.wwwapi.Data;
@@ -12,10 +11,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<StudentCollection>();
 builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddSingleton<BookCollection>();
 
 builder.Services.AddSingleton<IStudentRepository, StudentRepository>();
 builder.Services.AddSingleton<ILanguageRepository, LanguageRepository>();
-
+builder.Services.AddSingleton<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
@@ -32,7 +32,7 @@ app.ConfigureStudentEndPoint();
 
 app.ConfigureLanguageEndPoint();
 
-
+app.ConfigureBookEndPoint();
 
 app.Run();
 

@@ -27,7 +27,7 @@ namespace exercise.wwwapi.Data
             return Students.ToList();
         }
 
-        public Student GetStudentName(string firstname)
+        public Student? GetStudentName(string firstname)
         {
             return Students.FirstOrDefault(s => s.FirstName == firstname);
         }
