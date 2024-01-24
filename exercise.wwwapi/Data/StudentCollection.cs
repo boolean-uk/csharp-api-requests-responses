@@ -2,7 +2,7 @@
 
 namespace exercise.wwwapi.Data
 {
-    public class StudentCollection
+    public class StudentCollection : IStudentData
     {
         private List<Student> _students = new List<Student>()
         {
@@ -10,16 +10,16 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
-
-            return student;
-        }
-
-        public List<Student> getAll()
+        public List<Student> GetStudents()
         {
             return _students.ToList();
+        }
+
+        public Student GetStudent(string firstName)
+        {
+            Student student = _students.FirstOrDefault(student => student.FirstName == firstName);
+
+            return student;
         }
     };
 
