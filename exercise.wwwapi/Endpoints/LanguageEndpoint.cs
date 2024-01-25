@@ -50,10 +50,8 @@ namespace exercise.wwwapi.Endpoints
             if (language == null)
             {
 
-            }   
-            var newLanguage = repository.GetLanguage(name);
-            newLanguage.Name = language.Name;
-            return TypedResults.Created($"/{newLanguage.Name}", newLanguage);
+            }
+            return TypedResults.Ok(repository.UpdateLanguage(name, language));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

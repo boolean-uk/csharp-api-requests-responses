@@ -2,6 +2,7 @@
 using exercise.wwwapi.Models;
 using exercise.wwwapi.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace exercise.wwwapi.Endpoints
 {
@@ -51,10 +52,7 @@ namespace exercise.wwwapi.Endpoints
             {
 
             }   
-            var newStudent = repository.GetStudent(firstName);
-            newStudent.FirstName = student.FirstName;
-            newStudent.LastName = student.LastName;
-            return TypedResults.Created($"/{newStudent.FirstName}", newStudent);
+            return TypedResults.Ok(repository.UpdateStudent(firstName, student));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

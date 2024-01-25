@@ -50,13 +50,8 @@ namespace exercise.wwwapi.Endpoints
             if (book == null)
             {
 
-            }   
-            var newBook = repository.GetBook(id);
-            newBook.Title = book.Title;
-            newBook.Author = book.Author;
-            newBook.Genre = book.Genre;
-            newBook.NumPages = book.NumPages;
-            return TypedResults.Created($"/{newBook.Id}", newBook);
+            }
+            return TypedResults.Ok(repository.UpdateBook(id, book));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
