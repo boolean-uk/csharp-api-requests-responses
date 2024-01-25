@@ -12,7 +12,7 @@ namespace exercise.wwwapi.Endpoints
 
             languagesGroup.MapGet("/", GetLanguages);
             languagesGroup.MapPost("/", AddLanguage);
-            languagesGroup.MapGet("/{name}", GetLanguages);
+            languagesGroup.MapGet("/{name}", GetLanguage);
             languagesGroup.MapPut("/{name}", UpdateLanguages);
             languagesGroup.MapDelete("/{name}", DeleteLanguages);
         }
