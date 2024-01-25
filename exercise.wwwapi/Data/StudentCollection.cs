@@ -21,6 +21,11 @@ namespace exercise.wwwapi.Data
         {
             return _students.ToList();
         }
+
+        public void Delete(Student student) 
+        {
+            _students.Remove(student);
+        }
     };
 
 
