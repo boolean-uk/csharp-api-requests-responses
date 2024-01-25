@@ -14,7 +14,7 @@ namespace exercise.wwwapi.Data
         public Book AddBook(BookDraft newBook)
         {
             Book book = null;
-            if (validateBook(newBook))
+            if (ValidateBook(newBook))
             {
                 book = new Book(GetNextAvailableIndex(), newBook.Title, newBook.NumPages, newBook.Author, newBook.Genre);
                 _books.Add(book);
@@ -23,7 +23,7 @@ namespace exercise.wwwapi.Data
             return book;
         }
 
-        public bool validateBook(BookDraft book) 
+        public bool ValidateBook(BookDraft book) 
         {
             if (book.Title == null || book.Author == null || book.Genre == null)
             {
@@ -38,6 +38,12 @@ namespace exercise.wwwapi.Data
             return book;
         }
 
+        /// <summary>
+        /// Retrieve the smallest next available integer. 
+        /// Makes a list of all int from 1 to _books.Count+1 then removes all int's that are contained within the Book.Id's in the collection.
+        /// After the common ints are removed the first (and smallest) element gets selected.
+        /// </summary>
+        /// <returns> int - Smallest available int </returns>
         private int GetNextAvailableIndex() 
         {
             int lowestNonUsedInt = Enumerable.Range(1, _books.Count + 1).Except(_books.Select(b => b.Id)).FirstOrDefault();

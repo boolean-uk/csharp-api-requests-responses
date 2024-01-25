@@ -16,16 +16,19 @@ namespace exercise.wwwapi.Repository
             _bookCollection = bookCollection;
         }
 
+        /// <inheritdoc/>
         public IEnumerable<Student> GetStudents() 
         {
             return _studentCollection.getAll();
         }
 
+        /// <inheritdoc/>
         public Student GetStudentByFirstName(string firstName)
         {
             return _studentCollection.getAll().Where(s => s.FirstName == firstName).FirstOrDefault();
         }
 
+        /// <inheritdoc/>
         public Student PostStudent(string firstName, string lastName) 
         {
             Student student = new Student() {  FirstName = firstName, LastName = lastName };
@@ -33,6 +36,7 @@ namespace exercise.wwwapi.Repository
             return student;
         }
 
+        /// <inheritdoc/>
         public Student UpdateStudentByFirstName(string firstName, string newFirstName, string newLastName)
         {
             Student? student = _studentCollection.getAll().Where(s => s.FirstName == firstName).FirstOrDefault();
@@ -49,6 +53,7 @@ namespace exercise.wwwapi.Repository
 
         }
 
+        /// <inheritdoc/>
         public Student DeleteStudentByFirstName(string firstName) 
         {
             Student? student = _studentCollection.getAll().Where(s => s.FirstName == firstName).FirstOrDefault();
@@ -59,6 +64,7 @@ namespace exercise.wwwapi.Repository
             return student;
         }
 
+        /// <inheritdoc/>
         public Language PostLanguage(string languageName)
         {
             Language lang = new Language(languageName);
@@ -66,16 +72,19 @@ namespace exercise.wwwapi.Repository
             return lang;
         }
 
+        /// <inheritdoc/>
         public IEnumerable<Language> GetLanguages()
         {
             return _languageCollection.GetLanguages();
         }
 
+        /// <inheritdoc/>
         public Language GetSpecificLanguage(string languageName)
         {
             return _languageCollection.GetLanguages().Where(l => l.Name == languageName).FirstOrDefault();
         }
 
+        /// <inheritdoc/>
         public Language UpdateLanguageName(string languageName, string newLanguageName)
         {
             Language? lang = _languageCollection.GetLanguages().Where(l => l.Name == languageName).FirstOrDefault();
@@ -90,6 +99,7 @@ namespace exercise.wwwapi.Repository
             }
         }
 
+        /// <inheritdoc/>
         public Language DeleteLanguage(string languageName)
         {
             Language? lang = _languageCollection.GetLanguages().Where(l => l.Name == languageName).FirstOrDefault();
@@ -100,25 +110,29 @@ namespace exercise.wwwapi.Repository
             return lang;
         }
 
+        /// <inheritdoc/>
         public IEnumerable<Book> GetAllBooks()
         {
             return _bookCollection.GetAllBooks();
         }
 
+        /// <inheritdoc/>
         public Book GetSpecificBook(int id)
         {
             return _bookCollection.GetAllBooks().Where(b => b.Id == id).FirstOrDefault();
         }
 
+        /// <inheritdoc/>
         public Book AddNewBook(BookDraft newBook)
         {
             return _bookCollection.AddBook(newBook);
         }
 
+        /// <inheritdoc/>
         public Book UpdateBook(int id, BookDraft updatedBook)
         {
             Book? book = _bookCollection.GetAllBooks().Where(b => b.Id == id).FirstOrDefault();
-            if (book == null || !_bookCollection.validateBook(updatedBook))
+            if (book == null || !_bookCollection.ValidateBook(updatedBook))
             {
                 return null;
             }
@@ -132,6 +146,7 @@ namespace exercise.wwwapi.Repository
                 return book;
             }
         }
+
 
         public Book RemoveBook(int id)
         {
