@@ -1,5 +1,6 @@
 ﻿using exercise.wwwapi.Data;
 using exercise.wwwapi.Models.Language;
+using exercise.wwwapi.Repository.Interfaces;
 
 namespace exercise.wwwapi.Repository
 {
@@ -34,7 +35,7 @@ namespace exercise.wwwapi.Repository
             return _languages.Get(language);
         }
 
-        public Language Update(string language, LanguagePayload payLoad)
+        public Language Update(string language, LanguagePayLoad payLoad)
         {
             return _languages.Update(language, payLoad);
         }

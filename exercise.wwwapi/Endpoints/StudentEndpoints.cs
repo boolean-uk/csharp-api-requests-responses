@@ -1,5 +1,5 @@
 ﻿using exercise.wwwapi.Models.Student;
-using exercise.wwwapi.Repository;
+using exercise.wwwapi.Repository.Interfaces;
 
 namespace exercise.wwwapi.Endpoints
 {
@@ -27,12 +27,12 @@ namespace exercise.wwwapi.Endpoints
             return TypedResults.Created($"/students/{student.FirstName}", student);
         }
 
-        public static IResult GetAllStudents(IRepository<Student> students)
+        public static IResult GetAllStudents(IStudentRepo students)
         {
             return TypedResults.Ok(students.GetAll());
         }
 
-        public static IResult GetAStudent(IRepository<Student> students, string firstName)
+        public static IResult GetAStudent(IStudentRepo students, string firstName)
         {
             var student = students.Get(firstName);
             if (student == null) { return Results.NotFound($"No student with name {firstName} was found"); }
@@ -46,7 +46,7 @@ namespace exercise.wwwapi.Endpoints
             return TypedResults.Created($"/students/{student.FirstName}", student);
         }
 
-        public static IResult DeleteStudent(IRepository<Student> students, string firstName)
+        public static IResult DeleteStudent(IStudentRepo students, string firstName)
         {
             var student = students.Remove(firstName);
             if (student == null)

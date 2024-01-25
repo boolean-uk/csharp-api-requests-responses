@@ -1,5 +1,5 @@
 ﻿using exercise.wwwapi.Models.Language;
-using exercise.wwwapi.Repository;
+using exercise.wwwapi.Repository.Interfaces;
 
 namespace exercise.wwwapi.Endpoints
 {
@@ -17,7 +17,7 @@ namespace exercise.wwwapi.Endpoints
 
         }
 
-        public static IResult AddLanguage(ILanguageRepo languages, LanguagePayload payLoad)
+        public static IResult AddLanguage(ILanguageRepo languages, LanguagePayLoad payLoad)
         {
             if (payLoad == null) { return Results.BadRequest("Empty payload"); }
             if (string.IsNullOrWhiteSpace(payLoad.languageName)) { return Results.BadRequest("Can't be empty"); }
@@ -33,21 +33,21 @@ namespace exercise.wwwapi.Endpoints
             return TypedResults.Ok(languages.GetAll());
         }
 
-        public static IResult GetALanguage(IRepository<Language> languages, string languageName)
+        public static IResult GetALanguage(ILanguageRepo languages, string languageName)
         {
             var language = languages.Get(languageName);
             if (language == null) { return Results.NotFound($"No language with name {languageName} was found"); }
             return TypedResults.Ok(language);
         }
 
-        public static IResult UpdateLanguage(ILanguageRepo languages, string languageName, LanguagePayload updatePayload)
+        public static IResult UpdateLanguage(ILanguageRepo languages, string languageName, LanguagePayLoad updatePayload)
         {
             var language = languages.Update(languageName, updatePayload);
             if (language == null) { return Results.NotFound($"No language with name {languageName} was found"); }
             return TypedResults.Created($"/Languages/{language.getName()}", language);
         }
 
-        public static IResult DeleteStudent(IRepository<Language> languages, string languageName)
+        public static IResult DeleteStudent(ILanguageRepo languages, string languageName)
         {
             var language = languages.Remove(languageName);
             if (language == null)

@@ -31,7 +31,7 @@ namespace exercise.wwwapi.Data
             }
         }
 
-        public Language Update(string languageName, LanguagePayload languagePayload)
+        public Language Update(string languageName, LanguagePayLoad languagePayload)
         {
             if (string.IsNullOrWhiteSpace(languagePayload.languageName)) { return null; }
 

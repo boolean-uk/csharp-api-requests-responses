@@ -1,8 +1,10 @@
 using exercise.wwwapi.Data;
 using exercise.wwwapi.Endpoints;
+using exercise.wwwapi.Models.Book;
 using exercise.wwwapi.Models.Language;
 using exercise.wwwapi.Models.Student;
 using exercise.wwwapi.Repository;
+using exercise.wwwapi.Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +15,18 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<StudentCollection>();
 builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddSingleton<BookCollection>();
 
 
 
 builder.Services.AddScoped<IStudentRepo, StudentRepository>();
 builder.Services.AddScoped<IRepository<Student>, StudentRepository>();
+
 builder.Services.AddScoped<ILanguageRepo, LanguageRepository>();
 builder.Services.AddScoped<IRepository<Language>, LanguageRepository>();
+
+builder.Services.AddScoped<IRepository<Book>, BookRepository>();
+builder.Services.AddScoped<IBookRepo, BookRepository>();
 
 var app = builder.Build();
 
@@ -34,8 +41,9 @@ app.UseHttpsRedirection();
 
 //StudentEndpoints.ConfigureStudentEndpoints(app);
 //LanguageEndpoints.ConfigureLanguageEndPoints(app);
-app.ConfigureStudentEndpoints();
-app.ConfigureLanguageEndPoints();
+StudentEndpoints.ConfigureStudentEndpoints(app);
+LanguageEndpoints.ConfigureLanguageEndPoints(app);
+BookEndpoints.ConfigureBookEndPoints(app);
 
 
 

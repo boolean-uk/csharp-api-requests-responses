@@ -1,5 +1,6 @@
 ﻿using exercise.wwwapi.Data;
 using exercise.wwwapi.Models.Student;
+using exercise.wwwapi.Repository.Interfaces;
 
 namespace exercise.wwwapi.Repository
 {

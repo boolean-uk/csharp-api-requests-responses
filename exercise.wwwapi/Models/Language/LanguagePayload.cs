@@ -1,5 +1,5 @@
 ﻿namespace exercise.wwwapi.Models.Language
 {
-    public record LanguagePayload(string languageName);
+    public record LanguagePayLoad(string languageName);
 
 }
