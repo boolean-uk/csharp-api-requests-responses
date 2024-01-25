@@ -1,5 +1,6 @@
 using exercise.wwwapi.Data;
 using exercise.wwwapi.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -132,6 +133,53 @@ app.MapPost("/CreateNewBook", (string title, int numPages, string author, string
     return TypedResults.Created($"",book);
 });
 
+app.MapGet("/GetAllBooks", (BookCollection library) =>
+{
+    List<Book> bookslist = library.GetBooks();
+    return TypedResults.Ok(bookslist);
+});
+
+app.MapGet("/GetBookByID", (int id, BookCollection library) =>
+{
+    List<Book> bookslist = library.GetBooks();
+
+    var book = bookslist.FirstOrDefault(b => b.Id == id);
+
+    return TypedResults.Ok(book);
+});
+
+app.MapPut("/UpdateBookByID",
+    (int id, string title,
+    int numpages, string author,
+    string genre, BookCollection library)=>
+    {
+        List<Book> bookslist = library.GetBooks();
+        var book = bookslist.FirstOrDefault(b => b.Id == id);
+
+        if (book != null)
+        {
+            book.Author = author;
+            book.Genre = genre;
+            book.NumPages = numpages;
+            book.Title = title;
+        }
+
+        return TypedResults.Created($"",book);
+    });
+
+app.MapDelete("/DeleteBookByID", (int id, BookCollection library) =>
+{
+    List<Book> booksList = library.GetBooks();
+
+    var book = booksList.FirstOrDefault(b => b.Id == id);
+
+    if (book != null)
+    {
+        booksList.Remove(book);
+    }
+
+    return TypedResults.Ok(booksList);
+});
 
 app.Run();
 

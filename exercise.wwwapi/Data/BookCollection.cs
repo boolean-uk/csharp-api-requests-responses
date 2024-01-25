@@ -14,6 +14,11 @@ namespace exercise.wwwapi.Data
             books.Add(book);
             return book;
         }
+
+        public List<Book> GetBooks() 
+        {  
+            return books; 
+        }
     }
 
 }
