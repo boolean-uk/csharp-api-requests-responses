@@ -18,19 +18,19 @@ namespace exercise.wwwapi.Endpoints
 
         }
 
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> CreateBook(IRepository repository, Book book)
         {
             return TypedResults.Ok(repository.createBook(book));
         }
 
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> GetAllBooks(IRepository repository)
         {
             return TypedResults.Ok(repository.getAllBooks());
         }
 
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> GetBook(IRepository repository, int id)
         {
             return TypedResults.Ok(repository.getBook(id));

@@ -65,7 +65,7 @@ namespace exercise.wwwapi.Repository
 
         public Book getBook(int id)
         {
-            return _dataCollection._books.Find(x => x.GetId() == id);
+            return _dataCollection.getAllBooks().Find(x => x.Id == id);
         }
 
         public Book updateBook(int id, Book book)

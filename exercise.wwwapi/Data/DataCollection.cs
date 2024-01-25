@@ -58,7 +58,7 @@ namespace exercise.wwwapi.Data
         }
 
 
-        public List<Book> _books = new List<Book>()
+        public List<Book> _books = new()
         {
             new Book("Lord Of The Rings", 1000, "J.R.R Tolkien", "Fantasy"),
             new Book("Harry Potter", 459, "Bad Person", "Fantasy")
