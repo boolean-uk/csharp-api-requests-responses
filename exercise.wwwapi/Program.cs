@@ -13,6 +13,8 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddSingleton<StudentCollection>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 builder.Services.AddSingleton<LanguageCollection>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddSingleton<BookCollection>();
 
 var app = builder.Build();
 
@@ -27,6 +29,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoint();
 app.ConfigureLanguageEndpoint();
+app.ConfigureBookEndpoint();
 
 app.Run();
 
