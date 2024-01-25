@@ -17,9 +17,14 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        public List<Student> getAll()
+        public List<Student> GetAll()
         {
             return _students.ToList();
+        }
+
+        public void Delete(Student student)
+        {
+            _students.Remove(student);
         }
     };
 
