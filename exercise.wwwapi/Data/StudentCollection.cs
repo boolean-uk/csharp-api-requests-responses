@@ -10,13 +10,6 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
-
-            return student;
-        }
-
         public IEnumerable<Student> GetStudents()
         {
             return _students.ToList();

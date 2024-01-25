@@ -11,13 +11,6 @@ namespace exercise.wwwapi.Data
             new Language() { Name="Java" }
         };
 
-            public Language Add(Language language)
-        {
-            _languages.Add(language);
-
-            return language;
-        }
-
         public IEnumerable<Language> GetLanguages()
         {
             return _languages.ToList();

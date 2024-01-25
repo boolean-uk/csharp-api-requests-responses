@@ -7,11 +7,13 @@ namespace exercise.wwwapi.Repository
     {
         private IStudentData _students;
         private ILanguageData _languages;
+        private IBookData _books;
 
-        public Repository(IStudentData studentCollection, ILanguageData languageCollection)
+        public Repository(IStudentData studentCollection, ILanguageData languageCollection, IBookData books)
         {
             _students = studentCollection;
             _languages = languageCollection;
+            _books = books;
         }
         public IEnumerable<Student> GetStudents()
         {
@@ -85,6 +87,46 @@ namespace exercise.wwwapi.Repository
             }
             language.Name = newLanguage.Name;
             return language;
+        }
+
+        public IEnumerable<Book> GetBooks()
+        {
+            return _books.GetBooks();
+        }
+        public Book AddBook(Book book)
+        {
+            return _books.AddBook(book);
+        }
+        public Book GetBook(int id)
+        {
+            var found = _books.GetBook(id, out Book book);
+            if (!found)
+            {
+                return null;
+            }
+            return book;
+        }
+        public Book DeleteBook(int id)
+        {
+            var found = _books.DeleteBook(id, out Book book);
+            if (found == null)
+            {
+                return null;
+            }
+            return book;
+        }
+        public Book UpdateBook(int id, BookPut newBook)
+        {
+            var found = _books.GetBook(id, out Book book);
+            if (!found)
+            {
+                return null;
+            }
+            book.Title = newBook.Title;
+            book.Author = newBook.Author;
+            book.Genre = newBook.Genre;
+            book.NumPages = newBook.NumPages;
+            return book;
         }
     }
 }
