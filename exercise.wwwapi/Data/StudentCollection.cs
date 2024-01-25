@@ -36,15 +36,15 @@ namespace exercise.wwwapi.Data
             return target;
         }
 
-        public bool DeleteStudent (string firstName)
+        public Student DeleteStudent (string firstName)
         {
             var studentToremove = _students.FirstOrDefault(student=>student.FirstName == firstName);
             if(studentToremove != null)
             {
                 _students.Remove(studentToremove);
-                return true;
+                return studentToremove;
             }
-            return false;
+            return null;
         }
     };
 

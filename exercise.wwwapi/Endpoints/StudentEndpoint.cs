@@ -53,7 +53,7 @@ namespace exercise.wwwapi.Endpoints
             return TypedResults.Created($"/{newStudent.FirstName}", newStudent);
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public static async Task<IResult> UpdateStudent(IStudentRepository repository, string firstName, StudentPut model)
         {
             return TypedResults.Ok(repository.UpdateStudent(firstName, model));
@@ -62,10 +62,10 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         private static async Task<IResult> DeleteStudent(IStudentRepository repository, string firstName)
         {
-            bool success = repository.DeleteStudent(firstName);
-            if (success)
+            Student deleteThis = repository.DeleteStudent(firstName);
+            if (deleteThis != null)
             {
-                return TypedResults.Ok();
+                return TypedResults.Ok(deleteThis);
             }
             else
             {
