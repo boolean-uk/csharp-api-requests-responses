@@ -1,10 +1,10 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class Language
+    public class LanguagePut
     {
         public String Name {get; set;}
 
-        public Language(String name)
+        public LanguagePut(String name)
         {
             this.Name = name;
         }
