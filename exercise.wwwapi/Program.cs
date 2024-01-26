@@ -1,3 +1,7 @@
+using exercise.wwwapi.Data;
+using exercise.wwwapi.Endpoints;
+using exercise.wwwapi.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddSingleton<IStudentData, StudentCollection>();
+builder.Services.AddSingleton<ILanguageData, LanguageCollection>();
+builder.Services.AddSingleton<IBookData, BookCollection>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -17,6 +25,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-
+app.ConfigureStudentEndpoint();
+app.ConfigureLanguageEndpoint();
+app.ConfigureBookEndpoint();
 app.Run();
 
