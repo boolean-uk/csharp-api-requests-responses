@@ -7,11 +7,13 @@ namespace exercise.wwwapi.Repository
     {
         private IStudentData studentDatabase;
         private ILanguageData languageDatabase;
+        private IBookData bookDatabase;
 
-        public Repository(IStudentData studentDatabase, ILanguageData languageDatabase)
+        public Repository(IStudentData studentDatabase, ILanguageData languageDatabase, IBookData bookDatabase)
         {
             this.studentDatabase = studentDatabase;
             this.languageDatabase = languageDatabase;
+            this.bookDatabase = bookDatabase;
         }
 
         public Language DeleteLanguage(string name)
@@ -62,6 +64,31 @@ namespace exercise.wwwapi.Repository
         public Student UpdateStudent(string firstName, Student student)
         {
             return studentDatabase.Update(firstName, student);
+        }
+
+        public Book DeleteBook(int id)
+        {
+            return bookDatabase.Delete(id);
+        }
+
+        public Book GetBookById(int id)
+        {
+            return bookDatabase.Get(id);
+        }
+
+        public IEnumerable<Book> GetBooks()
+        {
+            return bookDatabase.GetAll();
+        }
+
+        public Book InsertBook(BookCreate book)
+        {
+            return bookDatabase.Add(book);
+        }
+
+        public Book UpdateBook(int id, BookCreate book)
+        {
+            return bookDatabase.Update(id, book);
         }
     }
 }
