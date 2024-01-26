@@ -32,7 +32,7 @@ namespace exercise.wwwapi.Endpoints
         public static async Task<IResult> AddStudent(IRepository repository, Student student)
         {
             Student result = repository.InsertStudent(student);
-            return TypedResults.Created($"{student.FirstName}", student);
+            return TypedResults.Created($"{student.FirstName}", result);
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]

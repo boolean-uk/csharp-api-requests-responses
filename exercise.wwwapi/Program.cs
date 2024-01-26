@@ -25,5 +25,6 @@ app.UseHttpsRedirection();
 
 
 app.ConfigureStudentEndpoint();
+app.ConfigureLanguageEndpoint();
 app.Run();
 
