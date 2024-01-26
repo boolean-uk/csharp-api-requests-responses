@@ -13,7 +13,6 @@ namespace exercise.wwwapi.Repository
             _dataCollection = dataCollection;
         }
 
-
         public Student AddStudent(Student student)
         {
             return _dataCollection.AddStudent(student);
@@ -39,6 +38,8 @@ namespace exercise.wwwapi.Repository
             return _dataCollection.UpdateStudent(firstName, updatedStudent);
         }
 
+        /*-------------------Language----------------------------*/
+
         public Language GetLanguage(string name)
         {
             return _dataCollection.GetLanguage(name);
@@ -63,7 +64,32 @@ namespace exercise.wwwapi.Repository
             return _dataCollection.DeleteLanguage(name);
         }
 
+        /*-------------------Book------------------------------*/
 
+        public IEnumerable<Book> GetBooks()
+        {
+            return _dataCollection.GetBooks();
+        }
+
+        public Book AddBook(Book book)
+        {
+            return _dataCollection.AddBook(book);
+        }
+
+        public Book GetBook(int id)
+        {
+            return _dataCollection.GetBook(id);
+        }
+
+        public Book UpdateBook(int id, Book updatedBook)
+        {
+            return _dataCollection.UpdateBook(id, updatedBook);
+        }
+
+        public Book DeleteBook(int id)
+        {
+            return _dataCollection.DeleteBook(id);
+        }
     }
 }
     

@@ -52,7 +52,7 @@ namespace exercise.wwwapi.Data
         }
 
 
-        /*-----Student----*/
+        /*--------------------------Student------------------------------------------*/
         private List<Student> _students = new List<Student>()
         {
             new Student() { FirstName="Nathan",LastName="King" },
@@ -106,5 +106,64 @@ namespace exercise.wwwapi.Data
 
             return student;
         }
+
+        /*--------------------------------------------------------------------Book--------------------------------------------------------------------------*/
+        private List<Book> _books = new List<Book>()
+        {
+            new Book() { Id=1, Title="A Game of Thrones", NumPages=780, Author="George R.R. Martin", Genre="Fantasy" },
+            new Book() { Id=2, Title="The Bible", NumPages=1444, Author="Multiple Unknowns", Genre="Religious" }
+        };
+
+        // Returns all books in the collection
+        public IEnumerable<Book> GetBooks()
+        {
+            return _books.ToList();
+        }
+
+        // Adds a new book to the collection
+        public Book AddBook(Book book)
+        {
+            _books.Add(book);
+            return book;
+        }
+
+        // Method to get a single book by ID.
+        public Book GetBook(int id)
+        {
+            return _books.FirstOrDefault(book => book.Id == id);
+        }
+
+        // Updates book details by its ID
+        public Book UpdateBook(int id, Book updatedBook)
+        {
+            var existingBook = _books.FirstOrDefault(book => book.Id == id);
+
+            if (existingBook != null)
+            {
+                existingBook.Title = updatedBook.Title == "string" ? existingBook.Title : updatedBook.Title;
+                existingBook.NumPages = updatedBook.NumPages == 0 ? existingBook.NumPages : updatedBook.NumPages;
+                existingBook.Author = updatedBook.Author == "string" ? existingBook.Author : updatedBook.Author; ;
+                existingBook.Genre = updatedBook.Genre == "string" ? existingBook.Genre : updatedBook.Genre; ;
+
+                return existingBook;  // Return the updated book
+            }
+
+            return null;
+        }
+
+        // Deletes a book by its ID
+        public Book DeleteBook(int id)
+        {
+            var bookToRemove = _books.FirstOrDefault(book => book.Id == id);
+
+            if (bookToRemove != null)
+            {
+                _books.Remove(bookToRemove);
+            }
+
+            return bookToRemove;
+        }
+
     }
+
 }

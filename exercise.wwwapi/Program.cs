@@ -38,6 +38,9 @@ app.ConfigureStudentsEndpoint();
 // Endpoint for languages
 app.ConfigureLanguageEndpoint();
 
+//Endpoint for Book
+app.ConfigureBookEndpoint();
+
 
 
 app.Run();

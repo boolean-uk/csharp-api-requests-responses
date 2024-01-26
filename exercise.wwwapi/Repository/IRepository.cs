@@ -22,17 +22,27 @@ namespace exercise.wwwapi.Repository
         /* 
         Method to get a collection of languages.
         This method returns a sequence of Language objects.*/
-        
+
         IEnumerable<Language> GetLanguages();
 
-       /* 
-       Method to add a new language to the repository.
-       This method takes a Language object as a parameter and returns the added language.
-       */
+        /* 
+        Method to add a new language to the repository.
+        This method takes a Language object as a parameter and returns the added language.
+        */
         Language AddLanguage(Language language);
         Language GetLanguage(string name);
         Language UpdateLanguage(string name, Language updatedLanguage);
         Language DeleteLanguage(string name);
+
+
+        /* 
+        Method to get a collection of Books.
+        This method returns a sequence of Book objects.*/
+        IEnumerable<Book> GetBooks();
+        Book AddBook(Book book);
+        Book GetBook(int id);
+        Book UpdateBook(int id, Book updatedBook);
+        Book DeleteBook(int id);
     }
 }
 
