@@ -18,30 +18,30 @@ namespace exercise.wwwapi.Endpoints
             studentGroup.MapDelete("/{firstName}", DeleteStudent);
         }
 
-        private static async Task<IResult> CreateStudent(IRepository repository, Student student)
+        private static async Task<IResult> CreateStudent(IRepository<Student> repository, Student student)
         {
-            repository.AddStudent(student);
+            repository.Add(student);
             return TypedResults.Created(student.FirstName, student);
         }
-        private static async Task<IResult> AllStudents(IRepository repository)
+        private static async Task<IResult> AllStudents(IRepository<Student> repository)
         {
-            return TypedResults.Ok(repository.GetStudents());
+            return TypedResults.Ok(repository.Get());
         }
-        private static async Task<IResult> Student(IRepository repository, string firstName)
+        private static async Task<IResult> Student(IRepository<Student> repository, string firstName)
         {
-            Student student = repository.GetStudent(firstName);
+            Student student = repository.GetById(firstName);
 
             return TypedResults.Ok(student);
         }
-        private static async Task<IResult> UpdateStudent(IRepository repository,string firstName, Student student)
+        private static async Task<IResult> UpdateStudent(IRepository<Student> repository,string firstName, Student student)
         {
-            repository.UpdateStudent(firstName, student);
+            repository.Update(firstName, student);
             return TypedResults.Ok(student);
         }
-        private static async Task<IResult> DeleteStudent(IRepository repository, string name)
+        private static async Task<IResult> DeleteStudent(IRepository<Student> repository, string name)
         {
-            Student student = repository.GetStudent(name);
-            repository.DeleteStudent(name);
+            Student student = repository.GetById(name);
+            repository.Delete(name);
             return TypedResults.Ok(student);
         }
     }

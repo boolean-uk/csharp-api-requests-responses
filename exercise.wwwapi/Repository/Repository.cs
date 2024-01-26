@@ -1,70 +1,50 @@
 ﻿using exercise.wwwapi.Data;
 using exercise.wwwapi.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace exercise.wwwapi.Repository
 {
-    public class Repository : IRepository
+    public class Repository<T> : IRepository<T> where T : class
     {
-        private StudentCollection _students;
-        private LanguageCollection _languages;
-        public Repository(StudentCollection studentCollection, LanguageCollection languageCollection)
-        {
-            _students = studentCollection;
-            _languages = languageCollection;
+        IColl<T> _collection;
+
+        public Repository(IColl<T> collection)
+        { 
+            _collection = collection;
         }
 
-        public Student AddStudent(Student student)
+        public IEnumerable<T> Get()
         {
-            return _students.Add(student);
+            return _collection.GetAll();
         }
 
-        public Student DeleteStudent(string firstName)
+        public T GetById(object id)
         {
-            return _students.RemoveStudent(firstName);
+            // Assuming there's a method to get by ID. You might need to adjust based on your collection's capabilities.
+            return _collection.GetById(id);
         }
 
-        public Student GetStudent(string firstName)
+        public T Add(T entity)
         {
-            return _students.GetStudent(firstName);
+            return _collection.Add(entity);
         }
 
-        public IEnumerable<Student> GetStudents()
+        public T Update(T entity)
         {
-            return _students.getAll();
+            // Assuming entity has an ID that can be used for finding and updating the entity.
+            return _collection.Update(entity);
         }
 
-        public Student UpdateStudent(string firstName, Student student)
+        public object Update(object id, T entity)
         {
-            return _students.UpdateStudent(firstName, student);
+            // Implement logic to update entity based on id, if different from the Update(T entity) method.
+            return _collection.Update(id, entity);
         }
 
-
-
-        
-
-        public Language AddLanguage(Language language)
+        public T Delete(object id)
         {
-            return _languages.Add(language);
-        }
-
-        public Language DeleteLanguage(string name)
-        {
-            return _languages.RemoveLanguage(name);
-        }
-
-        public Language GetLanguage(string name)
-        {
-            return _languages.GetLanguage(name);
-        }
-
-        public IEnumerable<Language> GetLanguages()
-        {
-            return _languages.getAll();
-        }
-
-        public Language UpdateLanguage(string name, Language language)
-        {
-            return _languages.UpdateLanguage(name, language);
+            return _collection.Remove(id);
         }
     }
 }

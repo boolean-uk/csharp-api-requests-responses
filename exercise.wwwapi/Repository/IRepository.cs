@@ -3,26 +3,13 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public interface IRepository
+    public interface IRepository<T>
     {
-
-        Student AddStudent(Student student);
-        IEnumerable<Student> GetStudents();
-
-        Student GetStudent(string firstName);
-
-        Student UpdateStudent(string firstName, Student student);
-
-        Student DeleteStudent(string firstName);
-
-        Language AddLanguage(Language language);
-        IEnumerable<Language> GetLanguages();
-
-        Language GetLanguage(string name);
-
-        Language UpdateLanguage(string name, Language language);
-
-        Language DeleteLanguage(string name);
-
+        T Add(T entity);
+        IEnumerable<T> Get();
+        T Update(T entity);
+        object Update(object id, T entity);
+        T Delete(object id);
+        T GetById(object id);
     }
 }

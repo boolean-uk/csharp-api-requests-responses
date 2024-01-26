@@ -18,30 +18,30 @@ namespace exercise.wwwapi.Endpoints
             languageGroup.MapDelete("/{name}", DeleteLanguage);
         }
 
-        private static async Task<IResult> CreateLanguage(IRepository repository, Language language)
+        private static async Task<IResult> CreateLanguage(IRepository<Language> repository, Language language)
         {
-            repository.AddLanguage(language);
+            repository.Add(language);
             return TypedResults.Created(language.GetName(), language);
         }
-        private static async Task<IResult> AllLanguages(IRepository repository)
+        private static async Task<IResult> AllLanguages(IRepository<Language> repository)
         {
-            return TypedResults.Ok(repository.GetLanguages());
+            return TypedResults.Ok(repository.Get());
         }
-        private static async Task<IResult> Language(IRepository repository, string name)
+        private static async Task<IResult> Language(IRepository<Language> repository, string name)
         {
-            Language language = repository.GetLanguage(name);
+            Language language = repository.GetById(name);
 
             return TypedResults.Ok(language);
         }
-        private static async Task<IResult> UpdateLanguage(IRepository repository, string name, Language language)
+        private static async Task<IResult> UpdateLanguage(IRepository<Language> repository, string name, Language language)
         {
-            repository.UpdateLanguage(name, language);
+            repository.Update(name, language);
             return TypedResults.Ok(language);
         }
-        private static async Task<IResult> DeleteLanguage(IRepository repository, string name)
+        private static async Task<IResult> DeleteLanguage(IRepository<Language> repository, string name)
         {
-            Language language = repository.GetLanguage(name);
-            repository.DeleteLanguage(name);
+            Language language = repository.GetById(name);
+            repository.Delete(name);
             return TypedResults.Ok(language);
         }
     }
