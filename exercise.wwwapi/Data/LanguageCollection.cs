@@ -4,7 +4,6 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Data
 {
-    // Implement IColl<Language> interface
     public class LanguageCollection : IColl<Language>
     {
         private List<Language> _languages = new List<Language>()
@@ -13,7 +12,6 @@ namespace exercise.wwwapi.Data
             new Language("C#")
         };
 
-        // Implement Add to satisfy IColl<Language>
         public Language Add(Language entity)
         {
             _languages.Add(entity);
@@ -33,7 +31,6 @@ namespace exercise.wwwapi.Data
             return _languages.FirstOrDefault(l => l.GetName() == languageName);
         }
 
-        // Implement Remove to satisfy IColl<Language>, using language name as id
         public Language Remove(object id)
         {
             var language = GetById(id);
@@ -44,7 +41,6 @@ namespace exercise.wwwapi.Data
             return language;
         }
 
-        // Implement Update to satisfy IColl<Language>
         public Language Update(Language entity)
         {
             var language = GetById(entity.GetName());
@@ -55,7 +51,6 @@ namespace exercise.wwwapi.Data
             return language;
         }
 
-        // Implement Update with id and entity for IColl<Language>
         public Language Update(object id, Language entity)
         {
             var language = GetById(id);

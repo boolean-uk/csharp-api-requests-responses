@@ -5,7 +5,6 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Data
 {
-    // Ensure StudentCollection implements IColl<Student>
     public class StudentCollection : IColl<Student>
     {
         private List<Student> _students = new List<Student>()
@@ -14,26 +13,22 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        // Implement Add to satisfy IColl<Student>
         public Student Add(Student entity)
         {
             _students.Add(entity);
             return entity;
         }
 
-        // Implement GetAll to satisfy IColl<Student>
         public IEnumerable<Student> GetAll()
         {
             return _students;
         }
 
-        // Implement GetById to satisfy IColl<Student>, assuming Id is a unique identifier
         public Student GetById(object id)
         {
             return _students.FirstOrDefault(s => s.FirstName.Equals(id));
         }
 
-        // Implement Remove to satisfy IColl<Student>, using Id for simplicity
         public Student Remove(object id)
         {
             var student = GetById(id);
@@ -44,7 +39,6 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        // Implement Update to satisfy IColl<Student>
         public Student Update(Student entity)
         {
             var student = GetById(entity.FirstName);
@@ -58,7 +52,6 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        // Implement Update with id and entity for IColl<Student>
         public Student Update(object id, Student entity)
         {
             var student = GetById(id);

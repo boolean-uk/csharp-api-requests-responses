@@ -13,7 +13,6 @@ namespace exercise.wwwapi.Data
             new Book() { Id = 2, Title = "Dune", Author = "Herbert", NumPages = 1600, Genre = "Science Fiction" }
         };
 
-        // Adapt Add method to directly work with Book instance
         public Book Add(Book book)
         {
             book.Id = _books.Max(b => b.Id) + 1;
@@ -41,7 +40,6 @@ namespace exercise.wwwapi.Data
             return book;
         }
 
-        // Implement Update to directly work with Book instance
         public Book Update(Book entity)
         {
             var book = GetById(entity.Id);
