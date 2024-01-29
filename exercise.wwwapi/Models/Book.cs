@@ -7,7 +7,6 @@
         public int NumPages { get; set; }
         public string Author { get; set; }
         public string Genre { get; set; }
-
         public Book(string title, int numPages, string author, string genre)
         {
             Title = title;

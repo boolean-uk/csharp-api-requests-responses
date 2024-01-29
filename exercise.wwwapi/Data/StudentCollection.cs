@@ -4,16 +4,16 @@ namespace exercise.wwwapi.Data
 {
     public class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
+    private List<Student> _students = new List<Student>()
         {
-            new Student() { FirstName="Nathan",LastName="King" },
-            new Student() { FirstName="Dave", LastName="Ames" }
+            new Student("Nathan", "King"),
+            new Student("Dave", "Ames")
         };
 
-        public Student Add(Student student)
+        public Student Add(string firstname, string lastname)
         {            
+            Student student = new Student(firstname, lastname);
             _students.Add(student);
-
             return student;
         }
 
@@ -22,22 +22,21 @@ namespace exercise.wwwapi.Data
             return _students.ToList();
         }
 
-        //New method to replace the name of student
-        public Student replaceStudent(string firstname, string newFirstname, string newLastName) 
+        public Student? GetStudentItem(string firstname)
         {
-            foreach (var student in _students) 
-            {
-                if (student.FirstName == firstname)
-                {
-                    student.FirstName = newFirstname;
-                    student.LastName = newLastName;
-                    return student;
-                }
+            return _students.FirstOrDefault(s => s.FirstName == firstname);
+        }
 
+        public Student? DeleteStudent(string firstname) 
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstname);
+            if (student != null)
+            {
+                
+                _students.Remove(student);
+                return student;
             }
             return null;
         }
     };
-
-
 }

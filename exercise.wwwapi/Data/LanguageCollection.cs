@@ -2,7 +2,6 @@
 
 namespace exercise.wwwapi.Data
 {
-
     public class LanguageCollection
     {
         private List<Language> _languages = new List<Language>()
@@ -11,11 +10,13 @@ namespace exercise.wwwapi.Data
             new Language("C#")
         };
 
-        public Language AddLanguage(Language language)
+        public Language AddLanguage(string languageName)
         {
-            _languages.Add(language);
-            return language;
+            Language newLanguage = new Language(languageName);
+            _languages.Add(newLanguage);
+            return null;
         }
+
         public List<Language> GetList()
         {
             return _languages.ToList();
@@ -33,15 +34,15 @@ namespace exercise.wwwapi.Data
             return null;
         }
 
-        public void updateLanguageByName(string name, string newName)
+        public Language? DeleteLanguage(string languageName)
         {
-            foreach (Language language in _languages)
+            var language = _languages.FirstOrDefault(x => x.name == languageName);
+            if (language != null)
             {
-                if (language.name == name)
-                {
-                    language.name = newName;
-                }
+                _languages.Remove(language);
+                return language;
             }
+            return null;
         }
     }
 }
