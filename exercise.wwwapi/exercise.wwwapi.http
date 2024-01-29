@@ -1,5 +1,4 @@
-@exercise.wwwapi_HostAddress = http://localhost:5115
-
+@exercise.wwwapi_HostAddress = http://localhost:4000
 GET {{exercise.wwwapi_HostAddress}}/weatherforecast/
 Accept: application/json
 

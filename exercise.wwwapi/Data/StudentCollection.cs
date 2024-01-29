@@ -15,12 +15,19 @@ namespace exercise.wwwapi.Data
             _students.Add(student);
 
             return student;
+        } 
+        public bool Delete(Student student)
+        {            
+            bool res = _students.Remove(student);
+            return res;
         }
 
         public List<Student> getAll()
         {
             return _students.ToList();
         }
+
+
     };
 
 
