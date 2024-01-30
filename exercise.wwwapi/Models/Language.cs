@@ -1,12 +1,10 @@
-﻿namespace exercise.wwwapi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace exercise.wwwapi.Models
 {
     public class Language
     {
-        private String name {get; set;}
-
-        public Language(String name)
-        {
-            this.name = name;
-        }
+        [Key] public int id { get; set; }
+        public string name { get; set; }   
     }
 }
