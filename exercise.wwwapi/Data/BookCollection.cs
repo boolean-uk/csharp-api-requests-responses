@@ -5,7 +5,11 @@ namespace exercise.wwwapi.Data
 {
     public class BookCollection
     {
-        private List<Book> books = new List<Book>();
+        private List<Book> books = new List<Book>()
+        {
+            new Book("The first purge", 300, "Leo Davis", "Horror"),
+            new Book("The first purge", 300, "Leo Davis", "Horror")
+        };
 
         public Book AddBook(string title, int numPages, string author, string genre)
         {
