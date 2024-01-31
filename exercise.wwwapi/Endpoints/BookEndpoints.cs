@@ -11,10 +11,10 @@ namespace exercise.wwwapi.Endpoints
             var bookGroup = app.MapGroup("Book");
 
             bookGroup.MapGet("/books", GetBooks);
-            bookGroup.MapGet("/books{id}", GetBook);
-            bookGroup.MapDelete("/books{id}", DeleteBook);
-            bookGroup.MapPost("/books{id}", CreateBook);
-            bookGroup.MapPut("/books{id}", UpdateBook);
+            bookGroup.MapGet("/{id}", GetBook);
+            bookGroup.MapDelete("/{id}", DeleteBook);
+            bookGroup.MapPost("/{id}", CreateBook);
+            bookGroup.MapPut("/{id}", UpdateBook);
         }
 
 

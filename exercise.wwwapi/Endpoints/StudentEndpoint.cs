@@ -10,10 +10,10 @@ namespace exercise.wwwapi.Endpoints
             var studentGroup = app.MapGroup("student");
 
             studentGroup.MapGet("/students", GetStudents);
-            studentGroup.MapGet("/students/{FirstName}", GetStudent);
-            studentGroup.MapPut("/students/{FirstName}", UpdateStudent);
-            studentGroup.MapDelete("/students/{FirstName}", DeleteStudent);
-            studentGroup.MapPost("/students/{FirstName}", CreateStudent);
+            studentGroup.MapGet("/{FirstName}", GetStudent);
+            studentGroup.MapPut("/{FirstName}", UpdateStudent);
+            studentGroup.MapDelete("/{FirstName}", DeleteStudent);
+            studentGroup.MapPost("/{FirstName}", CreateStudent);
 
         }
 

@@ -10,10 +10,10 @@ namespace exercise.wwwapi.Endpoints
             var languageGroup = app.MapGroup("language");
 
             languageGroup.MapGet("/languages", GetLanguages);
-            languageGroup.MapGet("/languages/{name}", GetLanguage);
-            languageGroup.MapPut("/languages/{name}", UpdateLanguage);
-            languageGroup.MapDelete("/languages/{name}", DeleteLanguage);
-            languageGroup.MapPost("/languages/{name}", CreateLanguage);
+            languageGroup.MapGet("/{name}", GetLanguage);
+            languageGroup.MapPut("/{name}", UpdateLanguage);
+            languageGroup.MapDelete("/{name}", DeleteLanguage);
+            languageGroup.MapPost("/{name}", CreateLanguage);
 
         }
 

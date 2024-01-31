@@ -6,6 +6,12 @@ namespace exercise.wwwapi.Repository
     public class BookRepository : IBookRepository
     {
         private BookCollection _bookCollection = new BookCollection();
+
+        public Book bookAdd(Book book)
+        {
+            return _bookCollection.Add(book);
+        }
+
         public Book CreateBook(string title, string author, string genre, int numPage)
         {
             return _bookCollection.CreateBook(title, author, genre, numPage);
