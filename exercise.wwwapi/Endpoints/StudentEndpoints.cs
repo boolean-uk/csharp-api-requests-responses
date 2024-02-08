@@ -12,7 +12,7 @@ namespace exercise.wwwapi.Endpoints
             students.MapPost("", CreateStudent);
             students.MapGet("", GetAllStudents);
             students.MapGet("/{firstName}", GetAStudent);
-            students.MapPatch("/{firstName}", UpdateStudent);
+            students.MapPut("/{firstName}", UpdateStudent);
             students.MapDelete("/{firstName}", DeleteStudent);
 
         }

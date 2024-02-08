@@ -33,13 +33,14 @@ namespace exercise.wwwapi.Data
         public Book UpdateBook(int id, BookPayload payload)
         {
             var book = GetBook(id);
+            if (book == null) { return null; }
+
             if (!string.IsNullOrWhiteSpace(payload.title)) { book.Title = payload.title; }
             if (!(payload.numPages <= 0)) { book.NumPages = payload.numPages; }
             if (!string.IsNullOrWhiteSpace(payload.author)) { book.Author = payload.author; }
             if (!string.IsNullOrWhiteSpace(payload.genre)) { book.Genre = payload.genre; }
 
             return book;
-
         }
 
         public Book RemoveBook(int id)

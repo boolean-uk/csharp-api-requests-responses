@@ -11,9 +11,9 @@ namespace exercise.wwwapi.Endpoints
 
             students.MapPost("", AddBook);
             students.MapGet("", GetAllBooks);
-            students.MapGet("/{book}", GetABook);
-            students.MapPatch("/{book}", UpdateBook);
-            students.MapDelete("/{book}", DeleteBook);
+            students.MapGet("/{id}", GetABook);
+            students.MapPut("/{id}", UpdateBook);
+            students.MapDelete("/{id}", DeleteBook);
         }
 
         public static IResult AddBook(IBookRepo books, BookPayload payLoad)
@@ -45,12 +45,10 @@ namespace exercise.wwwapi.Endpoints
         {
             if (new[] { updatePayload.title, updatePayload.numPages.ToString(), updatePayload.author, updatePayload.genre }
                 .Any(string.IsNullOrWhiteSpace)) { return TypedResults.BadRequest("Can't send empty payload"); }
-            var book = books.Get(id);
-            if (book == default) { return TypedResults.BadRequest("Id not found"); }
 
-            book = books.Update(id, updatePayload);
+            var book = books.Update(id, updatePayload);
 
-            return TypedResults.Created(book.ToString());
+            return book == null ? TypedResults.NotFound("Book not found") : TypedResults.Created($"/Books/{book.Id}", book);
 
         }
 
