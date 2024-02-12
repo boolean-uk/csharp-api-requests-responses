@@ -15,5 +15,11 @@ namespace exercise.wwwapi.Repository
         Student GetStudent(string firstName);
         Student UpdateStudent(string firstName, Student student);
         Student DeleteStudent(string firstName);
+
+        Book AddBook(Book book);
+        IEnumerable<Book> GetAllBooks();
+        Book GetBook(int id);
+        Book UpdateBook(int id, Book book);
+        Book DeleteBook(int id);
     }
 }

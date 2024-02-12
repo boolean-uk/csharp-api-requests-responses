@@ -5,7 +5,7 @@ namespace exercise.wwwapi.Data
     public class DataCollection
     {
 
-        private static List<Language> _languages = new List<Language>(){
+        private List<Language> _languages = new List<Language>(){
             new Language(){Name="Java" },
             new Language(){Name="C#"}
         };
@@ -40,7 +40,7 @@ namespace exercise.wwwapi.Data
             return language;
         }
 
-        private static List<Student> _students = new List<Student>()
+        private List<Student> _students = new List<Student>()
         {
             new Student() { FirstName="Nathan",LastName="King" },
             new Student() { FirstName="Dave", LastName="Ames" }
@@ -76,6 +76,60 @@ namespace exercise.wwwapi.Data
             _students.Remove(removing);
             return removing;
         }
+
+        private List<Book> _books = new List<Book>()
+        {
+            new Book() {Id = 1, Title = "Harry Potter", NumPages = 240, Author = "JK Rowling", Genre = "Fantasy"},
+            new Book() {Id = 2, Title = "Diary of a Wimpy Kid", NumPages = 150, Author = "Jeff Kinney", Genre = "Comedy"}
+        };
+        public Book AddBook(Book book)
+        {
+            var newId = _books.Count + 1;
+            Book newBook = new Book()
+            {
+                Id = newId,
+                Title = book.Title,
+                NumPages = book.NumPages,
+                Author = book.Author,
+                Genre = book.Genre
+            };
+            _books.Add(newBook);
+            return newBook;
+        }
+
+        public List<Book> GetAllBooks()
+        {
+            return _books.ToList();
+        }
+
+        public Book GetBook(int id)
+        {
+            return _books.FirstOrDefault(b => b.Id == id);
+        }
+
+        public Book UpdateBook(int id, Book book)
+        {
+            var existingBook = _books.FirstOrDefault(b => b.Id.Equals(id));
+            Book updatedBook = new Book()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                NumPages = book.NumPages,
+                Author = book.Author,
+                Genre = book.Genre
+            };
+
+            existingBook = updatedBook;
+            return existingBook;
+        }
+
+        public Book DeleteBook(int id)
+        {
+            var removing = _books.FirstOrDefault(b => b.Id.Equals(id));
+            _books.Remove(removing);
+            return removing;
+        }
+
     };
 
 

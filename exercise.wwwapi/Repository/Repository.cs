@@ -62,5 +62,29 @@ namespace exercise.wwwapi.Repository
             return _dataCollection.DeleteStudent(firstName);
         }
 
+        public Book AddBook(Book book)
+        {
+            return _dataCollection.AddBook(book);
+        }
+
+        public IEnumerable <Book> GetAllBooks()
+        {
+            return _dataCollection.GetAllBooks();
+        }
+
+        public Book GetBook(int id)
+        {
+            return _dataCollection.GetBook(id);
+        }
+
+        public Book UpdateBook(int id, Book book)
+        {
+            return _dataCollection.UpdateBook(id,book);
+        }
+
+        public Book DeleteBook(int id)
+        {
+            return _dataCollection.DeleteBook(id);
+        }
     }
 }
