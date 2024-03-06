@@ -4,10 +4,10 @@ namespace exercise.wwwapi.Data
 {
     public class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
+        public List<Student> _students = new List<Student>()
         {
-            new Student() { FirstName="Nathan",LastName="King" },
-            new Student() { FirstName="Dave", LastName="Ames" }
+            new Student() { Id = 1, FirstName="Nathan",LastName="King" },
+            new Student() { Id = 2, FirstName="Dave", LastName="Ames" }
         };
 
         public Student Add(Student student)

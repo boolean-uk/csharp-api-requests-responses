@@ -2,12 +2,11 @@
 
 namespace exercise.wwwapi.Data
 {
-
     public class LanguageCollection
     {
-        private List<Language> languages = new List<Language>(){
-            new Language("Java"),
-            new Language("C#")
+        public List<Language> languages = new List<Language>(){
+            new Language() { Id = 1, name = "Java"},
+            new Language() { Id = 2, name = "C#" }
         };
     }
 }
