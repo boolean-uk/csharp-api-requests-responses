@@ -2,11 +2,13 @@
 {
     public class Language
     {
-        private String name {get; set;}
+       public string Name { get; set; }
+        public int Id { get; }
 
-        public Language(String name)
+        public Language(int languageId, string name)
         {
-            this.name = name;
+            Id = languageId;
+            Name = name;
         }
     }
 }
