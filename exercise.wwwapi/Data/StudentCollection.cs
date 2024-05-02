@@ -5,7 +5,7 @@ namespace exercise.wwwapi.Data
     public class StudentCollection
     {
         public List<Student> Students { get; set; }
-        private int _studentId = 0; 
+        private int _studentId = 0;
         /* 
         private List<Student> _students = new List<Student>()
         {
@@ -13,7 +13,8 @@ namespace exercise.wwwapi.Data
             new Student() { FirstName="Dave", LastName="Ames" }
         };
         */
-        public StudentCollection() 
+
+        public StudentCollection()
         {
             Students = new List<Student>();
             AddStudent("Rose", "Breedveld");
@@ -22,7 +23,7 @@ namespace exercise.wwwapi.Data
 
         public Student AddStudent(string firstName, string lastName)
         {
-            _studentId++;   
+            _studentId++;
             var newStudent = new Student(_studentId, firstName, lastName);
             Students.Add(newStudent);
             return newStudent;

@@ -1,6 +1,4 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class LanguagePostPayload
-    {
-    }
+    public record LanguagePostPayload(string Name);
 }

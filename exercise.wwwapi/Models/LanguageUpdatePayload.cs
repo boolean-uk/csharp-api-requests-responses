@@ -1,6 +1,4 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class LanguageUpdatePayload
-    {
-    }
+    public record LanguageUpdatePayload(string Name);
 }

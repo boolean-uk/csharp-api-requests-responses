@@ -1,20 +1,18 @@
-﻿using exercise.wwwapi.Repository;
-using exercise.wwwapi.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using exercise.wwwapi.Models;
+using exercise.wwwapi.Repository;
 
 namespace exercise.wwwapi.Endpoints
-
 {
     public static class StudentEndpoints
     {
         public static void ConfigureStudentEndpoints(this WebApplication app)
         {
-            var taskGroup = app.MapGroup("students");
-            app.MapGet("/", GetAllStudents);
-            app.MapGet("/{firstName}", GetStudent);
-            app.MapPost("/", CreateStudent);
-            app.MapPut("/{firstName}", UpdateStudent);
-            app.MapDelete("/{firstName}", DeleteStudent);
+            var taskGroup = app.MapGroup("/students");
+            taskGroup.MapGet("/", GetAllStudents);
+            taskGroup.MapGet("/{firstName}", GetStudent);
+            taskGroup.MapPost("/", CreateStudent);
+            taskGroup.MapPut("/{firstName}", UpdateStudent);
+            taskGroup.MapDelete("/{firstName}", DeleteStudent);
         }
 
         public static IResult GetAllStudents(IStudentRepository students)
@@ -38,7 +36,7 @@ namespace exercise.wwwapi.Endpoints
             try
             {
                 Student? student = students.UpdateStudent(firstName, updateStudent);
-                if(student == null)
+                if (student == null)
                 {
                     return Results.NotFound($"Student with name {firstName}, is not found.");
                 }
@@ -49,16 +47,16 @@ namespace exercise.wwwapi.Endpoints
                 return Results.NotFound(ex.Message);
             }
         }
-               
+
         public static IResult DeleteStudent(IStudentRepository students, string firstName)
         {
-           
+
             if (students == null)
             {
                 return Results.NotFound($"Student with first name {firstName} is not found.");
             }
             return TypedResults.Ok(students.DeleteStudent(firstName));
         }
-        
+
     }
 }

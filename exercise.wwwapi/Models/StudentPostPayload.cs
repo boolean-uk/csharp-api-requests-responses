@@ -5,5 +5,5 @@
     // behind the scenes the properties will be created. So this is a property and 
     // a constructor in one.
     public record StudentPostPayload(string FirstName, string LastName);
-   
+
 }

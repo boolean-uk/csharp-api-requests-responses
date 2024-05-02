@@ -8,10 +8,6 @@ namespace exercise.wwwapi.Repository
     public class StudentRepository : IStudentRepository
     {
         private StudentCollection _students;
-        public StudentRepository(StudentCollection students)
-        {
-            _students = students;
-        }
 
         public List<Student> GetAllStudents()
         {
@@ -31,13 +27,13 @@ namespace exercise.wwwapi.Repository
         public Student? UpdateStudent(string firstName, StudentUpdatePayload updateStudent)
         {
             var student = _students.GetStudent(firstName);
-            if(student == null)
+            if (student == null)
             {
                 return null;
             }
             bool isUpdated = false;
-            
-            if(updateStudent.FirstName != null && updateStudent.LastName != null) 
+
+            if (updateStudent.FirstName != null && updateStudent.LastName != null)
             {
                 // can convert a nullable to a string
                 student.FirstName = (string)updateStudent.FirstName;
@@ -52,7 +48,7 @@ namespace exercise.wwwapi.Repository
 
         public Student DeleteStudent(string firstName)
         {
-            return _students.DeleteStudent(firstName);  
+            return _students.DeleteStudent(firstName);
         }
     }
 }
