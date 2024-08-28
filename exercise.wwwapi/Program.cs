@@ -12,6 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddSingleton<StudentCollection, StudentCollection>();
 
+builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+builder.Services.AddSingleton<LanguageCollection,LanguageCollection>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +27,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoints();
+app.ConfigureLanguageEndpoints();
 
 app.Run();
 

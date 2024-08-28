@@ -11,9 +11,9 @@
             _studentCollection = students;
         }
 
-        public void Create(Student student)
+        public Student Create(Student student)
         {
-            _studentCollection.Add(student);
+            return _studentCollection.Add(student);
         }
 
         public List<Student> GetAll()
