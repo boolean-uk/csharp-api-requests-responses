@@ -3,21 +3,36 @@
 namespace exercise.wwwapi.Data
 {
 
-    public class LanguageCollection
+    public static class LanguageCollection
     {
-        private List<Language> languages = new List<Language>(){
+        private static List<Language> languages = new List<Language>(){
             new Language("Java"),
             new Language("C#")
         };
 
-        public LanguageCollection() { }
 
-        public List<Language> Languages { get { return languages; } }
+        public static List<Language> Languages { get { return languages; } }
 
-        public Language AddLanguage (Language language)
+        public static Language AddLanguage (Language language)
         {
             languages.Add(language);
             return language;
         }
+
+        public static Language UppdateLanguage(string name, string newName)
+        {
+             languages.FirstOrDefault(x => x.Name.Equals(name)).Name = newName;
+            return languages.FirstOrDefault(x => x.Name.Equals(newName));
+        }
+
+        public static Language removeLanguage(Language s)
+        {
+            if (languages.Remove(s))
+            {
+                return s;
+            }
+            return null;
+        }
+
     }
 }

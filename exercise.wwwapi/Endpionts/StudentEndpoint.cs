@@ -9,7 +9,7 @@ namespace exercise.wwwapi.Endpionts
     {
         public static void CofigureStudentEnpoint(this WebApplication application)
         {
-            var studentGroup = application.MapGroup("strudents");
+            var studentGroup = application.MapGroup("students");
             studentGroup.MapGet("/", GetStudents);
             studentGroup.MapGet("/{firstName}", GetAStudent);
             studentGroup.MapPost("/", AddStudent);
