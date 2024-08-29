@@ -6,5 +6,9 @@ namespace exercise.wwwapi.Endpoints
     [Route("languages")]
     public static class LanguageController
     {
+        public static void ConfigureLanguageController(this WebApplication app)
+        {
+
+        }
     }
 }

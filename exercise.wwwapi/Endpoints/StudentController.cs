@@ -6,6 +6,10 @@ namespace exercise.wwwapi.Endpoints
     [Route("students")]
     public static class StudentController 
     {
+        public static void ConfigureStudentController(this WebApplication app)
+        {
+
+        }
         
     }
 }

@@ -2,24 +2,47 @@
 
 namespace exercise.wwwapi.Data
 {
-    public class StudentCollection
+    public static class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
+        private static List<Student> _students = new List<Student>()
         {
             new Student() { FirstName="Nathan",LastName="King" },
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
+        public static Student Add(Student student)
         {            
             _students.Add(student);
 
             return student;
         }
 
-        public List<Student> getAll()
+        public static List<Student> GetAll()
         {
             return _students.ToList();
+        }
+
+        internal static Student Delete(int id)
+        {
+            Student student = null;
+            _students.Remove(student = _students.FirstOrDefault(x => x.Id == id));
+            return student;
+        }
+
+        internal static Student GetStudent(int id)
+        {
+            return _students.Find(x=>x.Id == id);
+        }
+
+        internal static Student UpdateStudent(Student student)
+        {
+            Student studentOld = _students.Find(x=>x.Id==student.Id);
+            if (studentOld != null)
+            {
+                studentOld.FirstName = student.FirstName;
+                studentOld.LastName = student.LastName;
+            }
+            return studentOld;
         }
     };
 

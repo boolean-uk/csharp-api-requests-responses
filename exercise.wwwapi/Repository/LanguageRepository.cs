@@ -1,32 +1,34 @@
-﻿using exercise.wwwapi.Models;
+﻿using exercise.wwwapi.Data;
+using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
     public class LanguageRepository : ILanguageRepository
     {
-        public Language AddLanguage(Language Language)
+        public Language AddLanguage(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.Add(name);
         }
 
-        public Language DeleteLanguage(int id)
+        public Language DeleteLanguage(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.Delete(name);
+            
         }
 
-        public Language GetLanguage(int id)
+        public Language GetLanguage(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.GetLanguage(name);
         }
 
         public List<Language> GetLanguages()
         {
-            throw new NotImplementedException();
+            return LanguageCollection.GetAll();
         }
 
         public Language UpdateLanguage(Language Language)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.UpdateLanguage(Language);
         }
     }
 }
