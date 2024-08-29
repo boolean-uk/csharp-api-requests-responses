@@ -13,7 +13,7 @@ namespace exercise.wwwapi.Endpoints
             var students = app.MapGroup("students");
             students.MapGet("/", GetStudents);
             students.MapPost("/", AddStudent);
-            students.MapGet("/{id}", GetStudent);
+            students.MapGet("/{FirstName}", GetStudent);
             students.MapPut("/", UpdateStudent);
             students.MapDelete("/", DeleteStudent);
         }
@@ -21,17 +21,17 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        private static IResult DeleteStudent(IStudentRepository repository, int id)
+        private static IResult DeleteStudent(IStudentRepository repository, string FirstName)
         {
-            return TypedResults.Ok(repository.DeleteStudent(id));
+            return TypedResults.Ok(repository.DeleteStudent(FirstName));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        private static IResult UpdateStudent(IStudentRepository repository, Student student)
+        private static IResult UpdateStudent(IStudentRepository repository, string FirstName, Student student)
         {
-            return TypedResults.Ok(repository.UpdateStudent(student));
+            return TypedResults.Ok(repository.UpdateStudent(FirstName, student));
         }
 
         //[HttpGet]
@@ -39,9 +39,9 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public static IResult GetStudent(IStudentRepository repository, int id)
+        public static IResult GetStudent(IStudentRepository repository, string FirstName)
         {
-            return TypedResults.Ok(repository.GetStudent(id));
+            return TypedResults.Ok(repository.GetStudent(FirstName));
         }
 
         //[HttpPost]

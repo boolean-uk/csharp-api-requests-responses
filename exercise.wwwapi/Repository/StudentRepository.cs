@@ -11,15 +11,15 @@ namespace exercise.wwwapi.Repository
             return student;
         }
 
-        public Student DeleteStudent(int id)
+        public Student DeleteStudent(string FirstName)
         {
-            Student student = StudentCollection.Delete(id);
+            Student student = StudentCollection.Delete(FirstName);
             return student;
         }
 
-        public Student GetStudent(int id)
+        public Student GetStudent(string FirstName)
         {
-            return StudentCollection.GetStudent(id);
+            return StudentCollection.GetStudent(FirstName);
         }
 
         public List<Student> GetStudents()
@@ -27,9 +27,9 @@ namespace exercise.wwwapi.Repository
             return StudentCollection.GetAll();
         }
 
-        public Student UpdateStudent(Student student)
+        public Student UpdateStudent(string FirstName, Student student)
         {
-            return StudentCollection.UpdateStudent(student);
+            return StudentCollection.UpdateStudent(FirstName, student);
         }
     }
 }

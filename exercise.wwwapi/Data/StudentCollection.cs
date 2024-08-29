@@ -6,13 +6,13 @@ namespace exercise.wwwapi.Data
     {
         private static List<Student> _students = new List<Student>()
         {
-            new Student() { Id = 1, FirstName="Nathan",LastName="King" },
-            new Student() { Id = 2, FirstName="Dave", LastName="Ames" }
+            new Student() { FirstName="Nathan",LastName="King" },
+            new Student() { FirstName="Dave", LastName="Ames" }
         };
 
         public static Student Add(Student student)
         {
-            _students.Add(new Student() { Id = _students.Max(x => x.Id) + 1, FirstName = student.FirstName, LastName = student.LastName });
+            _students.Add(new Student() { FirstName = student.FirstName, LastName = student.LastName });
             return student;
         }
 
@@ -21,21 +21,21 @@ namespace exercise.wwwapi.Data
             return _students.ToList();
         }
 
-        internal static Student Delete(int id)
+        internal static Student Delete(string FirstName)
         {
             Student student = null;
-            _students.Remove(student = _students.FirstOrDefault(x => x.Id == id));
+            _students.Remove(student = _students.FirstOrDefault(x => x.FirstName == FirstName));
             return student;
         }
 
-        internal static Student GetStudent(int id)
+        internal static Student GetStudent(string FirstName)
         {
-            return _students.Find(x=>x.Id == id);
+            return _students.Find(x=>x.FirstName == FirstName);
         }
 
-        internal static Student UpdateStudent(Student student)
+        internal static Student UpdateStudent(string FirstName, Student student)
         {
-            Student studentOld = _students.Find(x=>x.Id==student.Id);
+            Student studentOld = _students.FirstOrDefault(x=>x.FirstName==FirstName);
             if (studentOld != null)
             {
                 studentOld.FirstName = student.FirstName;

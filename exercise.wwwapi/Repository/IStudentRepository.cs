@@ -8,10 +8,10 @@ namespace exercise.wwwapi.Repository
 
         List<Student> GetStudents();
 
-        Student GetStudent(int id);
+        Student GetStudent(string FirstName);
 
-        Student UpdateStudent(Student student);
+        Student UpdateStudent(string FirstName, Student student);
 
-        Student DeleteStudent(int id);
+        Student DeleteStudent(string FirstName);
     }
 }
