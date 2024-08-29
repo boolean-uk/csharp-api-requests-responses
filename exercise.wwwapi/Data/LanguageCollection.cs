@@ -6,8 +6,8 @@ namespace exercise.wwwapi.Data
     public class LanguageCollection
     {
         private static List<Language> _languages = new List<Language>(){
-            new Language(){ Name = "Java" },
-            new Language(){ Name = "C#" }
+            new Language() { Name = "Java" },
+            new Language() { Name = "C#" }
         };
 
         public static Language CreateALanguage(Language language)
