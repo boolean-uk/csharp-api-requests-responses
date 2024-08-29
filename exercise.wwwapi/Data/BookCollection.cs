@@ -42,6 +42,7 @@ namespace exercise.wwwapi.Data
         public static Book Update(int id, BookView bookView)
         {
             var book = _books.FirstOrDefault(x => x.Id == id);
+            if (book == null) return null;
             book.Title = bookView.Title;
             book.NumPages = bookView.NumPages;
             book.Author = bookView.Author;

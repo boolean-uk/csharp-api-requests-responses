@@ -36,7 +36,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult Add(IRepository<Book, BookView, int> repository, BookView entity)
         {
             var result = repository.Add(entity);
-            return TypedResults.Created($"https://localhost:7068/students/", result);
+            return result != null ? TypedResults.Created($"https://localhost:7068/students/", result) : TypedResults.BadRequest();
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -44,14 +44,15 @@ namespace exercise.wwwapi.Endpoints
         public static IResult Update(IRepository<Book, BookView, int> repository, int id, BookView entity)
         {
             var result = repository.Update(id, entity);
-            return TypedResults.Created($"https://localhost:7068/students/{id}", result);
+            return result != null ? TypedResults.Created($"https://localhost:7068/students/{id}", result) : TypedResults.BadRequest();
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static IResult Delete(IRepository<Book, BookView, int> repository, int id)
         {
-            return TypedResults.Ok(repository.Delete(id));
+            var result = repository.Delete(id);
+            return result != null ? TypedResults.Ok(result) : TypedResults.NotFound();
         }
     }
 }

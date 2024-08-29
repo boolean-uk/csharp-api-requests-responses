@@ -39,6 +39,7 @@ namespace exercise.wwwapi.Data
         public static Language Update(string name, Language entity)
         {
             var language = _languages.FirstOrDefault(x => x.Name.Equals(name));
+            if (language == null) return null;
             language.Name = entity.Name;
             return language;
         }

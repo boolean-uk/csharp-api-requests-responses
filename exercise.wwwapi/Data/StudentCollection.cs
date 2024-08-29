@@ -38,6 +38,7 @@ namespace exercise.wwwapi.Data
         public static Student Update(string firstName, Student entity)
         {
             var student = _students.FirstOrDefault(x => x.FirstName.Equals(firstName));
+            if (student == null) return null;
             student.FirstName = entity.FirstName;
             student.LastName = entity.LastName;
             return student;
