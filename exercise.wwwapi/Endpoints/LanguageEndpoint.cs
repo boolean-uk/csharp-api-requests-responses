@@ -13,6 +13,7 @@ namespace exercise.wwwapi.Endpoints
             languages.MapGet("/{name}", Get);
             languages.MapPost("/", Create);
             languages.MapPut("/{name}", Update);
+            languages.MapDelete("/", Delete);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -62,6 +63,21 @@ namespace exercise.wwwapi.Endpoints
                 return TypedResults.NotFound($"Language {name} not found.");
             }
             return TypedResults.Created($"https://localhost:7068/students/{payload.data.Name}", payload.data);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public static IResult Delete(IRepository<Language> repository, string name)
+        {
+            Payload<Language> payload = new Payload<Language>();
+            payload.data = repository.Delete(name);
+
+            if (payload.data == null)
+            {
+                return TypedResults.NotFound($"Language {name} not found.");
+            }
+
+            return TypedResults.Ok(payload);
         }
     }
 }
