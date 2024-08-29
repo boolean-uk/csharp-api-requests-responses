@@ -1,10 +1,15 @@
+using exercise.wwwapi.Endpoints;
+using exercise.wwwapi.Models;
+using exercise.wwwapi.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IRepo<Student>, StudentRepository>();
+builder.Services.AddScoped<IRepo<Language>, LanguageRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -16,7 +21,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.ConfigureStudentEndpoints();
+app.ConfigureLanguageEndpoints();
 
 app.Run();
 
