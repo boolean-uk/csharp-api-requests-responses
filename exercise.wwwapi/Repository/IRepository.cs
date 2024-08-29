@@ -4,7 +4,7 @@
     {
         List<T> GetAll();
         T Get(string name);
-        T Add(T entity);
+        T Create(T entity);
         T Update(string name, T entity);
         T Delete(string name);
     }

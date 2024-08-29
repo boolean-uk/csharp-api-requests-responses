@@ -10,11 +10,11 @@ namespace exercise.wwwapi.Endpoints
         {
             var languages = app.MapGroup("languages");
 
-            app.MapGet("/", GetAllLanguages);
-            app.MapGet("/{name}", GetALanguage);
-            app.MapPost("/", CreateALanguage);
-            app.MapPut("/{name}", UpdateALanguage);
-            app.MapDelete("/{name}", DeleteALanguage);
+            languages.MapGet("/", GetAllLanguages);
+            languages.MapGet("/{name}", GetALanguage);
+            languages.MapPost("/", CreateALanguage);
+            languages.MapPut("/{name}", UpdateALanguage);
+            languages.MapDelete("/{name}", DeleteALanguage);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -35,7 +35,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult CreateALanguage(IRepository<Language> repository, Language language)
         {
             Payload<Language> payload = new Payload<Language>();
-            payload.Data = repository.Add(language);
+            payload.Data = repository.Create(language);
 
             return TypedResults.Ok(payload);
         }

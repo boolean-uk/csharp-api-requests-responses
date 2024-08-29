@@ -5,7 +5,7 @@ namespace exercise.wwwapi.Repository
 {
     public class StudentRepository : IRepository<Student>
     {
-        public Student Add(Student entity)
+        public Student Create(Student entity)
         {
             return StudentCollection.Add(entity);
         }

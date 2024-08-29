@@ -11,11 +11,11 @@ namespace exercise.wwwapi.Endpoints
         {
             var students = app.MapGroup("students");
 
-            app.MapGet("/", GetAllStudents);
-            app.MapGet("/{firstName}", GetAStudent);
-            app.MapPost("/", CreateAStudent);
-            app.MapPut("/{firstName}", UpdateAStudent);
-            app.MapDelete("/{firstName}", DeleteAStudent);
+            students.MapGet("/", GetAllStudents);
+            students.MapGet("/{firstName}", GetAStudent);
+            students.MapPost("/", CreateAStudent);
+            students.MapPut("/{firstName}", UpdateAStudent);
+            students.MapDelete("/{firstName}", DeleteAStudent);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -37,7 +37,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult CreateAStudent(IRepository<Student> repository, Student student)
         {
             Payload<Student> payload = new Payload<Student>();
-            payload.Data = repository.Add(student);
+            payload.Data = repository.Create(student);
 
             return TypedResults.Ok(payload);
         }

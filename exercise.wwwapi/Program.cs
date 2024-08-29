@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<IRepository<Student>, StudentRepository>();
+builder.Services.AddScoped<IRepository<Student>, StudentRepository>();
 builder.Services.AddScoped<IRepository<Language>, LanguageRepository>();
+builder.Services.AddScoped<BookRepository, BookRepository>();
 
 var app = builder.Build();
 
@@ -23,8 +24,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.ConfigureStudentEndpoint();
+app.ConfigureStudentEndpoint();
 app.ConfigureLanguageEndpoint();
+app.ConfigureBookEndpoints();
 
 app.Run();
 

@@ -5,7 +5,7 @@ namespace exercise.wwwapi.Repository
 {
     public class LanguageRepository : IRepository<Language>
     {
-        public Language Add(Language entity)
+        public Language Create(Language entity)
         {
             return LanguageCollection.Add(entity);
         }
