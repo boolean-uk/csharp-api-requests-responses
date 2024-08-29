@@ -10,7 +10,7 @@ namespace exercise.wwwapi.Repository
 
         Language GetLanguage(string name);
 
-        Language UpdateLanguage(Language Language);
+        Language UpdateLanguage(string name, string newName);
 
         Language DeleteLanguage(string name);
     }

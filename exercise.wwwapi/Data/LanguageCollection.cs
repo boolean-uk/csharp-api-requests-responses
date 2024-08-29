@@ -36,12 +36,12 @@ namespace exercise.wwwapi.Data
             return _languages.FirstOrDefault(x => x.getName() == name);
         }
 
-        internal static Language UpdateLanguage(Language language)
+        internal static Language UpdateLanguage(string name, string newName)
         {
-            Language languageOld = _languages.FirstOrDefault(x => x.getName == language.getName);
+            Language languageOld = _languages.FirstOrDefault(x => x.getName() == name);
             if (languageOld != null)
             {
-                languageOld = language;
+                languageOld._name = newName;
             }
             return languageOld;
         }

@@ -30,9 +30,9 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public static IResult UpdateLanguage(ILanguageRepository repository, string name)
+        public static IResult UpdateLanguage(ILanguageRepository repository, string name, string newName)
         {
-            return TypedResults.Ok(repository.UpdateLanguage(new Models.Language(name)));
+            return TypedResults.Ok(repository.UpdateLanguage(name, newName));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
