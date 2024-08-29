@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepo<Student>, StudentRepository>();
 builder.Services.AddScoped<IRepo<Language>, LanguageRepository>();
+builder.Services.AddScoped<IBookRepo, BookRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +24,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoints();
 app.ConfigureLanguageEndpoints();
+app.ConfigureBookEndPoints();
 
 app.Run();
 
