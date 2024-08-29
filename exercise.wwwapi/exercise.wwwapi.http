@@ -1,6 +1,42 @@
-@exercise.wwwapi_HostAddress = http://localhost:5115
+@exercise.wwwapi_HostAddress = https://localhost:7068
 
 GET {{exercise.wwwapi_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+POST {{exercise.wwwapi_HostAddress}}/languages/
+
+###
+
+GET {{exercise.wwwapi_HostAddress}}/languages/
+
+###
+
+GET {{exercise.wwwapi_HostAddress}}/languages/{name}
+
+###
+
+PUT {{exercise.wwwapi_HostAddress}}/languages/{name}
+
+###
+
+DELETE {{exercise.wwwapi_HostAddress}}/languages/{name}
+
+###
+
+POST {{exercise.wwwapi_HostAddress}}/students/
+
+###
+
+GET {{exercise.wwwapi_HostAddress}}/students/
+
+###
+
+GET {{exercise.wwwapi_HostAddress}}/students/{firstName}
+
+###
+
+PUT {{exercise.wwwapi_HostAddress}}/students/{firstName}
 
 ###
