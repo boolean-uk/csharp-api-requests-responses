@@ -2,25 +2,46 @@
 
 namespace exercise.wwwapi.Data
 {
-    public class StudentCollection
+    public static class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
+        private static List<Student> _students = new List<Student>()
         {
             new Student() { FirstName="Nathan",LastName="King" },
             new Student() { FirstName="Dave", LastName="Ames" }
         };
 
-        public Student Add(Student student)
-        {            
-            _students.Add(student);
-
-            return student;
+        public static Student AddStudent(Student entity)
+        {        
+            if (_students.Any(s => s.FirstName == entity.FirstName)) return null;  // student already exists
+            _students.Add(entity);
+            return entity;
         }
 
-        public List<Student> getAll()
+        public static List<Student> GetStudents()
         {
             return _students.ToList();
         }
+
+        public static Student GetAStudent(string firstname)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstname);
+            return student;
+        }
+
+        public static Student UpdateStudent(string firstname, string updatedName)
+        {
+            var student = _students.FirstOrDefault(s => s.FirstName == firstname);
+            student.FirstName = updatedName;
+            return student;
+        }
+
+        public static Student DeleteStudent(string firstname)
+        {
+            var student = _students.Find(s => s.FirstName == firstname);
+            _students.Remove(student);
+            return student;
+        }
+
     };
 
 
