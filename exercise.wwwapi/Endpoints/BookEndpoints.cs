@@ -19,7 +19,7 @@ namespace exercise.wwwapi.Endpoints
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetAll(IBookRepo bookRepo)
+        public static IResult GetAll(IRepo<Book, Guid> bookRepo)
         {
             return TypedResults.Ok(bookRepo.getAll());
         }
@@ -27,7 +27,7 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult Add(IBookRepo bookRepo, Book book)
+        public static IResult Add(IRepo<Book, Guid> bookRepo, Book book)
         {
             bookRepo.Add(book);
 
@@ -35,7 +35,7 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetBook(IBookRepo bookRepo, Guid id)
+        public static IResult GetBook(IRepo<Book, Guid> bookRepo, Guid id)
         {
             Book book = bookRepo.Get(id);
             if (book == null)
@@ -48,7 +48,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult Update(IBookRepo bookRepo, Book book, Guid id)
+        public static IResult Update(IRepo<Book, Guid> bookRepo, Book book, Guid id)
         {
             Book oldBook = bookRepo.Get(id);
             if (oldBook == null)
@@ -68,7 +68,7 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult Delete(IBookRepo bookRepo, Guid id)
+        public static IResult Delete(IRepo<Book, Guid> bookRepo, Guid id)
         {
             Book book = bookRepo.Get(id);
             if (book == null)

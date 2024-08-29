@@ -19,7 +19,7 @@ namespace exercise.wwwapi.Endpoints
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetStudents(IRepo<Language> langRepository)
+        public static IResult GetStudents(IRepo<Language, string> langRepository)
         {
             return TypedResults.Ok(langRepository.getAll());
         }
@@ -27,7 +27,7 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult Add(IRepo<Language> langRepository, Language language)
+        public static IResult Add(IRepo<Language, string> langRepository, Language language)
         {
             langRepository.Add(language);
 
@@ -35,7 +35,7 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetStudent(IRepo<Language> langRepository, string name)
+        public static IResult GetStudent(IRepo<Language, string> langRepository, string name)
         {
             Language language = langRepository.Get(name);
             if (language == null)
@@ -48,7 +48,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult Update(IRepo<Language> langRepository, Language language, string name)
+        public static IResult Update(IRepo<Language, string> langRepository, Language language, string name)
         {
             Language oldlanguage = langRepository.Get(name);
             if (oldlanguage == null)
@@ -68,7 +68,7 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult Delete(IRepo<Language> langRepository, string name)
+        public static IResult Delete(IRepo<Language, string> langRepository, string name)
         {
             Language language = langRepository.Get(name);
             if (language == null)

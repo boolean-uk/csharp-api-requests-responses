@@ -3,7 +3,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class StudentRepository : IRepo<Student>
+    public class StudentRepository : IRepo<Student, string>
     {
         public Student Add(Student student)
         {

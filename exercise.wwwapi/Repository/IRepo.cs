@@ -1,12 +1,12 @@
 ﻿namespace exercise.wwwapi.Repository
 {
-    public interface IRepo<T>
+    public interface IRepo<T, Y>
     {
         List<T> getAll();
         T Add(T item);
-        T Update(T item, string str);
-        void Delete(string str);
-        T Get(string str);
+        T Update(T item, Y type);
+        void Delete(Y type);
+        T Get(Y type);
 
     }
 }

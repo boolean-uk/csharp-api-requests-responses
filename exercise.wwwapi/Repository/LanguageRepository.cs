@@ -3,7 +3,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class LanguageRepository : IRepo<Language>
+    public class LanguageRepository : IRepo<Language, string>
     {
         public Language Add(Language item)
         {

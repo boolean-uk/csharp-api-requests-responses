@@ -19,7 +19,7 @@ namespace exercise.wwwapi.Endpoints
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetStudents(IRepo<Student> studRepository)
+        public static IResult GetStudents(IRepo<Student, string> studRepository)
         {
             return TypedResults.Ok(studRepository.getAll());
         }
@@ -27,7 +27,7 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult Add(IRepo<Student> studRepository, Student student)
+        public static IResult Add(IRepo<Student, string> studRepository, Student student)
         {
             studRepository.Add(student);
 
@@ -35,7 +35,7 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetStudent(IRepo<Student> studRepository, string firsname)
+        public static IResult GetStudent(IRepo<Student, string> studRepository, string firsname)
         {
             Student student = studRepository.Get(firsname);
             if (student == null)
@@ -48,7 +48,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult Update(IRepo<Student> studRepository, Student student, string firstname)
+        public static IResult Update(IRepo<Student, string> studRepository, Student student, string firstname)
         {
             Student oldstudent = studRepository.Get(firstname);
             if (oldstudent == null)
@@ -68,7 +68,7 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult Delete(IRepo<Student> studRepository, string firstname)
+        public static IResult Delete(IRepo<Student, string> studRepository, string firstname)
         {
             Student student = studRepository.Get(firstname);
             if (student == null)

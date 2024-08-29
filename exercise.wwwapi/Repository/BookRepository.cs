@@ -3,7 +3,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class BookRepository : IBookRepo
+    public class BookRepository : IRepo<Book, Guid>
     {
         public Book Add(Book book)
         {
