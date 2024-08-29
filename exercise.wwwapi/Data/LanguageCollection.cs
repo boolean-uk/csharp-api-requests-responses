@@ -12,13 +12,16 @@ namespace exercise.wwwapi.Data
 
         internal static Language Add(string name)
         {
-            _languages.Add(new Language(name));
-            return _languages.FirstOrDefault(x=>x.getName()==name);
+            if (_languages.Find(x => x._name == name) == null)
+            {
+                _languages.Add(new Language(name));
+            }
+            return _languages.FirstOrDefault(x => x.getName() == name);
         }
 
         internal static Language Delete(string name)
         {
-            Language language = null; 
+            Language language = null;
             _languages.Remove(language = _languages.FirstOrDefault(y => y.getName() == name));
             return language;
         }
@@ -30,12 +33,12 @@ namespace exercise.wwwapi.Data
 
         internal static Language GetLanguage(string name)
         {
-            return _languages.FirstOrDefault(x=> x.getName()==name);
+            return _languages.FirstOrDefault(x => x.getName() == name);
         }
 
         internal static Language UpdateLanguage(Language language)
         {
-            Language languageOld = _languages.FirstOrDefault(x=>x.getName==language.getName);
+            Language languageOld = _languages.FirstOrDefault(x => x.getName == language.getName);
             if (languageOld != null)
             {
                 languageOld = language;

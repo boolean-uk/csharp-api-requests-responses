@@ -2,7 +2,8 @@
 {
     public class Language
     {
-        private string _name {get; set;}
+        //it being private gave me problems with visibility
+        public string _name {get; set;}
 
         public Language(string name)
         {
