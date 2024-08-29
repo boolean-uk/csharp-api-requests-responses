@@ -3,11 +3,17 @@
 namespace exercise.wwwapi.Data
 {
 
-    public class LanguageCollection
+    public static class LanguageCollection
     {
-        private List<Language> languages = new List<Language>(){
+        private static List<Language> languages = new List<Language>(){
             new Language("Java"),
             new Language("C#")
         };
+
+        public static Language AddLanguage(Language language)
+        {
+            languages.Add(language);
+            return language;
+        }
     }
 }
