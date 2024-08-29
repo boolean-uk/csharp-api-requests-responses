@@ -1,5 +1,4 @@
 ﻿using exercise.wwwapi.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace exercise.wwwapi.Repository
 {

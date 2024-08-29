@@ -19,7 +19,7 @@ namespace exercise.wwwapi.Data
         internal static Language Delete(string name)
         {
             Language language = null; 
-            _languages.Remove(language = _languages.FirstOrDefault(y => y.getName() == name););
+            _languages.Remove(language = _languages.FirstOrDefault(y => y.getName() == name));
             return language;
         }
 

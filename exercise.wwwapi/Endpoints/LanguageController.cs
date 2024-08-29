@@ -8,6 +8,7 @@ namespace exercise.wwwapi.Endpoints
     {
         public static void ConfigureLanguageController(this WebApplication app)
         {
+            var languages = app.MapGroup("languages");
 
         }
     }

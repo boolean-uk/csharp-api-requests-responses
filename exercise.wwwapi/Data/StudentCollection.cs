@@ -11,9 +11,8 @@ namespace exercise.wwwapi.Data
         };
 
         public static Student Add(Student student)
-        {            
-            _students.Add(student);
-
+        {
+            _students.Add(new Student() { Id = _students.Max(x => x.Id) + 1, FirstName = student.FirstName, LastName = student.LastName });
             return student;
         }
 

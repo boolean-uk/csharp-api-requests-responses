@@ -4,14 +4,14 @@ namespace exercise.wwwapi.Repository
 {
     public interface ILanguageRepository
     {
-        Language AddLanguage(Language Language);
+        Language AddLanguage(string name);
 
         List<Language> GetLanguages();
 
-        Language GetLanguage(int id);
+        Language GetLanguage(string name);
 
         Language UpdateLanguage(Language Language);
 
-        Language DeleteLanguage(int id);
+        Language DeleteLanguage(string name);
     }
 }
