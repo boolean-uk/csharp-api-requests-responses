@@ -4,7 +4,7 @@ namespace exercise.wwwapi.Repository
 {
     public interface ILanguageRepository
     {
-        List<LanguageRepository> GetAllLanguages();
+        List<Language> GetAllLanguages();
 
         Language AddLanguage(Language language);
 

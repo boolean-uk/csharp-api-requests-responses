@@ -11,24 +11,24 @@ namespace exercise.wwwapi.Repository
             return language;
         }
 
-        List<LanguageRepository> ILanguageRepository.GetAllLanguages()
+        public List<Language> GetAllLanguages()
         {
-            throw new NotImplementedException();
+            return LanguageCollection.GetLanguages();
         }
 
-        Language ILanguageRepository.GetLanguage(string name)
+        public Language GetLanguage(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.GetLanguage(name);
         }
 
-        Language ILanguageRepository.UpdateLanguage(string name, string newname)
+        public Language UpdateLanguage(string name, string newname)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.UpdateLanguage(name, newname);
         }
 
-        Language ILanguageRepository.DeleteLanguage(string name)
+        public Language DeleteLanguage(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.DeleteLanguage(name);
         }
 
         
