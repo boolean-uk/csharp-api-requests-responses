@@ -3,41 +3,62 @@ using System.ComponentModel.DataAnnotations;
 
 namespace exercise.wwwapi.Data
 {
-    public class BookCollection
+    public static class BookCollection
     {
-        private List<Book> _books = new List<Book>
+        private static List<Book> _books = new List<Book>
         {
             new Book(1, "A Game of Thrones", 780, "George R.R. Martin", "Fantasy")
         };
 
-        public int IdIterator = 2;
+        public static int IdCounter = 2;
 
-        public int GetLength()
+        public static int GetLength()
         {
             return _books.Count;
         }
-        public List<Book> GetBooks()
+        public static List<Book> GetBooks()
         {
             return _books.ToList();
         }
 
-        public Book GetABook(int id)
+        public static Book GetABook(int id)
         {
             return _books.FirstOrDefault(b => b.Id == id);
         }
 
-        public Book AddBook(Book book)
+        public static Book AddBook(Book book)
         {
             _books.Add(book);
             return book;
         }
 
-        public Book RemoveBook(Book book)
+        public static Book RemoveBook(Book book)
         {
             _books.Remove(book);
             return book;
         }
 
+        public static int IncreaseId()
+        {
+            IdCounter += 1;
+            return IdCounter;
+        }
 
+        public static Book UpdateBook(int id, string title, int numPages, string author, string genre)
+        {
+            Book bookToBeUpdated = _books.FirstOrDefault(b => b.Id == id);
+
+            if(bookToBeUpdated == null)
+            {
+                return null;
+            }
+
+            bookToBeUpdated.Title = title;
+            bookToBeUpdated.NumPages = numPages;
+            bookToBeUpdated.Author = author;
+            bookToBeUpdated.Genre = genre;
+
+            return bookToBeUpdated;
+        }
     }
 }

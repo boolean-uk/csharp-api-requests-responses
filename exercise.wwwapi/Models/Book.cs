@@ -1,6 +1,6 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class Book
+    public class Book : APIItem
     {
         public int Id { get; set; }
         public string Title { get; set; }

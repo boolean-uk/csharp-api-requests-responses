@@ -6,7 +6,6 @@ namespace exercise.wwwapi.Endpoints
 {
     public static class BookEndPoint
     {
-        private static BookCollection _books = new BookCollection();
         public static void ConfigureBookEndPoints(this WebApplication app)
         {
             var books = app.MapGroup("books");
@@ -18,16 +17,16 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetAllBooks()
+        public static IResult GetAllBooks(IBookRepository repo)
         {
-            return TypedResults.Ok(_books.GetBooks());
+            return TypedResults.Ok(repo.GetBooks());
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult GetABook(int id)
+        public static IResult GetABook(IBookRepository repo, int id)
         {
-            Book book = _books.GetABook(id);
+            Book book = repo.GetABook(id);
             if(book == null)
             {
                 return TypedResults.NotFound();
@@ -36,41 +35,36 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult AddBook(string title, int numPages, string author, string genre)
+        public static IResult AddBook(IBookRepository repo, string title, int numPages, string author, string genre)
         {
-            Book bookToBeAdded = new Book(_books.IdIterator, title, numPages, author, genre);
-            _books.IdIterator += 1;
-            _books.AddBook(bookToBeAdded);
+            Book bookToBeAdded = new Book(repo.IncreaseId(), title, numPages, author, genre);
+            repo.AddBook(bookToBeAdded);
             return TypedResults.Created("", bookToBeAdded);
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult UpdateBook(int id, string title, int numPages, string author, string genre)
+        public static IResult UpdateBook(IBookRepository repository, int id, string title, int numPages, string author, string genre)
         {
-            Book bookToBeUpdated = _books.GetABook(id);
+            Book bookToBeUpdated = repository.UpdateBook(id, title, numPages, author, genre);
             if(bookToBeUpdated == null)
             {
-                return TypedResults.NotFound();
+                TypedResults.NotFound();
             }
-            bookToBeUpdated.Title = title;
-            bookToBeUpdated.NumPages = numPages;
-            bookToBeUpdated.Author = author;
-            bookToBeUpdated.Genre = genre;
 
             return TypedResults.Created("", bookToBeUpdated);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static IResult DeleteBook(int id)
+        public static IResult DeleteBook(IBookRepository repo, int id)
         {
-            Book bookToBeDeleted = _books.GetABook(id);
+            Book bookToBeDeleted = repo.GetABook(id);
             if(bookToBeDeleted == null)
             {
                 return TypedResults.NotFound();
             }
-            _books.RemoveBook(bookToBeDeleted);
+            repo.RemoveBook(bookToBeDeleted);
             return TypedResults.Ok(bookToBeDeleted);
         }
     }
