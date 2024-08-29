@@ -2,9 +2,9 @@
 {
     public class Language
     {
-        private String name {get; set;}
+        public string name {get; set;} //changed to public
 
-        public Language(String name)
+        public  Language(string name)
         {
             this.name = name;
         }
