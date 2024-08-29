@@ -31,8 +31,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static IResult GetAllLanguages(IRepository<Language> rep)
         {
-            List<Language> languages = new List<Language>();
-            languages = rep.GetAll();
+            List<Language> languages = rep.GetAll();
 
             return TypedResults.Ok(languages);
         }
