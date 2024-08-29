@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IRepository, StudentRespository>();
+builder.Services.AddScoped<IRepository<Student>, StudentRespository>();
+builder.Services.AddScoped<IRepository<Language>, LanguageRespository>();
 
 var app = builder.Build();
 
@@ -23,6 +24,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoint();
+app.ConfigureLanguageEndpoint();
 
 app.Run();
 

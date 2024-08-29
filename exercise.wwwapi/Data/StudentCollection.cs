@@ -36,6 +36,14 @@ namespace exercise.wwwapi.Data
             student.FirstName = newStudent.FirstName;
             return student;
         }
+
+        public static Student DeleteStudent(string firstName)
+        {
+            var student = _students.FirstOrDefault(x => x.FirstName == firstName);
+            _students.Remove(student);
+            return student;
+        }
+
     };
 
 

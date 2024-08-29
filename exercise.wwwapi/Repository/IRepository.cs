@@ -2,13 +2,16 @@
 
 namespace exercise.wwwapi.Repository
 {
-    public interface IRepository
+    public interface IRepository<T> where T : class
     {
-        List<Student> GetStudents();
-        Student AddStudent(Student entity);
+        List<T> GetClasses();
+        T AddClass(T entity);
 
-        Student GetStudent(string firstName);
+        T GetClass(string firstName);
 
-        Student UpdateStudent(Student newStudent, string firstName);
+        T UpdateClass(T newClass, string firstName);
+
+        T DeleteClass(string firstName);
+
     }
 }
