@@ -10,6 +10,8 @@ namespace exercise.wwwapi.Data
             new Book(1, "A Game of Thrones", 780, "George R.R. Martin", "Fantasy")
         };
 
+        public int IdIterator = 2;
+
         public int GetLength()
         {
             return _books.Count;
