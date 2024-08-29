@@ -31,10 +31,13 @@ namespace exercise.wwwapi.Data
 
         public Language Update(string name, Language language)
         {
-            var updatedLanguage = _languages.Find(x => x.Name == name);
-            updatedLanguage = language;
+            int  index = _languages.FindIndex(x => x.Name == name);
+            if (index == -1)
+                return null;
 
-            return updatedLanguage;
+            _languages[index] = language;
+
+            return language;
         }
 
         public Language Delete(string name)

@@ -1,6 +1,7 @@
 ﻿using exercise.wwwapi.Models;
 using exercise.wwwapi.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace exercise.wwwapi.Endpoints
 {
@@ -12,6 +13,8 @@ namespace exercise.wwwapi.Endpoints
             LanguageGroup.MapPost("/", AddBook);
             LanguageGroup.MapGet("/", GetAllBooks);
             LanguageGroup.MapGet("/{id}", GetBook);
+            LanguageGroup.MapPut("/{id}", UpdateBook);
+            LanguageGroup.MapDelete("/{id}", DeleteBook);
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -37,5 +40,22 @@ namespace exercise.wwwapi.Endpoints
 
             return TypedResults.Ok(book);
         }
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public static IResult UpdateBook(IBookRepository repository, int id, BookDTO bookDTO)
+        {
+            var updatedBook = repository.Update(id, bookDTO);
+
+            return TypedResults.Created($"/books/{id}", updatedBook);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public static IResult DeleteBook(IBookRepository repository, int id)
+        {
+            var book = repository.Delete(id);
+
+            return TypedResults.Ok(book);
+        }
+
     }
 }

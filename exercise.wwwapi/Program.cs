@@ -1,5 +1,6 @@
 using exercise.wwwapi.Data;
 using exercise.wwwapi.Endpoints;
+using exercise.wwwapi.Helpers;
 using exercise.wwwapi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddSingleton<LanguageCollection,LanguageCollection>();
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddSingleton<BookCollection, BookCollection>();
+
+builder.Services.AddSingleton<IdGenerator, IdGenerator>();
 
 var app = builder.Build();
 

@@ -29,10 +29,14 @@ namespace exercise.wwwapi.Data
 
         public Student Update(string firstName, Student student)
         {
-            var updatedStudent = _students.Find(x => x.FirstName == firstName);
-            updatedStudent = student;
+            int index = _students.FindIndex(x => x.FirstName == firstName);
 
-            return updatedStudent;
+            if (index == -1)
+                return null;
+
+            _students[index] = student;
+
+            return student;
         }
         
         public Student Delete(string firstName)
