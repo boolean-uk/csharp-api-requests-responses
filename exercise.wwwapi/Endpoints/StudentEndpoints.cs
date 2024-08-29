@@ -23,6 +23,12 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         private static IResult CreateStudent(IStudentRepository studentRepository, Student student)
         {
+
+            if (student == null)
+            {
+                return TypedResults.BadRequest();
+            }
+
             studentRepository.AddStudent(student);
 
             return TypedResults.Created();

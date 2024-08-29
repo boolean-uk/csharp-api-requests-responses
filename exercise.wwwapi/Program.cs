@@ -1,5 +1,7 @@
+using exercise.wwwapi.Data;
 using exercise.wwwapi.Endpoints;
 using exercise.wwwapi.Interfaces;
+using exercise.wwwapi.Models;
 using exercise.wwwapi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+builder.Services.AddScoped<IRepo<Book>, BookRepository>();
 
 var app = builder.Build();
 
@@ -24,6 +27,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoints();
 app.ConfigureLanguageEndpoints();
+app.ConfigureBookEndpoints();
 
 app.Run();
 
