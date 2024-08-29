@@ -20,7 +20,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult CreateBook(IBookRepository repository, BookPayload book)
         {
             var result = repository.Create(book);
-            return TypedResults.Created($"http://localhost:5115/students/{result.id}", result);
+            return TypedResults.Created($"http://localhost:5115/books/{result.id}", result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -41,7 +41,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult UpdateBook(IBookRepository repository, BookPayload book, int id)
         {
             var result = repository.Update(book, id);
-            return TypedResults.Created($"http://localhost:5115/students/{result.id}", result);
+            return TypedResults.Created($"http://localhost:5115/books/{result.id}", result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

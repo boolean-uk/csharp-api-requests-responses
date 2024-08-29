@@ -20,7 +20,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult CreateLanguage(IRepository<Language> repository, Language language)
         {
             var result = repository.Create(language);
-            return TypedResults.Created($"http://localhost:5115/students/{result.name}", result);
+            return TypedResults.Created($"http://localhost:5115/languages/{result.name}", result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -41,7 +41,7 @@ namespace exercise.wwwapi.Endpoints
         public static IResult UpdateLanguage(IRepository<Language> repository, Language language, string name)
         {
             var result = repository.Update(language, name);
-            return TypedResults.Created($"http://localhost:5115/students/{result.name}", result);
+            return TypedResults.Created($"http://localhost:5115/languages/{result.name}", result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
