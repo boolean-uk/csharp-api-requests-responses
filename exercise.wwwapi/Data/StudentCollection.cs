@@ -4,7 +4,7 @@ namespace exercise.wwwapi.Data
 {
     public class StudentCollection
     {
-        private List<Student> _students = new List<Student>()
+        private List<Student> Students = new List<Student>()
         {
             new Student() { FirstName="Nathan",LastName="King" },
             new Student() { FirstName="Dave", LastName="Ames" }
@@ -12,33 +12,33 @@ namespace exercise.wwwapi.Data
 
         public Student Add(Student student)
         {            
-            _students.Add(student);
+            Students.Add(student);
 
             return student;
         }
 
         public List<Student> GetAll()
         {
-            return _students.ToList();
+            return Students.ToList();
         }
-        public Student GetStudent(string firstname) 
+        public Student GetA(string firstname) 
         {
-            var student = _students.FirstOrDefault(x => x.FirstName == firstname);
+            var student = Students.FirstOrDefault(x => x.FirstName == firstname);
             return student;
         }
 
-        public Student RemoveStudent(string firstname)
+        public Student Delete(string firstname)
         {
-            var student = _students.FirstOrDefault(x =>x.FirstName == firstname);
-            _students.Remove(student);
+            var student = Students.FirstOrDefault(x =>x.FirstName == firstname);
+            Students.Remove(student);
             return student;
         }
-        public Student UpdateStudent(string firstname, string newName)
+        public Student Update(string firstname)
         {
-            var student = _students.FirstOrDefault(x => x.FirstName == firstname);
-            _students.Remove(student);
-            student.FirstName= newName;
-            _students.Add(student);
+            var student = Students.First();
+            Students.Remove(student);
+            student.FirstName = firstname;
+            Students.Add(student);
             return student;
         }
     };
