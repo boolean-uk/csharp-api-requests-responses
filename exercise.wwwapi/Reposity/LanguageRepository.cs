@@ -17,9 +17,19 @@ namespace exercise.wwwapi.Reposity
             return language;
         }
 
+        public Language Delete(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Language Get(string Name)
         {
             return LanguageCollection.Get(Name);
+        }
+
+        public Language Get(int Id)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Language> getAll()
@@ -30,6 +40,11 @@ namespace exercise.wwwapi.Reposity
         public Language Update(string Name, Language language)
         {
             return LanguageCollection.Update(Name, language);
+        }
+
+        public Language Update(int Id, Language item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

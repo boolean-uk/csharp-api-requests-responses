@@ -17,9 +17,19 @@ namespace exercise.wwwapi.Reposity
             return stud;
         }
 
+        public Student Delete(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Student Get(string FirstName)
         {
             return StudentCollection.Get(FirstName);
+        }
+
+        public Student Get(int Id)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Student> getAll()
@@ -30,6 +40,11 @@ namespace exercise.wwwapi.Reposity
         public Student Update(string FirsName, Student student)
         {
             return StudentCollection.Update(FirsName, student);
+        }
+
+        public Student Update(int Id, Student item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
