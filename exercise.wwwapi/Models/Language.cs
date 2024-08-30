@@ -2,11 +2,14 @@
 {
     public class Language
     {
-        private String name {get; set;}
+        //it being private gave me problems with visibility
+        public string _name {get; set;}
 
-        public Language(String name)
+        public Language(string name)
         {
-            this.name = name;
+            this._name = name;
         }
+
+        public string getName() { return _name;}
     }
 }
