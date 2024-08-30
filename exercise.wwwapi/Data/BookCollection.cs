@@ -15,7 +15,7 @@ namespace exercise.wwwapi.Data
             if (_books.Find(x => x.Title == book.Title) == null)
             {
                 _books.Add(new Book(_books.Max(x => x.Id) + 1, book.Title, book.numPages, book.Genre, book.Author));
-                return book;
+                return _books.Find(x=>x.Title == book.Title);
             }
             return null;
         }

@@ -20,32 +20,29 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public static IResult DeleteLanguage(ILanguageRepository repository, string name)
         {
-            return TypedResults.Ok(repository.DeleteLanguage(name));
-
+            var result = repository.DeleteLanguage(name);
+            return result == null ? TypedResults.NotFound(result) : TypedResults.Ok(result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public static IResult UpdateLanguage(ILanguageRepository repository, string name, string newName)
         {
-            return TypedResults.Ok(repository.UpdateLanguage(name, newName));
+            var result = repository.UpdateLanguage(name, newName);
+            return result == null ? TypedResults.NotFound(result) : TypedResults.Ok(result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static IResult AddLanguage(ILanguageRepository repository, string name)
         {
-            return TypedResults.Ok(repository.AddLanguage(name));
+            var result = repository.AddLanguage(name);
+            return result == null ? TypedResults.BadRequest(result) : TypedResults.Ok(result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public static IResult GetLanguages(ILanguageRepository repository)
         {
             return TypedResults.Ok(repository.GetLanguages());
@@ -53,11 +50,10 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public static IResult GetLanguage(ILanguageRepository repository, string name)
         {
-            return TypedResults.Ok(repository.GetLanguage(name));
-
+            var result = repository.GetLanguage(name);
+            return result == null ? TypedResults.NotFound(result) : TypedResults.Ok(result);
         }
     }
 }
