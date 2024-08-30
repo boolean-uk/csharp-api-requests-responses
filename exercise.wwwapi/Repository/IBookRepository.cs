@@ -10,7 +10,7 @@ namespace exercise.wwwapi.Repository
 
         Book GetBook(int id);
 
-        Book UpdateBook(int id);
+        Book UpdateBook(int id, Book book);
 
         Book DeleteBook(int id);
     }

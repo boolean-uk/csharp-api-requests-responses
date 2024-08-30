@@ -11,24 +11,24 @@ namespace exercise.wwwapi.Repository
             return book;
         }
 
-        public Book DeleteBook(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Book> GetAllBooks()
         {
-            throw new NotImplementedException();
+            return BookCollection.GetAllBooks();
         }
 
         public Book GetBook(int id)
         {
-            throw new NotImplementedException();
+            return BookCollection.GetBook(id);
         }
 
-        public Book UpdateBook(int id)
+        public Book UpdateBook(int id, Book book)
         {
-            throw new NotImplementedException();
+            return BookCollection.UpdateBook(id, book);
+        }
+
+        public Book DeleteBook(int id)
+        {
+            return BookCollection.DeleteBook(id);
         }
     }
 }
