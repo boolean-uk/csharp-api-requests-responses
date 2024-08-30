@@ -17,9 +17,29 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        public List<Student> getAll()
+        public List<Student> GetAll()
         {
             return _students.ToList();
+        }
+        public Student GetStudent(string firstname) 
+        {
+            var student = _students.FirstOrDefault(x => x.FirstName == firstname);
+            return student;
+        }
+
+        public Student RemoveStudent(string firstname)
+        {
+            var student = _students.FirstOrDefault(x =>x.FirstName == firstname);
+            _students.Remove(student);
+            return student;
+        }
+        public Student UpdateStudent(string firstname, string newName)
+        {
+            var student = _students.FirstOrDefault(x => x.FirstName == firstname);
+            _students.Remove(student);
+            student.FirstName= newName;
+            _students.Add(student);
+            return student;
         }
     };
 
