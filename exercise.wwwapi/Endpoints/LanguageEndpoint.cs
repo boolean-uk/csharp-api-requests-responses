@@ -35,9 +35,9 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult UpdateLanguage(ILanguageRepository languageRepository, string languagename, string newname)
+        public static IResult UpdateLanguage(ILanguageRepository languageRepository, string languagename, Language language)
         {
-            return TypedResults.Ok(languageRepository.UpdateLanguage(languagename, newname));
+            return TypedResults.Ok(languageRepository.UpdateLanguage(languagename, language));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

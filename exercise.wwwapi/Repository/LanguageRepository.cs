@@ -21,9 +21,9 @@ namespace exercise.wwwapi.Repository
             return LanguageCollection.GetLanguage(name);
         }
 
-        public Language UpdateLanguage(string name, string newname)
+        public Language UpdateLanguage(string name, Language language)
         {
-            return LanguageCollection.UpdateLanguage(name, newname);
+            return LanguageCollection.UpdateLanguage(name, language);
         }
 
         public Language DeleteLanguage(string name)

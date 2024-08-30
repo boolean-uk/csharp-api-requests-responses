@@ -29,10 +29,10 @@ namespace exercise.wwwapi.Data
             return match;
         }
 
-        public static Language UpdateLanguage(string name, string newname)
+        public static Language UpdateLanguage(string name, Language language)
         {
             var match = languages.FirstOrDefault(x => x.Name.ToLower() == name.ToLower());
-            match.Name = newname;
+            match.Name = language.Name;
             return match;
         }
 
