@@ -18,10 +18,10 @@
         }
 
         public int Id { get { return id; } }
-        public string Title  { get; set; } 
-        public int NumPages { get; set; }
-        public string Author { get; set; }
-        public string Genre { get; set; }
+        public string Title { get { return title; } set { title = value; } }
+        public int NumPages { get { return numPages; } set { numPages = value; } }
+        public string Author { get { return author; } set { author = value; } }
+        public string Genre { get { return genre; } set { genre = value; } }
 
 
     }
