@@ -28,11 +28,11 @@ namespace exercise.wwwapi.Data
             return match;
         }
 
-        public static Student UpdateStudent(string firstname, string newfirstname, string newlastname)
+        public static Student UpdateStudent(string firstname, Student student)
         {
             var match = _students.FirstOrDefault(x => x.FirstName.ToLower() == firstname.ToLower());
-            match.FirstName = newfirstname;
-            match.LastName = newlastname;
+            match.FirstName = student.FirstName;
+            match.LastName = student.LastName;
             return match;
         }
 

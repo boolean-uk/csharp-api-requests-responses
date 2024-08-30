@@ -9,7 +9,7 @@ namespace exercise.wwwapi.Repository
 
         Student GetStudent(string firstname);
 
-        Student UpdateStudent(string firstname, string newfirstname, string newlastname);
+        Student UpdateStudent(string firstname, Student student);
 
         Student DeleteStudent(string firstname);
     }

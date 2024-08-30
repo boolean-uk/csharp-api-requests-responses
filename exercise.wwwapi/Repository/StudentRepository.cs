@@ -20,9 +20,9 @@ namespace exercise.wwwapi.Repository
             return StudentCollection.GetStudent(firstname);
         }
 
-        public Student UpdateStudent(string firstname, string newfirstname, string newlastname)
+        public Student UpdateStudent(string firstname, Student student)
         {
-            return StudentCollection.UpdateStudent(firstname, newfirstname, newlastname);
+            return StudentCollection.UpdateStudent(firstname, student);
         }
 
         public Student DeleteStudent(string firstname)
