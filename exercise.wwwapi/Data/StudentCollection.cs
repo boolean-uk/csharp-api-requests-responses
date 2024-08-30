@@ -28,10 +28,10 @@ namespace exercise.wwwapi.Data
             return student;
         }
 
-        public static Student UpdateStudent(string firstname, string updatedName)
+        public static Student UpdateStudent(string firstname, Student entity)
         {
             var student = _students.FirstOrDefault(s => s.FirstName == firstname);
-            student.FirstName = updatedName;
+            student = entity;
             return student;
         }
 

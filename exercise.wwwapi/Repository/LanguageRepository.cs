@@ -3,7 +3,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class LanguageRepository : IRepository<Language>
+    public class LanguageRepository : IRepository<Language, string>
     {
         public List<Language> GetAll()
         {
@@ -22,9 +22,9 @@ namespace exercise.wwwapi.Repository
             return entity;
         }
 
-        public Language Update(string name, string updatedName)
+        public Language Update(string name, Language language)
         {
-            return LanguageCollection.UpdateLanguage(name, updatedName);
+            return LanguageCollection.UpdateLanguage(name, language);
         }
 
         public Language Delete(string name)

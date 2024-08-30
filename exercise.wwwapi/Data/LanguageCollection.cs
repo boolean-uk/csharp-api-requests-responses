@@ -28,11 +28,11 @@ namespace exercise.wwwapi.Data
             return language;
         }
 
-        public static Language UpdateLanguage(string name, string updatedName)
+        public static Language UpdateLanguage(string name, Language entity)
         {
 
             var language = _languages.FirstOrDefault(s => s.Name == name);
-            language.Name = updatedName;
+            language = entity;
             return language;
         }
 

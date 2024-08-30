@@ -18,48 +18,42 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult AddStudent(IRepository<Student> repository, Student student)
+        public static IResult AddStudent(IRepository<Student, string> repository, Student entity)
         {
-            Payload<Student> payload = new Payload<Student>();
-            payload.Data = repository.Add(student);
-            return TypedResults.Created($"/students", payload);
+            Student student = repository.Add(entity);
+            return TypedResults.Created($"/students", student);
         }
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetStudents(IRepository<Student> repository)
+        public static IResult GetStudents(IRepository<Student, string> repository)
         {
-            Payload<List<Student>> payload = new Payload<List<Student>>();
-            payload.Data = repository.GetAll();
-            return TypedResults.Ok(payload);
+            return TypedResults.Ok(repository.GetAll());
         }
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetAStudent(IRepository<Student> repository, string firstname)
+        public static IResult GetAStudent(IRepository<Student, string> repository, string firstname)
         {
-            Payload<Student> payload = new Payload<Student>();
-            payload.Data = repository.GetOne(firstname);
-            return TypedResults.Ok(payload);
+            Student student = repository.GetOne(firstname);
+            return student != null ? TypedResults.Ok(student) : TypedResults.NotFound();
         }
 
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult UpdateStudent(IRepository<Student> repository, string firstname, string updatedName)
+        public static IResult UpdateStudent(IRepository<Student, string> repository, string firstname, Student entity)
         {
-            Payload<Student> payload = new Payload<Student>();
-            payload.Data = repository.Update(firstname, updatedName);
-            return TypedResults.Created("$/students}", payload);
+            Student student = repository.Update(firstname, entity);
+            return TypedResults.Created("$/students}", student);
         }
 
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult DeleteStudent(IRepository<Student> repository, string firstname)
+        public static IResult DeleteStudent(IRepository<Student, string> repository, string firstname)
         {
-            Payload<Student> payload = new Payload<Student>();
-            payload.Data = repository.Delete(firstname);
-            return TypedResults.Ok(payload);
+            Student student = repository.Delete(firstname);
+            return TypedResults.Ok(student);
         }
 
 

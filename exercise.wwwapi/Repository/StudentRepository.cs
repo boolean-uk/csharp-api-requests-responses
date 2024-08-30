@@ -3,7 +3,7 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class StudentRepository : IRepository<Student>
+    public class StudentRepository : IRepository<Student, string>
     {
         public Student Add(Student entity)
         {
@@ -20,9 +20,9 @@ namespace exercise.wwwapi.Repository
         {
             return StudentCollection.GetAStudent(firstname);
         }
-        public Student Update(string firstname, string updatedName)
+        public Student Update(string firstname, Student entity)
         {
-            return StudentCollection.UpdateStudent(firstname, updatedName);
+            return StudentCollection.UpdateStudent(firstname, entity);
         }
 
         public Student Delete(string firstname)

@@ -17,48 +17,41 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult AddLanguage(IRepository<Language> repository, Language language)
+        public static IResult AddLanguage(IRepository<Language, string> repository, Language entity)
         {
-            Payload<Language> payload = new Payload<Language>();
-            payload.Data = repository.Add(language);
-            return TypedResults.Created($"/languages", payload);
+            Language language = repository.Add(entity);
+            return TypedResults.Created($"/languages", language);
         }
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GetLanguages(IRepository<Language> repository)
+        public static IResult GetLanguages(IRepository<Language, string> repository)
         {
-            Payload<List<Language>> payload = new Payload<List<Language>>();
-            payload.Data = repository.GetAll();
-            return TypedResults.Ok(payload);
+            return TypedResults.Ok(repository.GetAll());
         }
 
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult GatALanguage(IRepository<Language> repository, string name)
+        public static IResult GatALanguage(IRepository<Language, string> repository, string name)
         {
-            Payload<Language> payload = new Payload<Language>();
-            payload.Data = repository.GetOne(name);
-            return TypedResults.Ok(payload);
+            Language language = repository.GetOne(name);
+            return language != null ? TypedResults.Ok(language) : TypedResults.NotFound();
         }
 
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult UpdateLanguage(IRepository<Language> repository, string name, string updatedName)
+        public static IResult UpdateLanguage(IRepository<Language, string> repository, string name, Language entity)
         {
-            Payload<Language> payload = new Payload<Language>();
-            payload.Data = repository.Update(name, updatedName);
-            return TypedResults.Created("$/languages", payload);
+            Language language = repository.Update(name, entity);
+            return language != null ? TypedResults.Created("$/languages", language) : TypedResults.NotFound();
         }
-
 
         
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static IResult DeleteLanguage(IRepository<Language> repository, string name)
+        public static IResult DeleteLanguage(IRepository<Language, string> repository, string name)
         {
-            Payload<Language> payload = new Payload<Language>();
-            payload.Data = repository.Delete(name);
-            return TypedResults.Ok(payload);
+            Language language = repository.Delete(name);
+            return language != null ? TypedResults.Ok(language) : TypedResults.NotFound();
         }
     }
 }
