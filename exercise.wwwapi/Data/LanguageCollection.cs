@@ -21,7 +21,8 @@ namespace exercise.wwwapi.Data
 
         public static Language UppdateLanguage(string name, string newName)
         {
-             languages.FirstOrDefault(x => x.Name.Equals(name)).Name = newName;
+            Language l = languages.FirstOrDefault(x => x.Name.Equals(name));
+            l.SetName(newName);
             return languages.FirstOrDefault(x => x.Name.Equals(newName));
         }
 

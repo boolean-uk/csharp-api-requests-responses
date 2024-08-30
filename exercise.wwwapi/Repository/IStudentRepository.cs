@@ -9,6 +9,6 @@ namespace exercise.wwwapi.Repository
         List<Student> GetAll();
 
         Student GetByName(string firstName);
-        Student UppdateStudent(string firstName, string newLastName);
+        Student UppdateStudent(string firstName, string newFirstName, string newLastName);
     }
 }

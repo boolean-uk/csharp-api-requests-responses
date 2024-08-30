@@ -23,7 +23,7 @@ namespace exercise.wwwapi.Repository
             return StudentCollection.Add(new Student() { FirstName = firstName ,LastName = lastName });
         }
 
-        public Student UppdateStudent(string firstName, string newLastName)
+        public Student UppdateStudent(string firstName, string newFirstName, string newLastName)
         {
 
             Student s = StudentCollection.getAll().FirstOrDefault(x => x.FirstName.Equals(firstName));
@@ -32,6 +32,8 @@ namespace exercise.wwwapi.Repository
             {
                 s.LastName = newLastName;
             }
+            if (newFirstName is not null)
+            {  s.FirstName = newFirstName; }
 
             return s;
         }

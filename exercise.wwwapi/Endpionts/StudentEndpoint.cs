@@ -38,9 +38,9 @@ namespace exercise.wwwapi.Endpionts
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static IResult UppdateStudent(IStudentRepository repository, string firstName, string newLastName)
+        public static IResult UppdateStudent(IStudentRepository repository, string firstName,string newFirstname, string newLastName)
         {
-            return TypedResults.Ok(repository.UppdateStudent(firstName, newLastName));
+            return TypedResults.Ok(repository.UppdateStudent(firstName, newFirstname, newLastName));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

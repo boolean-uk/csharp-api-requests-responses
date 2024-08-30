@@ -17,6 +17,8 @@ namespace exercise.wwwapi.Repository
 
         public Language AddLanguage(string name)
         {
+
+            //I know the set ID method is not a good implementation, just need somethig simple that works
             return LanguageCollection.AddLanguage(new Language(name));
         }
 
