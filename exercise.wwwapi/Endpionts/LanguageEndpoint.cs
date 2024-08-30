@@ -16,6 +16,7 @@ namespace exercise.wwwapi.Endpionts
             languageGroup.MapDelete("/{name}", RemoveLanguage);
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public static IResult GetALanguage(ILanguagesRepository repository, string name)
         {
             return TypedResults.Ok(repository.GetALanguage(name));

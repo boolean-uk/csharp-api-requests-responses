@@ -9,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ILanguagesRepository, LanguagesRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
@@ -24,6 +25,7 @@ app.UseHttpsRedirection();
 
 app.CofigureStudentEnpoint();
 app.ConfigureLanguageEndpoint();
+app.ConfigureBooksEndpoint();
 
 
 app.Run();
