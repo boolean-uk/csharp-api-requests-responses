@@ -15,6 +15,7 @@ namespace exercise.wwwapi.EndPoints
             languages.MapPut("/{name}", UpdateLanguage);
             languages.MapDelete("/{name}", DeleteLanguage);
         }
+        
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static IResult GetAllLanguages(IRepository<Language> repository)
         {
@@ -24,22 +25,23 @@ namespace exercise.wwwapi.EndPoints
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static IResult GetSingleLanguage(IRepository<Language> repository, string name)
-        
         {
             return TypedResults.Ok(repository.Get(name));
-        
         }
+        
         
         [ProducesResponseType(StatusCodes.Status201Created)]
         public static IResult CreateLanguage(IRepository<Language> repository, Language language)
         {
             return TypedResults.Ok(repository.Create(language));
         }
+        
         [ProducesResponseType(StatusCodes.Status201Created)]
         public static IResult UpdateLanguage(IRepository<Language> repository, Language language, string name)
         {
             return TypedResults.Ok(repository.Update(name, language));
         }
+        
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static IResult DeleteLanguage(IRepository<Language> repository, string name)
         {
