@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
@@ -24,6 +25,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureStudentController();
 app.ConfigureLanguageController();
+app.ConfigureBookController();
 
 app.Run();
 
