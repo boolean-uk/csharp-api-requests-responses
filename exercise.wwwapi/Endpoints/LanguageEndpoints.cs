@@ -19,13 +19,13 @@ namespace exercise.wwwapi.Endpoints
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static IResult AddLanguages(IRepository<Language> repository, Language Language)
+        public static IResult AddLanguages(IRepository<Language> repository, Language language)
         {
             Payload<Language> payload = new();
-            payload.data = repository.AddEntity(Language);
-            return payload.data != null ? TypedResults.Created($"https://localhost:7068/{Language.name}", payload.data) : TypedResults.BadRequest();
+            payload.data = repository.AddEntity(language);
+            return payload.data != null ? TypedResults.Created($"https://localhost:7068/{language.name}", payload.data) : TypedResults.BadRequest();
         }
-
+        
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static IResult GetLanguages(IRepository<Language> repository)

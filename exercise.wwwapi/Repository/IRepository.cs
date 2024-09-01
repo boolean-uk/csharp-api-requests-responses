@@ -9,5 +9,6 @@ namespace exercise.wwwapi.Repository
         T GetAEntity(string firstName);
         T ChangeAnEntity(T entity, string search);
         string DeleteAnEntity(string search);
+        //T ChangeAnEntity(Book entity, int search);
     }
 }

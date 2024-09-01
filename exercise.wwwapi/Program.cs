@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 //every time a somebody goes to enpoint method of type Student is passed in
 builder.Services.AddScoped<IRepository<Student>, StudentRepository>();
 builder.Services.AddScoped<IRepository<Language>, LanguageRepository>();
+builder.Services.AddScoped<IRepository<Book>, BookRepository>();
 
 var app = builder.Build();
 
@@ -26,6 +27,7 @@ app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoint();
 app.ConfigureLanguageEndpoint();
+app.ConfigureBookEndpoints();
 
 app.Run();
 
