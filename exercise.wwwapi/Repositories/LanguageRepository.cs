@@ -1,32 +1,33 @@
 ﻿
+using exercise.wwwapi.Data;
 using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repositories
 {
     public class LanguageRepository
     {
-        internal object Delete(string name)
+        public Language Delete(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.Delete(name);
         }
 
-        internal object GetA(string name)
+        public Language GetA(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.GetA(name);
         }
 
-        internal object GetAll()
+        public List<Language> GetAll()
         {
-            throw new NotImplementedException();
+            return LanguageCollection.GetAll();
         }
 
-        internal object Update(string name)
+        public Language Update(string name)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.Update(name);
         }
-        public Language Create(Language book)
+        public Language Create(Language language)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.Create(language);
         }
     }
 }

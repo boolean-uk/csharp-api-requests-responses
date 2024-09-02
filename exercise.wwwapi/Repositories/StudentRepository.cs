@@ -1,4 +1,5 @@
 ﻿
+using exercise.wwwapi.Data;
 using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repositories
@@ -7,14 +8,27 @@ namespace exercise.wwwapi.Repositories
     {
         public Student GetA(string firstName)
         {
-            throw new NotImplementedException();
+            return StudentCollection.GetA(firstName);
         }
 
         public List<Student> GetAll()
         {
-            throw new NotImplementedException();
+            return StudentCollection.GetAll();
         }
 
-        public Student Create(Student student) { throw new NotImplementedException(); }
+        public Student Create(Student student) 
+        {
+            return StudentCollection.Create(student);
+        }
+
+        public Student Update(string firstName)
+        {
+            return StudentCollection.Update(firstName);
+        }
+
+        public Student Delete(string firstName)
+        {
+            return StudentCollection.Delete(firstName);
+        }
     }
 }

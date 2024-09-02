@@ -1,32 +1,33 @@
 ﻿
+using exercise.wwwapi.Data;
 using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repositories
 {
     public class BookRepository
     {
-        public Book Created(Book book)
+        public Book Create(Book book)
         {
-            throw new NotImplementedException();
+            return BookCollection.Create(book);
         }
-        internal object Delete(int id)
+        public Book Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        internal object GetA(int id)
-        {
-            throw new NotImplementedException();
+            return BookCollection.Delete(id);
         }
 
-        internal object GetAll()
+        public Book GetA(int id)
         {
-            throw new NotImplementedException();
+            return BookCollection.GetA(id);
         }
 
-        internal object Update(Book book)
+        public List<Book> GetAll()
         {
-            throw new NotImplementedException();
+            return BookCollection.GetAll();
+        }
+
+        public Book Update(Book book)
+        {
+            return BookCollection.Update(book);
         }
     }
 }

@@ -20,13 +20,9 @@ namespace exercise.wwwapi.Endpoints
         private static IResult GetAll(StudentRepository repo) => TypedResults.Ok(repo.GetAll());
 
         private static IResult GetA(StudentRepository repo, string firstName) => TypedResults.Ok(repo.GetA(firstName));
-        private static IResult Create(StudentRepository repo, Student student)
-        {
-            var createdStudent = repo.Create(student);
-            return TypedResults.Created("", createdStudent); 
-        }
+        private static IResult Create(StudentRepository repo, Student student) => TypedResults.Created($"http://localhost:5115/book/id/{student.FirstName}", repo.Create(student)); 
 
-        private static IResult Update(StudentRepository repo, string firstName) => TypedResults.Created("", repo.Update(firstName));
+        private static IResult Update(StudentRepository repo, string firstName) => TypedResults.Created($"http://localhost:5115/book/id/{firstName}", repo.Update(firstName));
 
         private static IResult Delete(StudentRepository repo, string firstName) => TypedResults.Ok(repo.Delete(firstName));
     }

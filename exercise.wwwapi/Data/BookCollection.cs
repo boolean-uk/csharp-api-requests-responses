@@ -15,19 +15,20 @@ namespace exercise.wwwapi.Data
             Book book = Books.FirstOrDefault(x => x.Id == id);
             return book;
         }
-        public static Book Update(int id, Book newBook)
+        public static Book Update(Book newBook)
         {
-            var book = Books.FirstOrDefault(x => x.Id == id);
+            var book = Books.FirstOrDefault(x => x.Id == newBook.Id);
             if (book != null)
             {
                 Delete(book.Id);
                 Create(newBook);
             }
-            return book;
+            return newBook;
         }
-        private static void Create(Book newBook)
+        public static Book Create(Book newBook)
         {
             Books.Add(newBook);
+            return newBook;
         }
         public static Book Delete(int id)
         {
