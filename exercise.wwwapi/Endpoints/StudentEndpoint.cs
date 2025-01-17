@@ -58,14 +58,14 @@ namespace exercise.wwwapi.Endpoints
                 return TypedResults.Problem(ex.Message);
             }
         }
-
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public static async Task<IResult> UpdateStudent(IRepository repository, string firstName, StudentPut model)
         {
             var target = repository.GetStudent(firstName);
             if(target == null) return TypedResults.NotFound();
             if(model.firstName != null) target.FirstName = model.firstName;
             if(model.lastName != null) target.LastName = model.lastName;
-            return TypedResults.Ok(target);
+            return TypedResults.Created($"https://localhost:7068/students/{firstName}",target);
         }
     }
 }

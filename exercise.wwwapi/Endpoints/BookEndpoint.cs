@@ -1,4 +1,5 @@
-﻿using exercise.wwwapi.Models;
+﻿using System.Xml.Linq;
+using exercise.wwwapi.Models;
 using exercise.wwwapi.Repository;
 using exercise.wwwapi.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -62,7 +63,7 @@ namespace exercise.wwwapi.Endpoints
                 return TypedResults.Problem(ex.Message);
             }
         }
-
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public static async Task<IResult> UpdateBook(IRepository repository, int id, BookPut model)
         {
             var target = repository.GetBook(id);
@@ -71,7 +72,7 @@ namespace exercise.wwwapi.Endpoints
             if (model.NumPages != null) target.NumPages = model.NumPages.Value;
             if (model.Author != null) target.Author = model.Author;
             if (model.Genre != null) target.Genre = model.Genre;
-            return TypedResults.Ok(target);
+            return TypedResults.Created($"https://localhost:7068/books/{id}", target);
         }
     }
 }

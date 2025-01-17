@@ -58,12 +58,13 @@ namespace exercise.wwwapi.Endpoints
             }
         }
 
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public static async Task<IResult> UpdateLanguage(IRepository repository, string name, LanguagePut model)
         {
             var target = repository.GetLanguage(name);
             if (target == null) return TypedResults.NotFound();
             if (model.Name != null) target.name = model.Name;
-            return TypedResults.Ok(target);
+            return TypedResults.Created($"https://localhost:7068/languages/{name}", target);
         }
 
     }
