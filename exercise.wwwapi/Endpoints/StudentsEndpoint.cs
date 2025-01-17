@@ -24,7 +24,6 @@ namespace exercise.wwwapi.Endpoints
         {
             repository.Add(student);
 
-            //return Results.Ok(student);
             return TypedResults.Created($"https://localhost:7068/students/{student.FirstName}", student);
         }
 
