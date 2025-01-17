@@ -1,12 +1,9 @@
 ﻿namespace exercise.wwwapi.Models
 {
-    public class Language
+    public class Language : IBase
     {
-        private String name {get; set;}
+        public int Id { get; set; }
+        public string Name { get; set;}
 
-        public Language(String name)
-        {
-            this.name = name;
-        }
     }
 }
