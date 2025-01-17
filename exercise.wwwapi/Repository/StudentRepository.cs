@@ -3,33 +3,31 @@ using exercise.wwwapi.Models;
 
 namespace exercise.wwwapi.Repository
 {
-    public class StudentRepository<T> : IRepository<T>
+    public class StudentRepository : IStudentRepository
     {
-        public T Add(T entity)
+        public Student Add(Student entity)
         {
-            throw new NotImplementedException();
+            return StudentCollection.Add(entity);
         }
 
-        public bool Delete(int id)
+        public bool Delete(string firstName)
         {
-            throw new NotImplementedException();
+            return StudentCollection.Remove(firstName);
         }
 
-        public T Get(int id)
+        public Student Get(string firstName)
         {
-            throw new NotImplementedException();
+            return StudentCollection.Get(firstName);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<Student> GetAll()
         {
-            IEnumerable<StudentCollection> students = StudentCollection.Students;
-
-            return students;
+            return StudentCollection.Students;
         }
 
-        public T Update(int id, T entity)
+        public Student Update(string firstName, Student entity)
         {
-            throw new NotImplementedException();
+            return StudentCollection.Update(firstName, entity);
         }
     }
 }
