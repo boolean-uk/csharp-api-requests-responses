@@ -27,10 +27,17 @@ namespace exercise.wwwapi.Data
             _languages.RemoveAll(x => x.name == name);
             return true;
         }
-        //public static Language Update(Language entity)
-        //{
-          //  _languages.U
-        //}
+        public static Language Update(string name, Language entity)
+        {
+
+            var language = _languages.FirstOrDefault(x =>x.name == name);
+            if (language != null)
+            {
+                language.name = entity.name;
+            }
+            return language;
+        }
+
 
         public static List<Language> Languages { get { return _languages; } }
     }

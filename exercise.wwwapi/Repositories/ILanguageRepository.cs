@@ -8,5 +8,6 @@ namespace exercise.wwwapi.Repositories
         Language GetLanguage(string name);
         bool Delete(string name);
         Language AddLanguage(Language language);
+        Language UpdateLanguage(string name, Language language);
     }
 }
