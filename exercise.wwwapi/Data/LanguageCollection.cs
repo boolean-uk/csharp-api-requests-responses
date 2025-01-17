@@ -3,11 +3,42 @@
 namespace exercise.wwwapi.Data
 {
 
-    public class LanguageCollection
+    public static class LanguageCollection
     {
-        private List<Language> languages = new List<Language>(){
-            new Language("Java"),
-            new Language("C#")
-        };
+        private static List<Language> _languages { get; set; } = new List<Language>();
+
+        public static void Initialize()
+        {
+            _languages.Add(new Language { name = "Java" });
+            _languages.Add(new Language { name = "C#" });
+        }
+
+        public static Language Get(string name)
+        {
+            return _languages.FirstOrDefault(x => x.name == name);
+        }
+        public static Language Add(Language entity)
+        {
+            _languages.Add(entity);
+            return entity;
+        }
+        public static bool Remove(string name)
+        {
+            _languages.RemoveAll(x => x.name == name);
+            return true;
+        }
+        public static Language Update(string name, Language entity)
+        {
+
+            var language = _languages.FirstOrDefault(x =>x.name == name);
+            if (language != null)
+            {
+                language.name = entity.name;
+            }
+            return language;
+        }
+
+
+        public static List<Language> Languages { get { return _languages; } }
     }
 }
