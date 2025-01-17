@@ -60,7 +60,7 @@ paths:
           description: The ID of the book to update
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         content:
           application/json:
@@ -83,7 +83,7 @@ paths:
           description: The ID of the book to update
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         200:
           content:
