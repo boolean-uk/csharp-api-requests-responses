@@ -1,4 +1,6 @@
-﻿namespace exercise.wwwapi.Models
+﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
+
+namespace exercise.wwwapi.Models
 {
     public class Language
     {
@@ -8,5 +10,7 @@
         {
             this.name = name;
         }
+
+        public string Name {get {return name;}}
     }
 }
