@@ -2,11 +2,14 @@
 {
     public class Language
     {
-        private String name {get; set;}
+        private String _name;
+        public String name { get => _name; set => _name = value; }
 
         public Language(String name)
         {
-            this.name = name;
+            this._name = name;
         }
+        public Language() { }
+        
     }
 }
