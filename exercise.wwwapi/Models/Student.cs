@@ -1,4 +1,4 @@
-﻿namespace exercise.wwwapi.Models
+﻿namespace exercise.wwwapi
 {
     public class Student
     {
