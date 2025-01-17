@@ -21,6 +21,7 @@ app.UseHttpsRedirection();
 
 var studentCollection = new StudentCollection();
 var languageCollection = new LanguageCollection();
+var bookCollection = new BookCollection();
 
 // Student stuff
 app.MapGet("/students", () => TypedResults.Ok(studentCollection.getAll()));
@@ -120,6 +121,51 @@ app.MapDelete("/languages/{name}", IResult (string name) =>
         return TypedResults.InternalServerError();
     }
     
+    return TypedResults.NoContent();
+});
+
+// Book stuff for extension
+app.MapGet("/books", () => TypedResults.Ok(bookCollection.getAll()));
+
+app.MapPost("/books", IResult (Book book) =>
+    TypedResults.Created($"/books/{bookCollection.Add(book).Title}", book));
+
+app.MapGet("/books/{id}", IResult (Guid id) =>
+{
+    var book = bookCollection.getAll().FirstOrDefault(b => b.Id == id);
+    if (book == null)
+    {
+        return TypedResults.NotFound();
+    }
+    return TypedResults.Ok(book);
+});
+
+app.MapPut("/books/{id}", IResult (Guid id, Book book) =>
+{
+    var existingBook = bookCollection.getAll().FirstOrDefault(b => b.Id == id);
+    if (existingBook == null)
+    {
+        return TypedResults.NotFound();
+    }
+    
+    existingBook.Title = book.Title;
+    existingBook.Author = book.Author;
+    existingBook.NumPages = book.NumPages;
+    existingBook.Genre = book.Genre;
+    
+    return TypedResults.Ok(existingBook);
+});
+
+app.MapDelete("/books/{id}", IResult (Guid id) =>
+{
+    var book = bookCollection.getAll().FirstOrDefault(b => b.Id == id);
+    
+    if (book == null)
+    {
+        return TypedResults.NotFound();
+    }
+    
+    bookCollection.Remove(book);
     return TypedResults.NoContent();
 });
 
