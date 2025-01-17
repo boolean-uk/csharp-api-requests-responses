@@ -11,7 +11,7 @@ namespace exercise.wwwapi.Endpoints
             var pets = app.MapGroup("language");
 
             pets.MapGet("/gettAll", GetAllLanguages);
-            pets.MapGet("/get", GetLanguage);
+            pets.MapGet("/get{FirstName}", GetLanguage);
             pets.MapPost("/add", AddLanguage);
             pets.MapDelete("/delete{Firstname}", DeleteLanguage);
         }

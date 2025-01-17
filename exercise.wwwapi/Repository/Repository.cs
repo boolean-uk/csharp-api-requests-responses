@@ -39,10 +39,6 @@ namespace exercise.wwwapi.Repository
             return LanguageCollection.Add(entity);
         }
 
-        //public bool Delete(string FirstName)
-        //{
-        //    return LanguageCollection.Remove(FirstName);
-        //}
 
         public Language GetLanguage(string FirstName)
         {
@@ -52,8 +48,6 @@ namespace exercise.wwwapi.Repository
         public IEnumerable<Language> GetAllLanguage()
         {
             return LanguageCollection.Languages;
-
-            #endregion
         }
 
         public IEnumerable<Language> GetLanguages()
@@ -63,7 +57,32 @@ namespace exercise.wwwapi.Repository
 
         public bool DeleteL(string FirstName)
         {
-            throw new NotImplementedException();
+            return LanguageCollection.Remove(FirstName);
         }
+        #endregion
+
+        #region Book
+        public IEnumerable<Book> GetBooks()
+        {
+            return BookCollection.Books;
+        }
+
+        public Book GetBook(int id)
+        {
+            return BookCollection.Get(id);
+        }
+
+        public bool DeleteBook(int id)
+        {
+            return BookCollection.Remove(id);
+        }
+
+        public Book AddBook(Book entity)
+        {
+            return BookCollection.Add(entity);
+        }
+
+        #endregion
+
     }
 }

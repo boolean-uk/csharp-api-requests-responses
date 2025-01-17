@@ -13,4 +13,10 @@ public interface IRepository
         Language GetLanguage(string FirstName);
         bool DeleteL(string FirstName);
         Language AddLanguage(Language entity);
-    }
+
+
+        IEnumerable<Book> GetBooks();
+        Book GetBook(int id);
+        bool DeleteBook(int id);
+        Book AddBook(Book entity);
+}

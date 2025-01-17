@@ -21,8 +21,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.ConfigurePetEndpoint();
+app.ConfigureBookEndpoint();
+app.ConfigureLanguageEndpoint();
 
 StudentCollection.Initialize();
+BookCollection.Initialize();
+LanguageCollection.Initialize();
 
 app.Run();
 

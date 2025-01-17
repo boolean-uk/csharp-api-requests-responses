@@ -11,6 +11,7 @@ namespace exercise.wwwapi.Endpoints
             var pets = app.MapGroup("students");
 
             pets.MapGet("/gettAll", GetAllStudents);
+            pets.MapGet("/get{FirstName}", GetStudent);
             pets.MapPost("/add", AddStudent);
             pets.MapDelete("/delete{Firstname}", DeleteStudent);
         }
