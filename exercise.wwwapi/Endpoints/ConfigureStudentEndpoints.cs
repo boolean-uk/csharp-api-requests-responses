@@ -7,9 +7,10 @@ namespace exercise.wwwapi.Endpoints
 {
     public static class ConfigureStudentEndpoints
     {
+        public static string Path { get; } = "students";
         public static void ConfigureStudentEndpoint(this WebApplication app)
         {
-            var counters = app.MapGroup("students");
+            var counters = app.MapGroup(Path);
 
             counters.MapGet("/", GetStudents);
             counters.MapGet("/{id}", GetStudent);
@@ -20,9 +21,17 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> GetStudents(IGenericRepository<Student> repository)
         {
-            return TypedResults.Ok(repository.GetAll());
+            try
+            {
+                return TypedResults.Ok(repository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -64,17 +73,33 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> PostStudent(IGenericRepository<Student> repository, StudentPost entity)
         {
-            Student student = repository.Add(new Student { FirstName = entity.FirstName, LastName = entity.LastName });
-            return TypedResults.Created("", student);
+            try
+            {
+                Student student = repository.Add(new Student { FirstName = entity.FirstName, LastName = entity.LastName });
+                return TypedResults.Created($"/{Path}/{student.Id}", student);
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> PutStudent(IGenericRepository<Student> repository, int id, StudentPut entity) 
         {
-            Student student = repository.Update(id, new Student { FirstName = entity.FirstName, LastName = entity.LastName });
-            return TypedResults.Created("", student);
+            try
+            {
+                Student student = repository.Update(id, new Student { FirstName = entity.FirstName, LastName = entity.LastName });
+                return TypedResults.Created($"/{Path}/{student.Id}", student);
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

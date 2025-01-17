@@ -7,9 +7,10 @@ namespace exercise.wwwapi.Endpoints
 {
     public static class ConfigureLanguageEndpoints
     {
+        public static string Path { get; } = "languages";
         public static void ConfigureLanguageEndpoint(this WebApplication app)
         {
-            var counters = app.MapGroup("languages");
+            var counters = app.MapGroup(Path);
 
             counters.MapGet("/", GetLanguages);
             counters.MapGet("/find/{name}", GetLanguageByName);
@@ -20,9 +21,17 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> GetLanguages(IGenericRepository<Language> repository)
         {
-            return TypedResults.Ok(repository.GetAll());
+            try
+            {
+                return TypedResults.Ok(repository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -64,17 +73,33 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> PostLanguage(IGenericRepository<Language> repository, LanguagePost entity)
         {
-            Language Language = repository.Add(new Language { Name = entity.Name });
-            return TypedResults.Created("", Language);
+            try
+            {
+                Language language = repository.Add(new Language { Name = entity.Name });
+                return TypedResults.Created($"/{Path}/{language.Id}", language);
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> PutLanguage(IGenericRepository<Language> repository, int id, LanguagePut entity) 
         {
-            Language Language = repository.Update(id, new Language { Name = entity.Name });
-            return TypedResults.Created("", Language);
+            try
+            {
+                Language language = repository.Update(id, new Language { Name = entity.Name });
+                return TypedResults.Created($"/{Path}/{language.Id}", language);
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -84,8 +109,8 @@ namespace exercise.wwwapi.Endpoints
         {
             try
             {
-                Language Language = repository.Get(id);
-                return TypedResults.Ok(new { Deleted = repository.Delete(id), Name = $"{Language.Name}" });
+                Language language = repository.Get(id);
+                return TypedResults.Ok(new { Deleted = repository.Delete(id), Name = $"{language.Name}" });
             }
             catch (ArgumentException ex)
             {

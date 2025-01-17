@@ -7,9 +7,10 @@ namespace exercise.wwwapi.Endpoints
 {
     public static class ConfigureBookEndpoints
     {
+        public static string Path { get; } = "books";
         public static void ConfigureBookEndpoint(this WebApplication app)
         {
-            var counters = app.MapGroup("books");
+            var counters = app.MapGroup(Path);
 
             counters.MapGet("/", GetBooks);
             counters.MapGet("/{id}", GetBook);
@@ -19,13 +20,20 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> GetBooks(IGuidRepository<Book> repository)
         {
-            return TypedResults.Ok(repository.GetAll());
+            try
+            {
+                return TypedResults.Ok(repository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> GetBook(IGuidRepository<Book> repository, Guid id)
         {
@@ -44,17 +52,33 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> PostBook(IGuidRepository<Book> repository, BookPost entity)
         {
-            Book book = repository.Add(new Book { Author = entity.Author, Title = entity.Title, Genre = entity.Genre, NumPages = entity.numPages });
-            return TypedResults.Created("", book);
+            try
+            {
+                Book book = repository.Add(new Book { Author = entity.Author, Title = entity.Title, Genre = entity.Genre, NumPages = entity.numPages });
+                return TypedResults.Created($"/{Path}/{book.Id}", book);
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public static async Task<IResult> PutBook(IGuidRepository<Book> repository, Guid id, BookPut entity) 
         {
-            Book book = repository.Update(id, new Book { Author = entity.Author, Title = entity.Title, Genre = entity.Genre, NumPages = entity.numPages ?? -1 });
-            return TypedResults.Created("", book);
+            try
+            {
+                Book book = repository.Update(id, new Book { Author = entity.Author, Title = entity.Title, Genre = entity.Genre, NumPages = entity.numPages ?? -1 });
+                return TypedResults.Created($"/{Path}/{book.Id}", book);
+            }
+            catch (Exception ex)
+            {
+                return TypedResults.Problem(ex.Message);
+            }
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
