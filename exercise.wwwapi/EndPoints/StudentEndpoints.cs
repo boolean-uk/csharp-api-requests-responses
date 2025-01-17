@@ -16,6 +16,7 @@ namespace exercise.wwwapi.EndPoints
             students.MapPost("/", Add);
             students.MapGet("/{firstName}", GetOne);
             students.MapDelete("/{firstName}", Delete);
+            students.MapPut("/{firstName}", Update);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -44,6 +45,13 @@ namespace exercise.wwwapi.EndPoints
         {
             var student = repository.Delete(firstName);
             return Results.Ok(student);
+        }
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public static IResult Update(IRepository<Student> repository, Student student, string firstName)
+        {
+            var updatedStudent = repository.Update(student, firstName);
+            return TypedResults.Created($"/{updatedStudent.FirstName}", updatedStudent);
         }
     }
 }

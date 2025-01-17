@@ -19,7 +19,6 @@ namespace exercise.wwwapi.Repository
         {
             return LanguageCollection.GetOne(name);
         }
-
         public Language Update(Language language, string name)
         {
             return LanguageCollection.Update(name, language);

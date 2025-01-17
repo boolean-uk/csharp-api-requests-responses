@@ -16,6 +16,7 @@ namespace exercise.wwwapi.EndPoints
             languages.MapPost("/", Add);
             languages.MapGet("/{name}", GetOne);
             languages.MapDelete("/{name}", Delete);
+            languages.MapPut("/{name}", Update);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -44,6 +45,13 @@ namespace exercise.wwwapi.EndPoints
         {
             var language = repository.Delete(name);
             return Results.Ok(language);
+        }
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public static IResult Update(IRepository<Language> repository, Language language, string name)
+        {
+            var updatedLanguage = repository.Update(language, name);
+            return TypedResults.Created($"/{updatedLanguage.Name}", updatedLanguage);
         }
     }
 }

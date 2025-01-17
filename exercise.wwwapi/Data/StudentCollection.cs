@@ -41,6 +41,4 @@ namespace exercise.wwwapi.Data
             return student;
         }
     };
-
-
 }
