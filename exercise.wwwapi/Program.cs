@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddOptions();
 builder.Services.AddScoped<IRepository, StudentRepository>();
-
+builder.Services.AddScoped<BooksRepository, BooksRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +23,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.ConfigureStudentEndpoint();
+app.ConfigureBooksEndpoint();
 
 app.Run();
 
