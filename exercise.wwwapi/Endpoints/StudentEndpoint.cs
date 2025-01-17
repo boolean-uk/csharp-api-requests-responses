@@ -63,13 +63,25 @@ namespace exercise.wwwapi.Endpoints
 
         }
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> StudentDelete(IRepository repository, string firstName)
 
         {
+            try
+            {
+                if (repository.GetStudent(firstName) == null)
+                {
+                    repository.DeleteStudent(firstName);
+                    return Results.Ok(repository.GetStudents());
+                }
+                return Results.NotFound();
+            }
+            catch (Exception e)
+            {
+                return Results.BadRequest();
+            }
 
-            repository.DeleteStudent(firstName);
-            return Results.Ok(repository.GetStudents());
         }
-
     }
-}
+}   

@@ -32,6 +32,7 @@ namespace exercise.wwwapi.Data
             }
         public static Student Uppdate(string firstname, string newFirstName, string NewLastName)
         {
+
             Student student = _students.FirstOrDefault(student => student.FirstName == firstname);
             student.FirstName = newFirstName;
             student.LastName = NewLastName;
