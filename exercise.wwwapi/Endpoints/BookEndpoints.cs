@@ -1,14 +1,19 @@
-﻿using exercise.wwwapi.Repositories.Interfaces;
+﻿using System;
+using exercise.wwwapi.Extensions;
+using exercise.wwwapi.Repositories.Interfaces;
 using exercise.wwwapi.Views;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exercise.wwwapi.Endpoints
 {
     public static class BookEndpoints
     {
+        
+
         public static void ConfigureBookEndPoints(this WebApplication app)
         {
-            var languages = app.MapGroup("book");
+            var languages = app.MapGroup("books");
             languages.MapGet("/", GetBooks);
             languages.MapPost("/", CreateBook);
             languages.MapGet("/{name}", GetBook);
@@ -21,8 +26,9 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> DeleteBook(IBookRepository repo, string name)
         {
-            if (repo.DeleteBook(name))
-                return TypedResults.Ok(true);
+            var b = repo.DeleteBook(name);
+            if (b != null)
+                return TypedResults.Ok(b);
             return TypedResults.NotFound(false);
         }
 
@@ -30,28 +36,31 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> GetBook(IBookRepository repo, string name)
         {
-            var stud = repo.GetBook(name);
-            if (stud != null)
-                return TypedResults.Ok(stud);
+            var book = repo.GetBook(name);
+            if (book != null)
+                return TypedResults.Ok(book);
             return TypedResults.NotFound();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static async Task<IResult> UpdateBook(IBookRepository repo, string name, BookView dto)
+        public static async Task<IResult> UpdateBook(HttpContext context, IBookRepository repo, string name, BookView dto)
         {
-            var stud = repo.UpdateBook(name, dto);
-            if (stud != null)
-                return TypedResults.Ok(stud);
+            var book = repo.UpdateBook(name, dto);
+            if (book != null)
+                return TypedResults.Created(context.Get_endpointUrl(book.title),book);
             return TypedResults.BadRequest();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> CreateBook(IBookRepository repo, BookView dto)
+
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public static async Task<IResult> CreateBook(HttpContext context,IBookRepository repo, BookView dto)
         {
-            var stud = repo.AddBook(dto);
-            if (stud != null)
-                return TypedResults.Ok(stud);
+            var book = repo.AddBook(dto);
+
+            if (book != null)
+                return TypedResults.Created(context.Get_endpointUrl(book.title), book);
             return TypedResults.BadRequest();
         }
 

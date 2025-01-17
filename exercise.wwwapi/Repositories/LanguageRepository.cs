@@ -28,10 +28,10 @@ namespace exercise.wwwapi.Repositories
             return null;
         }
 
-        public bool DeleteLanguage(string name)
+        public Language? DeleteLanguage(string name)
         {
 
-            return LanguageCollection.Remove(name) != null;
+            return LanguageCollection.Remove(name);
         }
 
         public Language? GetLanguage(string name)

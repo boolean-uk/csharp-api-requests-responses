@@ -29,10 +29,10 @@ namespace exercise.wwwapi.Repositories
             return null;
         }
 
-        public bool DeleteStudent(string name)
+        public Student? DeleteStudent(string name)
         {
 
-            return StudentCollection.Remove(name) != null;
+            return StudentCollection.Remove(name);
         }
 
         public Student? GetStudent(string name)

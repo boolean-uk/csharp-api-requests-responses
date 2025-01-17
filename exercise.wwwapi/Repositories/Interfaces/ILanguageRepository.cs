@@ -9,6 +9,6 @@ namespace exercise.wwwapi.Repositories.Interfaces
         Language GetLanguage(string name);
         Language? AddLanguage(LanguageView student);
         Language? UpdateLanguage(string name, LanguageView studentview);
-        bool DeleteLanguage(string name);
+        Language? DeleteLanguage(string name);
     }
 }

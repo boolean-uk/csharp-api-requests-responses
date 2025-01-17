@@ -1,4 +1,6 @@
-﻿using exercise.wwwapi.Repositories.Interfaces;
+﻿using System;
+using exercise.wwwapi.Extensions;
+using exercise.wwwapi.Repositories.Interfaces;
 using exercise.wwwapi.Views;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +10,7 @@ namespace exercise.wwwapi.Endpoints
     {
         public static void ConfigureLanguageEndPoints(this WebApplication app)
         {
-            var languages = app.MapGroup("language");
+            var languages = app.MapGroup("languages");
             languages.MapGet("/", GetLanguages);
             languages.MapPost("/", CreateLanguage);
             languages.MapGet("/{name}", GetLanguage);
@@ -21,8 +23,9 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> DeleteLanguage(ILanguageRepository repo, string name)
         {
-            if (repo.DeleteLanguage(name))
-                return TypedResults.Ok(true);
+            var l = repo.DeleteLanguage(name);
+            if (l != null)
+                return TypedResults.Ok(l);
             return TypedResults.NotFound(false);
         }
 
@@ -30,28 +33,28 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> GetLanguage(ILanguageRepository repo, string name)
         {
-            var stud = repo.GetLanguage(name);
-            if (stud != null)
-                return TypedResults.Ok(stud);
+            var langu = repo.GetLanguage(name);
+            if (langu != null)
+                return TypedResults.Ok(langu);
             return TypedResults.NotFound();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static async Task<IResult> UpdateLanguage(ILanguageRepository repo, string name, LanguageView dto)
+        public static async Task<IResult> UpdateLanguage(HttpContext context, ILanguageRepository repo, string name, LanguageView dto)
         {
-            var stud = repo.UpdateLanguage(name, dto);
-            if (stud != null)
-                return TypedResults.Ok(stud);
+            var langu = repo.UpdateLanguage(name, dto);
+            if (langu != null)
+                return TypedResults.Created(context.Get_endpointUrl(langu.name), langu);
             return TypedResults.BadRequest();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> CreateLanguage(ILanguageRepository repo, LanguageView dto)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public static async Task<IResult> CreateLanguage(HttpContext context, ILanguageRepository repo, LanguageView dto)
         {
-            var stud = repo.AddLanguage(dto);
-            if (stud != null)
-                return TypedResults.Ok(stud);
+            var langu = repo.AddLanguage(dto);
+            if (langu != null)
+                return TypedResults.Created(context.Get_endpointUrl(langu.name),langu);
             return TypedResults.BadRequest();
         }
 

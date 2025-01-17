@@ -9,6 +9,6 @@ namespace exercise.wwwapi.Repositories.Interfaces
         Book GetBook(string name);
         Book? AddBook(BookView student);
         Book? UpdateBook(string name, BookView studentview);
-        bool DeleteBook(string name);
+        Book? DeleteBook(string name);
     }
 }

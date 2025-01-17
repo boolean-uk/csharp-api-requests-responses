@@ -9,6 +9,6 @@ namespace exercise.wwwapi.Repositories.Interfaces
         Student GetStudent(string name);
         Student? AddStudent(StudentView student);
         Student? UpdateStudent(string name, StudentView studentview);
-        bool DeleteStudent(string name);
+        Student? DeleteStudent(string name);
     }
 }

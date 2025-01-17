@@ -1,5 +1,6 @@
 ﻿
 using System.Xml.Linq;
+using exercise.wwwapi.Extensions;
 using exercise.wwwapi.Repositories.Interfaces;
 using exercise.wwwapi.Views;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace exercise.wwwapi.Endpoints
     {
         public static void ConfigureStudentEndPoints(this WebApplication app)
         {
-            var student = app.MapGroup("student");
+            var student = app.MapGroup("students");
             student.MapGet("/", GetStudents);
             student.MapPost("/", CreateStudent);
             student.MapGet("/{name}", GetStudent);
@@ -23,8 +24,9 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> DeleteStudent(IStudentRepository repo, string name)
         {
-            if (repo.DeleteStudent(name))
-                return TypedResults.Ok(true);
+            var stud = repo.DeleteStudent(name);
+            if (stud != null)
+                return TypedResults.Ok(stud);
             return TypedResults.NotFound(false);
         }
 
@@ -38,22 +40,22 @@ namespace exercise.wwwapi.Endpoints
             return TypedResults.NotFound();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public static async Task<IResult> UpdateStudent(IStudentRepository repo, string name, StudentView dto)
+        public static async Task<IResult> UpdateStudent(HttpContext context, IStudentRepository repo, string name, StudentView dto)
         {
             var stud = repo.UpdateStudent(name, dto);
             if (stud != null)
-                return TypedResults.Ok(stud);
+                return TypedResults.Created(context.Get_endpointUrl(stud.FirstName), stud);
             return TypedResults.BadRequest();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> CreateStudent(IStudentRepository repo, StudentView dto)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public static async Task<IResult> CreateStudent(HttpContext context, IStudentRepository repo, StudentView dto)
         {
             var stud = repo.AddStudent(dto);
             if (stud != null)
-                return TypedResults.Ok(stud);
+                return TypedResults.Created(context.Get_endpointUrl(stud.FirstName),stud);
             return TypedResults.BadRequest();
         }
 

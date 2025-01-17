@@ -32,10 +32,10 @@ namespace exercise.wwwapi.Repositories
             return null;
         }
 
-        public bool DeleteBook(string name)
+        public Book? DeleteBook(string name)
         {
 
-            return BookCollection.Remove(name) != null;
+            return BookCollection.Remove(name);
         }
 
         public Book? GetBook(string name)
