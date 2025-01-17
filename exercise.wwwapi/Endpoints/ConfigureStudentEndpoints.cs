@@ -1,5 +1,5 @@
 ﻿using exercise.wwwapi.Models;
-using exercise.wwwapi.Repositories;
+using exercise.wwwapi.Repositories.Interfaces;
 using exercise.wwwapi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

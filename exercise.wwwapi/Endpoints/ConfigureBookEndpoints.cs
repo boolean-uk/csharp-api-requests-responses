@@ -1,5 +1,5 @@
 ﻿using exercise.wwwapi.Models;
-using exercise.wwwapi.Repositories;
+using exercise.wwwapi.Repositories.Interfaces;
 using exercise.wwwapi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +19,7 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> GetBooks(IGenericRepository<Book> repository)
+        public static async Task<IResult> GetBooks(IGuidRepository<Book> repository)
         {
             return TypedResults.Ok(repository.GetAll());
         }
@@ -27,7 +27,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static async Task<IResult> GetBook(IGenericRepository<Book> repository, int id)
+        public static async Task<IResult> GetBook(IGuidRepository<Book> repository, Guid id)
         {
             try
             {
@@ -44,14 +44,14 @@ namespace exercise.wwwapi.Endpoints
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static async Task<IResult> PostBook(IGenericRepository<Book> repository, BookPost entity)
+        public static async Task<IResult> PostBook(IGuidRepository<Book> repository, BookPost entity)
         {
             Book book = repository.Add(new Book { Author = entity.Author, Title = entity.Title, Genre = entity.Genre, NumPages = entity.numPages });
             return TypedResults.Created("", book);
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static async Task<IResult> PutBook(IGenericRepository<Book> repository, int id, BookPut entity) 
+        public static async Task<IResult> PutBook(IGuidRepository<Book> repository, Guid id, BookPut entity) 
         {
             Book book = repository.Update(id, new Book { Author = entity.Author, Title = entity.Title, Genre = entity.Genre, NumPages = entity.numPages ?? -1 });
             return TypedResults.Created("", book);
@@ -60,7 +60,7 @@ namespace exercise.wwwapi.Endpoints
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public static async Task<IResult> DeleteBook(IGenericRepository<Book> repository, int id)
+        public static async Task<IResult> DeleteBook(IGuidRepository<Book> repository, Guid id)
         {
             try
             {

@@ -2,6 +2,7 @@ using exercise.wwwapi.Data;
 using exercise.wwwapi.Endpoints;
 using exercise.wwwapi.Models;
 using exercise.wwwapi.Repositories;
+using exercise.wwwapi.Repositories.Interfaces;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IGenericRepository<Student>, StudentRepository>();
 builder.Services.AddScoped<IGenericRepository<Language>, LanguageRepository>();
-builder.Services.AddScoped<IGenericRepository<Book>, BookRepository>();
+builder.Services.AddScoped<IGuidRepository<Book>, BookRepository>();
 
 var app = builder.Build();
 
@@ -20,7 +20,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapSwagger();
     app.MapScalarApiReference();
 }
 

@@ -4,4 +4,9 @@
     {
         public int Id { get; set; }
     }
+
+    public interface IComplex
+    {
+        public Guid Id { get; }
+    }
 }
